@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="proinso"
+    nsURI="http:///es/gva/cit/gvmetrica/proinso.ecore" nsPrefix="es.gva.cit.gvmetrica.proinso">
+  <eClassifiers xsi:type="ecore:EClass" name="Actividad" eSuperTypes="#//ActividadAbstracta">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proceso" lowerBound="1"
+        eType="#//Proceso" changeable="false" transient="true" defaultValueLiteral=""
+        eOpposite="#//Proceso/actividades"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActividadAbstracta" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="codigo_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="codigo.size() > 0"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="todosPredecesores" ordered="false" upperBound="-1" eType="#//ActividadAbstracta">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="body" value="(if predecesores->isEmpty() then predecesores else predecesores.todosPrecedesores() endif)->union(predecesores)"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="todosSucesores" ordered="false" upperBound="-1" eType="#//ActividadAbstracta">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="body" value="sucesores.todosSucesores->union(sucesores)"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="predecesores_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="predecesores_candidates()->includesAll( predecesores)"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="predecesores_candidates" upperBound="-1" eType="#//ActividadAbstracta">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="body" value="if self.oclIsTypeOf(Actividad) then self.oclAsType(Actividad).proceso.actividades else (self.oclAsType(ActividadInterfaz).proceso.actividades) endif - todosPredecesores()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="sucesores_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="sucesores_candidates()->includesAll( sucesores)"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="sucesores_candidates" upperBound="-1" eType="#//ActividadAbstracta">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="body" value="if self.oclIsTypeOf(Actividad) then self.oclAsType(Actividad).proceso.actividades else (self.oclAsType(ActividadInterfaz).proceso.actividades) endif - todosSucesores()"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoYNombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="codigoCompleto.concat(' ').concat( if nombre->isEmpty() then '~' else nombre endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoCompleto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if self.oclIsTypeOf(Actividad) then self.oclAsType(Actividad).proceso.codigoCompleto.concat(' ').concat( if codigo->isEmpty() then '?' else codigo endif) else self.oclAsType(ActividadInterfaz).proceso.codigoCompleto.concat(' ').concat( if codigo->isEmpty() then '?' else codigo endif) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tareas" upperBound="-1"
+        eType="#//Tarea" containment="true" eOpposite="#//Tarea/actividad"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecesores" upperBound="-1"
+        eType="#//ActividadAbstracta" eOpposite="#//ActividadAbstracta/sucesores">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="predecesores_candidates()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucesores" upperBound="-1"
+        eType="#//ActividadAbstracta" eOpposite="#//ActividadAbstracta/predecesores">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="sucesores_candidates()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActividadInterfaz" eSuperTypes="#//ActividadAbstracta">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proceso" lowerBound="1"
+        eType="#//ProcesoInterfaz" changeable="false" transient="true" eOpposite="#//ProcesoInterfaz/actividades"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cargo" eSuperTypes="#//Participante"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConDocumentacion" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentacion" eType="#//Documentacion"
+        containment="true" eOpposite="#//Documentacion/documentado"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comite" eSuperTypes="#//Participante"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConModelClass" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelClass" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Documentacion" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentado" eType="#//ConDocumentacion"
+        changeable="false" eOpposite="#//ConDocumentacion/documentacion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parrafos" upperBound="-1"
+        eType="#//Parrafo" containment="true" eOpposite="#//Parrafo/documentacion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entrada" eSuperTypes="#//UsoFlujo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if guarda.size() &lt; 1 then '' else ' condicional' endif).concat((' de '.concat(if producto->isEmpty() then '?' else (if producto.oclIsTypeOf( Producto) then (if producto.oclAsType( Producto).nombre.size() > 0 then producto.oclAsType( Producto).nombre else '~' endif) else (if producto.oclIsTypeOf( Seccion) then (if producto.oclAsType( Seccion).nombre.size() > 0 then producto.oclAsType( Producto).nombre else '~' endif) else '?' endif) endif) endif)).concat( ' en ').concat( tarea.codigoYNombre )).concat(if guarda.size() &lt; 1  then '' else ' si '.concat(guarda) endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modoUso" eType="#//ModoUsoEntradaKind"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guarda" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondiciones" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" upperBound="-1"
+        eType="#//Salida" eOpposite="#//Salida/entradas">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="(if tarea.actividad.oclIsTypeOf(Actividad) then tarea.actividad.oclAsType(Actividad).proceso.procesos.metodologia.procesos.procesos.actividades.tareas.flujos else (tarea.actividad.oclAsType(ActividadInterfaz).proceso.interfaz.interfaces.metodologia.procesos.procesos.actividades.tareas.flujos) endif)->select( aFlujo | aFlujo.oclIsTypeOf( Salida))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interfaces" eSuperTypes="#//ProinsoCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" upperBound="-1"
+        eType="#//Interfaz" containment="true" eOpposite="#//Interfaz/interfaces"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Metodologia" changeable="false" transient="true" eOpposite="#//Metodologia/interfaces"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interfaz" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="codigo_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="codigo.size() > 0"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
+        eType="#//Interfaces" changeable="false" transient="true" eOpposite="#//Interfaces/interfaces"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procesos" upperBound="-1"
+        eType="#//ProcesoInterfaz" containment="true" eOpposite="#//ProcesoInterfaz/interfaz"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoCompleto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value=" if codigo->isEmpty() then '?' else codigo endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Metodologia" eSuperTypes="#//ConDocumentacion">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre->notEmpty()"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procesos" eType="#//Procesos"
+        containment="true" eOpposite="#//Procesos/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" eType="#//Interfaces"
+        containment="true" eOpposite="#//Interfaces/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="productos" eType="#//Productos"
+        containment="true" eOpposite="#//Productos/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perfilesParticipantes"
+        eType="#//PerfilesParticipantes" containment="true" eOpposite="#//PerfilesParticipantes/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="practicas" eType="#//Practicas"
+        containment="true" eOpposite="#//Practicas/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tecnicas" eType="#//Tecnicas"
+        containment="true" eOpposite="#//Tecnicas/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositorio" lowerBound="1"
+        eType="#//Repositorio" changeable="false" transient="true" defaultValueLiteral=""
+        eOpposite="#//Repositorio/metodologias"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parrafo" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentacion" eType="#//Documentacion"
+        changeable="false" eOpposite="#//Documentacion/parrafos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runs" upperBound="-1" eType="#//Run"
+        containment="true" eOpposite="#//Run/parrafo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="estilo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Participacion" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="('de ').concat(if perfilParticipante->isEmpty() then '?' else (if perfilParticipante.nombre.size() = 0 then '~' else perfilParticipante.nombre endif) endif).concat(' en ').concat(tarea.codigoYNombre)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tarea" lowerBound="1" eType="#//Tarea"
+        changeable="false" transient="true" eOpposite="#//Tarea/participaciones"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perfilParticipante" lowerBound="1"
+        eType="#//PerfilParticipante" eOpposite="#//PerfilParticipante/participaciones">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if tarea.actividad.oclIsTypeOf(Actividad) then tarea.actividad.oclAsType(Actividad).proceso.procesos.metodologia.perfilesParticipantes.perfilesParticipantes else (tarea.actividad.oclAsType(ActividadInterfaz).proceso.interfaz.interfaces.metodologia.perfilesParticipantes.perfilesParticipantes) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Participante" abstract="true" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perfilParticipante" lowerBound="1"
+        eType="#//PerfilParticipante" changeable="false" transient="true" eOpposite="#//PerfilParticipante/participantes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PerfilesParticipantes" eSuperTypes="#//ProinsoCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perfilesParticipantes"
+        upperBound="-1" eType="#//PerfilParticipante" containment="true" eOpposite="#//PerfilParticipante/perfilesParticipantes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Metodologia" changeable="false" transient="true" eOpposite="#//Metodologia/perfilesParticipantes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PerfilParticipante" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participaciones" upperBound="-1"
+        eType="#//Participacion" changeable="false" eOpposite="#//Participacion/perfilParticipante"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participantes" upperBound="-1"
+        eType="#//Participante" containment="true" eOpposite="#//Participante/perfilParticipante"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="perfilesParticipantes"
+        lowerBound="1" eType="#//PerfilesParticipantes" changeable="false" transient="true"
+        eOpposite="#//PerfilesParticipantes/perfilesParticipantes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Practica" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="practicas" lowerBound="1"
+        eType="#//Practicas" changeable="false" transient="true" eOpposite="#//Practicas/practicas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosPractica" upperBound="-1"
+        eType="#//UsoPractica" changeable="false" eOpposite="#//UsoPractica/practica"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Practicas" eSuperTypes="#//ProinsoCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="practicas" upperBound="-1"
+        eType="#//Practica" containment="true" eOpposite="#//Practica/practicas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Metodologia" changeable="false" transient="true" eOpposite="#//Metodologia/practicas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Proceso" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="codigo_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="codigo.size() > 0"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoYNombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if codigo.size() = 0  then '?' else codigo endif).concat(' ').concat( if nombre.size() = 0  then '~' else nombre endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actividades" upperBound="-1"
+        eType="#//Actividad" containment="true" eOpposite="#//Actividad/proceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procesos" lowerBound="1"
+        eType="#//Procesos" changeable="false" transient="true" defaultValueLiteral=""
+        eOpposite="#//Procesos/procesos"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoCompleto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if codigo->isEmpty() then '?' else codigo endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcesoInterfaz" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="codigo_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="codigo.size() > 0"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoCompleto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="interfaz.codigoCompleto.concat('::').concat( if codigo.size() = 0 then '?' else codigo endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaz" lowerBound="1"
+        eType="#//Interfaz" changeable="false" transient="true" eOpposite="#//Interfaz/procesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actividades" upperBound="-1"
+        eType="#//ActividadInterfaz" containment="true" eOpposite="#//ActividadInterfaz/proceso"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Procesos" eSuperTypes="#//ProinsoCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procesos" upperBound="-1"
+        eType="#//Proceso" containment="true" eOpposite="#//Proceso/procesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Metodologia" changeable="false" transient="true" defaultValueLiteral=""
+        eOpposite="#//Metodologia/procesos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProinsoCollection" abstract="true" eSuperTypes="#//ProinsoObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProinsoObject" abstract="true" eSuperTypes="#//ConModelClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Producto" eSuperTypes="#//Usable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Productos" changeable="false" transient="true" eOpposite="#//Productos/productos"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esExterno" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Productos" eSuperTypes="#//ProinsoCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="productos" upperBound="-1"
+        eType="#//Producto" containment="true" eOpposite="#//Producto/metodologia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Metodologia" changeable="false" transient="true" defaultValueLiteral=""
+        eOpposite="#//Metodologia/productos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceRun" eSuperTypes="#//TextRun">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenciado" eType="#//Referenciable"
+        eOpposite="#//Referenciable/referencias"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Referenciable" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencias" upperBound="-1"
+        eType="#//ReferenceRun" changeable="false" eOpposite="#//ReferenceRun/referenciado"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Repositorio" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologias" upperBound="-1"
+        eType="#//Metodologia" containment="true" eOpposite="#//Metodologia/repositorio"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelPackage" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Run" abstract="true" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parrafo" eType="#//Parrafo"
+        changeable="false" eOpposite="#//Parrafo/runs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Salida" eSuperTypes="#//UsoFlujo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if guarda.size() &lt; 1 then '' else ' condicional' endif).concat((' de '.concat(if producto->isEmpty() then '?' else (if producto.oclIsTypeOf( Producto) then (if producto.oclAsType( Producto).nombre.size() > 0 then producto.oclAsType( Producto).nombre else '~' endif) else (if producto.oclIsTypeOf( Seccion) then (if producto.oclAsType( Seccion).nombre.size() > 0 then producto.oclAsType( Producto).nombre else '~' endif) else '?' endif) endif) endif)).concat( ' en ').concat( tarea.codigoYNombre )).concat(if guarda.size() &lt; 1  then '' else ' si '.concat(guarda) endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modoUso" eType="#//ModoUsoSalidaKind"
+        defaultValueLiteral="Actualizacion"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="guarda" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcondiciones" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forzado" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" upperBound="-1"
+        eType="#//Entrada" changeable="false" eOpposite="#//Entrada/salidas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Seccion" eSuperTypes="#//Usable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//Usable" changeable="false" transient="true" eOpposite="#//Usable/contenido"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tarea" eSuperTypes="#//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="codigo_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="codigo.size() > 0"/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoYNombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="codigoCompleto.concat(' ').concat( if nombre->isEmpty() or nombre.size() = 0  then '~' else nombre endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigoCompleto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if actividad->isEmpty() then '?' else actividad.codigoCompleto endif).concat('.').concat( if codigo->isEmpty() or codigo.size() = 0 then '?' else codigo endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actividad" lowerBound="1"
+        eType="#//ActividadAbstracta" changeable="false" transient="true" eOpposite="#//ActividadAbstracta/tareas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujos" upperBound="-1"
+        eType="#//UsoFlujo" containment="true" eOpposite="#//UsoFlujo/tarea"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="participaciones" upperBound="-1"
+        eType="#//Participacion" containment="true" eOpposite="#//Participacion/tarea"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usoPracticas" upperBound="-1"
+        eType="#//UsoPractica" containment="true" eOpposite="#//UsoPractica/tarea"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usoTecnicas" upperBound="-1"
+        eType="#//UsoTecnica" containment="true" eOpposite="#//UsoTecnica/tarea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tecnica" eSuperTypes="#//ConDocumentacion #//Referenciable">
+    <eOperations name="nombre_validar" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="nombre.size() > 0 "/>
+      </eAnnotations>
+      <eParameters name="theDiagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="theContext" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tecnicas" lowerBound="1"
+        eType="#//Tecnicas" changeable="false" transient="true" eOpposite="#//Tecnicas/tecnicas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosTecnica" upperBound="-1"
+        eType="#//UsoTecnica" changeable="false" eOpposite="#//UsoTecnica/tecnica"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tecnicas" eSuperTypes="#//ProinsoCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tecnicas" upperBound="-1"
+        eType="#//Tecnica" containment="true" eOpposite="#//Tecnica/tecnicas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metodologia" lowerBound="1"
+        eType="#//Metodologia" changeable="false" transient="true" eOpposite="#//Metodologia/tecnicas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextRun" eSuperTypes="#//Run">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="estilo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Usable" abstract="true" eSuperTypes="#//ProinsoObject #//ConDocumentacion #//Referenciable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if self.oclIsTypeOf( Producto) then &#xD;&#xA;( if self.oclAsType( Producto).nombre->isEmpty() or self.oclAsType( Producto).nombre.size() &lt; 0 then '?' else self.oclAsType( Producto).nombre endif)&#xD;&#xA;else&#xD;&#xA;( if self.oclAsType( Seccion).nombre->isEmpty() or self.oclAsType( Seccion).nombre.size() &lt; 0 then '?' else self.oclAsType( Seccion).nombre endif).concat( ' en ').concat( &#xD;&#xA; if self.oclAsType( Seccion).contenedor->isEmpty() then '?' else self.oclAsType( Seccion).contenedor.etiqueta endif&#xD;&#xA;)&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenido" upperBound="-1"
+        eType="#//Seccion" containment="true" eOpposite="#//Seccion/contenedor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usos" upperBound="-1" eType="#//UsoFlujo"
+        changeable="false" eOpposite="#//UsoFlujo/producto"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsoFlujo" abstract="true" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if producto->isEmpty() then '?' else producto.etiqueta endif).concat( ' en tarea ').concat(&#xD;&#xA;if tarea->isEmpty() then '?' else tarea.codigoYNombre endif&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="producto" lowerBound="1"
+        eType="#//Usable" eOpposite="#//Usable/usos">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if tarea.actividad.oclIsTypeOf(Actividad) then tarea.actividad.oclAsType(Actividad).proceso.procesos.metodologia.productos.productos else (tarea.actividad.oclAsType(ActividadInterfaz).proceso.interfaz.interfaces.metodologia.productos.productos) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tarea" lowerBound="1" eType="#//Tarea"
+        changeable="false" transient="true" eOpposite="#//Tarea/flujos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsoPractica" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if practica->isEmpty() then '~' else (if practica.nombre.size() = 0 then '~' else practica.nombre endif) endif).concat( ' por ').concat(tarea.codigoYNombre)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tarea" lowerBound="1" eType="#//Tarea"
+        changeable="false" transient="true" eOpposite="#//Tarea/usoPracticas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="practica" lowerBound="1"
+        eType="#//Practica" eOpposite="#//Practica/usosPractica">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if tarea.actividad.oclIsTypeOf(Actividad) then tarea.actividad.oclAsType(Actividad).proceso.procesos.metodologia.practicas.practicas else (tarea.actividad.oclAsType(ActividadInterfaz).proceso.interfaz.interfaces.metodologia.practicas.practicas) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsoTecnica" eSuperTypes="#//ProinsoObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="( if tecnica->isEmpty() then '~' else (if tecnica.nombre.size() = 0 then '~' else tecnica.nombre endif)endif).concat( ' por ').concat(tarea.codigoYNombre)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tarea" lowerBound="1" eType="#//Tarea"
+        changeable="false" transient="true" eOpposite="#//Tarea/usoTecnicas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tecnica" lowerBound="1"
+        eType="#//Tecnica" eOpposite="#//Tecnica/usosTecnica">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if tarea.actividad.oclIsTypeOf(Actividad) then tarea.actividad.oclAsType(Actividad).proceso.procesos.metodologia.tecnicas.tecnicas else (tarea.actividad.oclAsType(ActividadInterfaz).proceso.interfaz.interfaces.metodologia.tecnicas.tecnicas) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModoUsoEntradaKind">
+    <eLiterals name="Consulta" value="7"/>
+    <eLiterals name="Validacion" value="5"/>
+    <eLiterals name="Sustitucion" value="2"/>
+    <eLiterals name="Eliminacion" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModoUsoSalidaKind">
+    <eLiterals name="Creacion"/>
+    <eLiterals name="Consulta" value="7"/>
+    <eLiterals name="Validacion" value="5"/>
+    <eLiterals name="Aprobacion" value="8"/>
+    <eLiterals name="Firma" value="6"/>
+    <eLiterals name="Actualizacion" value="1"/>
+    <eLiterals name="Sustitucion" value="2"/>
+    <eLiterals name="Cancelacion" value="4"/>
+    <eLiterals name="Eliminacion" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Generated-from: 1151574312000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: KM3 injector and extractor plug-in
+Bundle-SymbolicName: org.atl.eclipse.km3; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: km3.jar,
+ lib/KM3-importer.jar
+Bundle-Activator: org.atl.eclipse.km3.KM3Plugin
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Export-Package: org.atl.eclipse.km3,
+ org.atl.eclipse.km3.actions,
+ org.atl.eclipse.km3.resources,
+ org.atl.engine.injectors.ebnf
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.atl.eclipse.adt.builder,
+ org.eclipse.emf.ecore,
+ org.atl.eclipse.engine
+Eclipse-LazyStart: true

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright Conselleria d'Infraestructures i Transport - Generalitat Valenciana 2006"
+    modelDirectory="/es.gva.cit.gvmetrica.proinso/src" editDirectory="/es.gva.cit.gvmetrica.proinso.edit/src"
+    modelPluginID="es.gva.cit.gvmetrica.proinso" templateDirectory="/es.gva.cit.gvmetrica.proinso/templates"
+    dynamicTemplates="true" modelName="Proinso" editPluginClass="es.gva.cit.gvmetrica.proinso.provider.ProinsoEditPlugin"
+    editorPluginClass="es.gva.cit.gvmetrica.proinso.presentation.ProinsoEditorPlugin"
+    featureMapWrapperInterface="" testSuiteClass="es.gva.cit.gvmetrica.proinso.tests.ProinsoAllTests"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>proinso.ecore</foreignModel>
+  <genPackages prefix="Proinso" basePackage="es.gva.cit.gvmetrica" disposableProviderFactory="true"
+      ecorePackage="proinso.ecore#/">
+    <genEnums ecoreEnum="proinso.ecore#//ModoUsoEntradaKind">
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoEntradaKind/Consulta"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoEntradaKind/Validacion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoEntradaKind/Sustitucion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoEntradaKind/Eliminacion"/>
+    </genEnums>
+    <genEnums ecoreEnum="proinso.ecore#//ModoUsoSalidaKind">
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Creacion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Consulta"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Validacion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Aprobacion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Firma"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Actualizacion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Sustitucion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Cancelacion"/>
+      <genEnumLiterals ecoreEnumLiteral="proinso.ecore#//ModoUsoSalidaKind/Eliminacion"/>
+    </genEnums>
+    <genClasses ecoreClass="proinso.ecore#//Actividad">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Actividad/proceso"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//ActividadAbstracta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ActividadAbstracta/codigoYNombre"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ActividadAbstracta/codigoCompleto"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ActividadAbstracta/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ActividadAbstracta/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//ActividadAbstracta/tareas"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference proinso.ecore#//ActividadAbstracta/predecesores"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference proinso.ecore#//ActividadAbstracta/sucesores"/>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/nombre_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/codigo_validar">
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/codigo_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/codigo_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/todosPredecesores"/>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/todosSucesores"/>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/predecesores_validar">
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/predecesores_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/predecesores_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/predecesores_candidates"/>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/sucesores_validar">
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/sucesores_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//ActividadAbstracta/sucesores_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//ActividadAbstracta/sucesores_candidates"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//ActividadInterfaz">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//ActividadInterfaz/proceso"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Cargo"/>
+    <genClasses image="false" ecoreClass="proinso.ecore#//ConDocumentacion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//ConDocumentacion/documentacion"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Comite"/>
+    <genClasses image="false" ecoreClass="proinso.ecore#//ConModelClass">
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertyDescription="" ecoreFeature="ecore:EReference proinso.ecore#//ConModelClass/modelClass"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Documentacion">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Documentacion/documentado"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Documentacion/parrafos"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Entrada">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Entrada/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Entrada/modoUso"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Entrada/guarda"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Entrada/precondiciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference proinso.ecore#//Entrada/salidas"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Interfaces">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Interfaces/interfaces"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Interfaces/metodologia"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Interfaz">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Interfaz/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Interfaz/nombre"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Interfaz/interfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Interfaz/procesos"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Interfaz/codigoCompleto"/>
+      <genOperations ecoreOperation="proinso.ecore#//Interfaz/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Interfaz/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Interfaz/nombre_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//Interfaz/codigo_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Interfaz/codigo_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Interfaz/codigo_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Metodologia">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Metodologia/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/procesos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/interfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/productos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/perfilesParticipantes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/practicas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/tecnicas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Metodologia/repositorio"/>
+      <genOperations ecoreOperation="proinso.ecore#//Metodologia/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Metodologia/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Metodologia/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Parrafo">
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute proinso.ecore#//Parrafo/texto"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Parrafo/documentacion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Parrafo/runs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Parrafo/estilo"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Participacion">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Participacion/nombre"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Participacion/tarea"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference proinso.ecore#//Participacion/perfilParticipante"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="proinso.ecore#//Participante">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Participante/nombre"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Participante/perfilParticipante"/>
+      <genOperations ecoreOperation="proinso.ecore#//Participante/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Participante/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Participante/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//PerfilesParticipantes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//PerfilesParticipantes/perfilesParticipantes"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//PerfilesParticipantes/metodologia"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//PerfilParticipante">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//PerfilParticipante/nombre"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference proinso.ecore#//PerfilParticipante/participaciones"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//PerfilParticipante/participantes"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//PerfilParticipante/perfilesParticipantes"/>
+      <genOperations ecoreOperation="proinso.ecore#//PerfilParticipante/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//PerfilParticipante/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//PerfilParticipante/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Practica">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Practica/nombre"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Practica/practicas"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference proinso.ecore#//Practica/usosPractica"/>
+      <genOperations ecoreOperation="proinso.ecore#//Practica/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Practica/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Practica/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Practicas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Practicas/practicas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Practicas/metodologia"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Proceso">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Proceso/codigoYNombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Proceso/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Proceso/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Proceso/actividades"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Proceso/procesos"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Proceso/codigoCompleto"/>
+      <genOperations ecoreOperation="proinso.ecore#//Proceso/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Proceso/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Proceso/nombre_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//Proceso/codigo_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Proceso/codigo_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Proceso/codigo_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//ProcesoInterfaz">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ProcesoInterfaz/codigoCompleto"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ProcesoInterfaz/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//ProcesoInterfaz/codigo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//ProcesoInterfaz/interfaz"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//ProcesoInterfaz/actividades"/>
+      <genOperations ecoreOperation="proinso.ecore#//ProcesoInterfaz/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//ProcesoInterfaz/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//ProcesoInterfaz/nombre_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//ProcesoInterfaz/codigo_validar">
+        <genParameters ecoreParameter="proinso.ecore#//ProcesoInterfaz/codigo_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//ProcesoInterfaz/codigo_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Procesos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Procesos/procesos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Procesos/metodologia"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="proinso.ecore#//ProinsoCollection"/>
+    <genClasses image="false" ecoreClass="proinso.ecore#//ProinsoObject"/>
+    <genClasses ecoreClass="proinso.ecore#//Producto">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Producto/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Producto/codigo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Producto/metodologia"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Producto/esExterno"/>
+      <genOperations ecoreOperation="proinso.ecore#//Producto/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Producto/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Producto/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Productos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Productos/productos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Productos/metodologia"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//ReferenceRun">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference proinso.ecore#//ReferenceRun/referenciado"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="proinso.ecore#//Referenciable">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Referenciable/referencias"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Repositorio">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Repositorio/metodologias"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference proinso.ecore#//Repositorio/modelPackage"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="proinso.ecore#//Run">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Run/texto"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Run/parrafo"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Salida">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Salida/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Salida/modoUso"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Salida/guarda"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Salida/postcondiciones"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Salida/forzado"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference proinso.ecore#//Salida/entradas"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Seccion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Seccion/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Seccion/codigo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Seccion/contenedor"/>
+      <genOperations ecoreOperation="proinso.ecore#//Seccion/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Seccion/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Seccion/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Tarea">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Tarea/codigoYNombre"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Tarea/codigoCompleto"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Tarea/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Tarea/nombre"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Tarea/actividad"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Tarea/flujos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Tarea/participaciones"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Tarea/usoPracticas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Tarea/usoTecnicas"/>
+      <genOperations ecoreOperation="proinso.ecore#//Tarea/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Tarea/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Tarea/nombre_validar/theContext"/>
+      </genOperations>
+      <genOperations ecoreOperation="proinso.ecore#//Tarea/codigo_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Tarea/codigo_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Tarea/codigo_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Tecnica">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Tecnica/nombre"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Tecnica/tecnicas"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference proinso.ecore#//Tecnica/usosTecnica"/>
+      <genOperations ecoreOperation="proinso.ecore#//Tecnica/nombre_validar">
+        <genParameters ecoreParameter="proinso.ecore#//Tecnica/nombre_validar/theDiagnostics"/>
+        <genParameters ecoreParameter="proinso.ecore#//Tecnica/nombre_validar/theContext"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//Tecnicas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Tecnicas/tecnicas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//Tecnicas/metodologia"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//TextRun">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//TextRun/estilo"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="proinso.ecore#//Usable">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//Usable/etiqueta"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference proinso.ecore#//Usable/contenido"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference proinso.ecore#//Usable/usos"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="proinso.ecore#//UsoFlujo">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//UsoFlujo/etiqueta"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference proinso.ecore#//UsoFlujo/producto"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//UsoFlujo/tarea"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//UsoPractica">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//UsoPractica/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//UsoPractica/descripcion"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//UsoPractica/tarea"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference proinso.ecore#//UsoPractica/practica"/>
+    </genClasses>
+    <genClasses ecoreClass="proinso.ecore#//UsoTecnica">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//UsoTecnica/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute proinso.ecore#//UsoTecnica/descripcion"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference proinso.ecore#//UsoTecnica/tarea"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference proinso.ecore#//UsoTecnica/tecnica"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

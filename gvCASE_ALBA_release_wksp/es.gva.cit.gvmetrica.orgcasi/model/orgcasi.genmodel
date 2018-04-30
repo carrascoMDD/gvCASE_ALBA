@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/es.gva.cit.gvmetrica.orgcasi/src"
+    modelPluginID="es.gva.cit.gvmetrica.orgcasi" templateDirectory="/es.gva.cit.gvmetrica.orgcasi/templates"
+    dynamicTemplates="true" redirection="" modelName="Orgcasi" booleanFlagsField=""
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../plugin/es.gva.cit.simapa/model/simapa.genmodel#//simapa">
+  <foreignModel>orgcasi.ecore</foreignModel>
+  <genPackages prefix="Orgcasi" basePackage="es.gva.cit.gvmetrica" disposableProviderFactory="true"
+      ecorePackage="orgcasi.ecore#/">
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoUsoDocumento">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoUsoDocumento/entrada"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoUsoDocumento/salida"/>
+    </genEnums>
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoPrioridad">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPrioridad/ALTA"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPrioridad/MEDIA"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPrioridad/BAJA"/>
+    </genEnums>
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoUnidad">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoUnidad/A"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoUnidad/B"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoUnidad/mas"/>
+    </genEnums>
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoSubsistema">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoSubsistema/I"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoSubsistema/EC"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoSubsistema/EX"/>
+    </genEnums>
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoRelacion">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoRelacion/Referencia"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoRelacion/Agregacion"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoRelacion/Agregado"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoRelacion/Composicion"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoRelacion/Componente"/>
+    </genEnums>
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoAgrupacionPredefinida">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoAgrupacionPredefinida/Sistema"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoAgrupacionPredefinida/Subsistema"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoAgrupacionPredefinida/Suceso"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoAgrupacionPredefinida/Coreografia"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoAgrupacionPredefinida/ModeloInformacion"/>
+    </genEnums>
+    <genEnums ecoreEnum="orgcasi.ecore#//TipoPropiedadClaseAgrupacion">
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Numero"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Entero"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Decimal"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Fraccion"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Porcentaje"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Alfanumerico"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Fecha"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Hora"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/FechaHora"/>
+      <genEnumLiterals ecoreEnumLiteral="orgcasi.ecore#//TipoPropiedadClaseAgrupacion/Enumeracion"/>
+    </genEnums>
+    <genClasses ecoreClass="orgcasi.ecore#//AAplicacion" labelFeature="#//orgcasi/AAplicacion/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AAplicacion/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AAplicacion/aplicacion"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AAplicacion/aplicaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Accion">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Accion/etiqueta"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Accion/comentario"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Accion/esColaborativa"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//Accion/operaciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//Accion/actores"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Accion/entradas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Accion/salidas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Accion/acciones"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Accion/etiquetaSimple"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Actor">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Actor/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Actor/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Actor/comentario"/>
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//Actor/unidades"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Actor/actorDeSucesos"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Actor/acciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Actor/actores"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ActorFuncional">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ActorFuncional/nombreFuncional"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ADocumento" labelFeature="#//orgcasi/ADocumento/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ADocumento/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ADocumento/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ADocumento/descripcion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ADocumento/documento"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ADocumento/estructurasDatos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//ADocumento/entradasOSalidas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ADocumento/estados"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//ADocumento/documentos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//ADocumento/todosDocumentos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ADocumentoFinal" labelFeature="#//orgcasi/AOperacion/etiqueta"/>
+    <genClasses ecoreClass="orgcasi.ecore#//AEstructuraFuncional" labelFeature="#//orgcasi/AEstructuraFuncional/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AEstructuraFuncional/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AEstructuraFuncional/estructuraFuncional"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AEstructuraFuncional/estructurasFuncionales"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//AFlujo" labelFeature="#//orgcasi/AFlujo/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AFlujo/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AFlujo/flujo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AFlujo/flujoDeSucesos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AFlujo/flujos"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//Agrupacion">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Agrupacion/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Agrupacion/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Agrupacion/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Agrupacion/descripcion"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Agrupacion/comentario"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ANormativaYLegislacion" labelFeature="#//orgcasi/ANormativaYLegislacion/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ANormativaYLegislacion/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//ANormativaYLegislacion/normativa"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//ANormativaYLegislacion/normativas"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//Anotacion">
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Anotacion/comentario"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Anotacion/idAnotada"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Anotacion/versionAnotada"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Anotacion/fechaAnotacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Anotacion/realizadorAnotacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Anotacion/responsableAnotacion"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//AOperacion" labelFeature="#//orgcasi/AOperacion/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AOperacion/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AOperacion/operacion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AOperacion/accionesSuceso"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AOperacion/operaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//AProcedimiento" labelFeature="#//orgcasi/AProcedimiento/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AProcedimiento/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/procedimiento"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/normativas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/terminosGlosario"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/unidadesOrganicas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/unidadesExternas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/unidades"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/estructurasFuncionales"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/aplicaciones"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/operaciones"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/flujos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/actores"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/sistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/procedimientos"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/todosSucesos"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/todosSubsistemas"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/todasEstructurasDatos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/todosDocumentos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AProcedimiento/repositorio"/>
+      <genOperations ecoreOperation="orgcasi.ecore#//AProcedimiento/crearAnotaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ARepositorio">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ARepositorio/anotacionesProcedimiento"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//ARepositorio/repositorio"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//ARepositorio/modelPackage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ARepositorio/libreriasServicios"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ASubprocedimiento" labelFeature="#//orgcasi/AOperacion/etiqueta"/>
+    <genClasses ecoreClass="orgcasi.ecore#//ATerminoGlosario" labelFeature="#//orgcasi/ATerminoGlosario/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ATerminoGlosario/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//ATerminoGlosario/terminoGlosario"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//ATerminoGlosario/terminosGlosario"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//AUnidad" labelFeature="#//orgcasi/AUnidad/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AUnidad/etiqueta"/>
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AUnidad/actoresSucesos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//AUnidadExterna" labelFeature="#//orgcasi/AUnidad/etiqueta">
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AUnidadExterna/unidad"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AUnidadExterna/unidades"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//AUnidadOrganica" labelFeature="#//orgcasi/AUnidad/etiqueta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//AUnidadOrganica/tipoUnidad"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//AUnidadOrganica/unidad"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//AUnidadOrganica/unidades"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CAccionesSuceso">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CAccionesSuceso/acciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CAccionesSuceso/suceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CActores">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CActores/actores"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CActores/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CActoresSuceso">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CActoresSuceso/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//CActoresSuceso/actores"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CActoresSuceso/suceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CampoDatos">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/tipo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/formato"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/ejemplo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/requerido"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/valorPorDefecto"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/rango"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/rangoRazonable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/fuenteDatos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/observaciones"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CampoDatos/comentario"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CampoDatos/estructurasDatos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CampoDatos/campos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CAplicaciones">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CAplicaciones/aplicaciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CAplicaciones/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CCamposDatos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CCamposDatos/campos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CCamposDatos/contenedor"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CDocumentos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CDocumentos/documentos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CDocumentos/contenedor"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CEntradasAccion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CEntradasAccion/entradas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CEntradasAccion/accion"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CEntradasSuceso">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CEntradasSuceso/entradas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CEntradasSuceso/suceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CEstructurasDatos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CEstructurasDatos/estructurasDatos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CEstructurasDatos/contenedor"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CEstructurasDatosSuceso">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CEstructurasDatosSuceso/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//CEstructurasDatosSuceso/estructurasDatos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CEstructurasDatosSuceso/suceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CFlujos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CFlujos/flujos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CFlujos/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CFlujosSuceso">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CFlujosSuceso/flujos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CFlujosSuceso/suceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CEstructurasFuncionales">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CEstructurasFuncionales/estructurasFuncionales"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CEstructurasFuncionales/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CImportacionesPor">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CImportacionesPor/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CImportacionesPor/libreriaServicios"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CImportacionesPor/importadoPor"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CImportacionesServicios">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CImportacionesServicios/importador"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CImportacionesServicios/importacionesServicios"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CInterfaces">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CInterfaces/interfaces"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CInterfaces/libreriaServicios"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CLibreriasServicios">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CLibreriasServicios/libreriasServicios"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CLibreriasServicios/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CNormativasYLegislaciones">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CNormativasYLegislaciones/normativas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CNormativasYLegislaciones/procedimiento"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//ConModelClass">
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//ConModelClass/modelClass"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ContenedorDatos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ContenedorDatos/estructurasDatos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ContenedorDatos/campos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ContenedorDatos/relacionesDatos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ContenedorDocumentos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ContenedorDocumentos/documentos"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//ContenedorSucesos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ContenedorSucesos/sucesos"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//ContenedorSubsistemas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ContenedorSubsistemas/subsistemas"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//COperaciones">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//COperaciones/procedimiento"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//COperaciones/operaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CProcedimientos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CProcedimientos/procedimientos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CProcedimientos/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CRelacionesDatos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CRelacionesDatos/relacionesDatos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CRelacionesDatos/contenedor"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CSalidasAccion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CSalidasAccion/salidas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSalidasAccion/accion"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CSalidasSuceso">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CSalidasSuceso/salidas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSalidasSuceso/suceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CServicios">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CServicios/interfaz"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CServicios/servicios"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CServicioUsadoPorSucesos">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CServicioUsadoPorSucesos/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CServicioUsadoPorSucesos/servicio"/>
+      <genFeatures property="Readonly" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//CServicioUsadoPorSucesos/usosServicio"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CSistemas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CSistemas/sistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSistemas/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CSubsistemas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CSubsistemas/subsistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSubsistemas/contenedor"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSubsistemas/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CSucesos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CSucesos/sucesos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSucesos/contenedor"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CSucesos/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CTerminosGlosario">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CTerminosGlosario/terminosGlosario"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CTerminosGlosario/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CUnidades">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUnidades/unidades"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUnidades/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CUnidadesExternas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CUnidadesExternas/unidades"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUnidadesExternas/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CUnidadesOrganicas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CUnidadesOrganicas/unidades"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUnidadesOrganicas/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CUsadoPorSubsistemas">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CUsadoPorSubsistemas/etiqueta"/>
+      <genFeatures property="Readonly" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//CUsadoPorSubsistemas/usadoPorSubsistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUsadoPorSubsistemas/subsistema"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CUsadoPorSucesos">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//CUsadoPorSucesos/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUsadoPorSucesos/suceso"/>
+      <genFeatures property="Readonly" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//CUsadoPorSucesos/usosSuceso"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//CUsosSubsistemas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//CUsosSubsistemas/usosSubsistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//CUsosSubsistemas/subsistema"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//DocumentoEnEstado" labelFeature="#//orgcasi/ADocumento/etiqueta">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//DocumentoEnEstado/condicionesEstado"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//DocumentoEnEstado/documentoBase"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Entrada">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Entrada/fuentes"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//EntradaAccion" labelFeature="#//orgcasi/EntradaAccion/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaAccion/etiqueta"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaAccion/etiquetaSimple"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//EntradaAccion/entradas"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//EntradaOSalida">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaOSalida/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaOSalida/esDocumentoPapel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaOSalida/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaOSalida/comentario"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//EntradaOSalida/estructurasDatos"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//EntradaOSalida/documentos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//EntradaServicio" labelFeature="#//orgcasi/EntradaServicio/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaServicio/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//EntradaServicio/servicio"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaServicio/etiquetaSimple"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//EntradaSuceso" labelFeature="#//orgcasi/EntradaSuceso/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaSuceso/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaSuceso/esInformacionPrevia"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//EntradaSuceso/entradas"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EntradaSuceso/etiquetaSimple"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//EstructuraDatos">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EstructuraDatos/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EstructuraDatos/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//EstructuraDatos/comentario"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/campos"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/documentos"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/miembroRelaciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/entradasOSalidas"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/estructuraDatosDeSuceso"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/coleccionEstructuraDatosDeSuceso"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//EstructuraDatos/estructurasDatos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//ImportacionServicios">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//ImportacionServicios/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//ImportacionServicios/importacionesServicios"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ImportacionServicios/libreriaServicios"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//ImportadorServicios">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//ImportadorServicios/importacionesServicios"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Interfaz">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Interfaz/servicios"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Interfaz/interfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Interfaz/rolSolicitante"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Interfaz/rolSolicitado"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//LibreriaServicios">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//LibreriaServicios/importadoPor"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//LibreriaServicios/libreriasServicios"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//LibreriaServicios/interfaces"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//LibreriaServicios/todosDocumentos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//LibreriaServicios/todasEstructurasDatos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//LibreriaServicios/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//MiembroRelacion">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//MiembroRelacion/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//MiembroRelacion/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//MiembroRelacion/comentario"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//MiembroRelacion/tipoRelacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//MiembroRelacion/multiplicidadMinima"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//MiembroRelacion/multiplicidadMaxima"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//MiembroRelacion/estructuraDatos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//MiembroRelacion/relacion"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//OrgcasiCollection"/>
+    <genClasses ecoreClass="orgcasi.ecore#//OrgcasiObject"/>
+    <genClasses ecoreClass="orgcasi.ecore#//RelacionDatos">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//RelacionDatos/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//RelacionDatos/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//RelacionDatos/comentario"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//RelacionDatos/miembros"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//RelacionDatos/relacionesDatos"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//Rol">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Rol/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Rol/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Rol/comentario"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//RolSolicitante">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//RolSolicitante/interfaz"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//RolSolicitado">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//RolSolicitado/interfaz"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Salida">
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//Salida/destinos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//SalidaAccion" labelFeature="#//orgcasi/SalidaAccion/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaAccion/etiqueta"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaAccion/etiquetaSimple"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//SalidaAccion/salidas"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//SalidaServicio" labelFeature="#//orgcasi/SalidaServicio/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaServicio/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//SalidaServicio/servicio"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaServicio/etiquetaSimple"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//SalidaSuceso" labelFeature="#//orgcasi/SalidaSuceso/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaSuceso/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaSuceso/esDistribucion"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//SalidaSuceso/salidas"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//SalidaSuceso/etiquetaSimple"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Servicio">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Servicio/usadoPorSucesos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Servicio/servicios"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Servicio/entradas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Servicio/salidas"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Sistema">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Sistema/procedimiento"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Sistema/todosSucesos"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Sistema/todosSubsistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Sistema/sistemas"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//Subsistema">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Subsistema/tipoSubsistema"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Subsistema/procedimiento"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Subsistema/todosSucesos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Subsistema/usosSubsistemas"/>
+      <genFeatures property="Readonly" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Subsistema/usadoPorSubsistemas"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Subsistema/subsistemas"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orgcasi.ecore#//Suceso">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/prioridad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/tipo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/rendimiento"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/disparo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/distribucion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/preCondicion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/postCondicion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//Suceso/esColaborativo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/acciones"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/actores"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/estructurasDatos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/flujos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/entradas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/salidas"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/usadoPorSucesos"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/procedimiento"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//Suceso/sucesos"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//SucesoConstructor"/>
+    <genClasses ecoreClass="orgcasi.ecore#//SucesoConsultor"/>
+    <genClasses ecoreClass="orgcasi.ecore#//UsoServicio">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orgcasi.ecore#//UsoServicio/servicio"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//UsoSubsistema">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute orgcasi.ecore#//UsoSubsistema/etiqueta"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//UsoSubsistema/subsistemaUsado"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference orgcasi.ecore#//UsoSubsistema/usosSubsistemas"/>
+    </genClasses>
+    <genClasses ecoreClass="orgcasi.ecore#//UsoSuceso">
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference orgcasi.ecore#//UsoSuceso/sucesoUsado"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

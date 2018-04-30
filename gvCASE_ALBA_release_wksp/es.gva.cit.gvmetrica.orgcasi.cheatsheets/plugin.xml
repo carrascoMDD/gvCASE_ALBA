@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+  <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="es.gva.cit.gvmetrica.orgcasi.cheatsheets"
+            name="ORGCASI Cheatsheets"/>
+      <cheatsheet
+            category="es.gva.cit.gvmetrica.orgcasi.cheatsheets"
+            composite="false"
+            contentFile="cheatsheets/orgcasi_cheatsheet_create.xml"
+            id="es.gva.cit.gvmetrica.orgcasi.cheatsheets.createprojectandmodel"
+            name="Create ORGCASI project and model"/>
+   </extension>
+
+</plugin>

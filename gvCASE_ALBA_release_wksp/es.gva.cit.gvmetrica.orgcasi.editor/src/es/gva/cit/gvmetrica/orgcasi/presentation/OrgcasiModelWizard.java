@@ -1,0 +1,968 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package es.gva.cit.gvmetrica.orgcasi.presentation;
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.StringTokenizer;
+
+import org.eclipse.emf.common.util.URI;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.emf.ecore.xmi.XMLResource;
+
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.IWorkspaceRoot;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+
+import org.eclipse.jface.dialogs.MessageDialog;
+
+import org.eclipse.jface.viewers.IStructuredSelection;
+
+import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.wizard.WizardPage;
+
+import org.eclipse.swt.SWT;
+
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.ModifyEvent;
+
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+
+import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.IWorkbench;
+
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+
+import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.ISetSelectionTarget;
+
+import es.gva.cit.gvmetrica.orgcasi.AUnidadOrganica;
+import es.gva.cit.gvmetrica.orgcasi.OrgcasiFactory;
+import es.gva.cit.gvmetrica.orgcasi.OrgcasiPackage;
+import es.gva.cit.gvmetrica.orgcasi.provider.OrgcasiEditPlugin;
+
+
+import org.eclipse.core.runtime.Path;
+
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.core.runtime.IPath;
+
+import org.eclipse.emf.common.util.URI;
+
+import es.gva.cit.gvmetrica.orgcasi.ARepositorio;
+import es.gva.cit.gvmetrica.orgcasi.impl.ARepositorioImpl;
+import es.gva.cit.simapa.Repositorio;
+import es.gva.cit.simapa.Procedimientos;
+import es.gva.cit.simapa.Procedimiento;
+import es.gva.cit.gvmetrica.orgcasi.CProcedimientos;
+import es.gva.cit.gvmetrica.orgcasi.AProcedimiento;
+
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.preference.IPreferenceStore;
+import es.gva.cit.gvmetrica.orgcasi.preferences.OrgcasiTreePreferences;
+import es.gva.cit.gvmetrica.orgcasi.util.OrgcasiAnnotationsBuilder;
+
+/**
+ * This is a simple wizard for creating a new model file.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class OrgcasiModelWizard extends Wizard implements INewWizard {
+
+	  /**
+	   * @generated NOT
+	   * OJO ACV
+	   */
+	  protected String vDefaultProjectName;
+	  protected String vDefaultModelName;
+	  protected String vDefaultRootObjectClassName;  
+	  
+	  /**
+	   * Sets the name of Project to contain the new RDBMS model when this wizard
+	   * is presented to the user.  This method has to be invoke before the wizard
+	   * pages are added.
+	   * @param path The <b>absolute</b> path of the genmodel.
+	   * @generated NOT
+	   * OJO ACV
+	   */
+	  public void setDefaultProjectName(String theProjectName)
+	  {
+		  vDefaultProjectName = theProjectName;
+	  }
+	  
+	  public String getDefaultProjectName()
+	  {
+	    return vDefaultProjectName;
+	  }
+	
+	/**
+	   * Sets the file name for the new RDBMS model that
+	   * is presented to the user.  This method has to be invoke before the wizard
+	   * pages are added.
+	   * @param id
+	   * @generated NOT
+	   * OJO ACV
+	   */
+	  public void setDefaultModelName(String theModelName)
+	  {
+		  vDefaultModelName = theModelName;
+	  }
+	  
+	/**
+	   * Gets the file name for the new RDBMS model that
+	   * is presented to the user. 
+	   * @param id
+	   * @generated NOT
+	   * OJO ACV
+	   */
+	  public String getDefaultModelName()
+	  {
+	    return vDefaultModelName;
+	  }
+	  
+
+	 /**
+	   * Sets the class name of the Root Object class shown when this wizard
+	   * is presented to the user.  This method has to be invoke before the wizard
+	   * pages are added.
+	   * @param id
+  	   * @generated NOT
+   	  * OJO ACV
+	   */
+	  public void setDefaultRootObjectClassName(String theClassName)
+	  {
+		  vDefaultRootObjectClassName = theClassName;
+	  }
+	  
+	  public String getDefaultRootObjectClassName()
+	  {
+	    return vDefaultRootObjectClassName;
+	  }
+	
+	
+	
+	
+	/**
+	 * This caches an instance of the model package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrgcasiPackage orgcasiPackage = OrgcasiPackage.eINSTANCE;
+
+	/**
+	 * This caches an instance of the model factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrgcasiFactory orgcasiFactory = orgcasiPackage.getOrgcasiFactory();
+
+	/**
+	 * This is the file creation page.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrgcasiModelWizardNewFileCreationPage newFileCreationPage;
+
+	/**
+	 * This is the initial object creation page.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OrgcasiModelWizardInitialObjectCreationPage initialObjectCreationPage;
+
+	/**
+	 * Remember the selection during initialization for populating the default container.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IStructuredSelection selection;
+
+	/**
+	 * Remember the workbench during initialization.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IWorkbench workbench;
+
+	/**
+	 * Caches the names of the types that can be created as the root object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected List initialObjectNames;
+
+	/**
+	 * This just records the information.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		this.workbench = workbench;
+		this.selection = selection;
+		setWindowTitle(OrgcasiEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(OrgcasiEditorPlugin.INSTANCE.getImage("full/wizban/NewOrgcasi")));
+	}
+
+	/**
+	 * Returns the names of the types that can be created as the root object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Collection getInitialObjectNames() {
+		if (initialObjectNames == null) {
+			initialObjectNames = new ArrayList();
+			for (Iterator classifiers = orgcasiPackage.getEClassifiers().iterator(); classifiers.hasNext(); ) {
+				EClassifier eClassifier = (EClassifier)classifiers.next();
+				if (eClassifier instanceof EClass) {
+					EClass eClass = (EClass)eClassifier;
+					if (!eClass.isAbstract()) {
+						initialObjectNames.add(eClass.getName());
+					}
+				}
+			}
+			Collections.sort(initialObjectNames, java.text.Collator.getInstance());
+		}
+		return initialObjectNames;
+	}
+
+	/**
+	 * Create a new model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EObject createInitialModel() {
+		EClass eClass = (EClass)orgcasiPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+		EObject rootObject = orgcasiFactory.create(eClass);
+		return rootObject;
+	}
+
+	protected boolean getAutoLoadDefaultSimapaResource() {
+		IPreferenceStore aStore = OrgcasiEditorPlugin.getPlugin().getPreferenceStore();
+		return aStore.getBoolean( OrgcasiTreePreferences.cAutoLoadDefaultSimapaResource);
+	}
+	
+	protected String getDefaultSimapaResource() {
+		IPreferenceStore aStore = OrgcasiEditorPlugin.getPlugin().getPreferenceStore();
+		return aStore.getString( OrgcasiTreePreferences.cDefaultSimapaResource);
+	}
+	
+	
+	/**
+	 * @generated NOT
+	 * OJO ACV
+	 */
+	protected void pLoadSimapaResourceFromPlugIn( ResourceSet theResourceSet, Resource theResource, Map theResourceSaveOptions, EObject theRootObject) {
+		Resource aResource = null;
+		
+		if( theResourceSet == null || theResource == null || theResourceSaveOptions == null || theRootObject == null ) { return;}
+		
+		if( !getAutoLoadDefaultSimapaResource()) { return;}
+		
+		String aDefaultSimapaResourcePath = getDefaultSimapaResource();
+		if ( aDefaultSimapaResourcePath == null || aDefaultSimapaResourcePath.length() < 1) { return;}
+		
+		ARepositorio aARepositorio = null;
+		try {
+			aARepositorio = (ARepositorio) theRootObject;
+		} catch( ClassCastException anException) {}
+		if( aARepositorio == null) { return;}
+		
+		try {
+			Resource otherResource = null;
+			//	 URI aURI = URI.createFileURI("D:/Works/GV/CIT/MAPA2CASI/orgcasiwkspc/orgcasi/instances/SerPre_RA_v01.simapa");
+//	        Bundle bundle = Platform.getBundle("es.gva.cit.gvmetrica.orgcasi.editor");
+			 
+			String aBaseURL = OrgcasiEditorPlugin.INSTANCE.getBaseURL().toString();
+			URI aURI = URI.createURI(aBaseURL + aDefaultSimapaResourcePath );
+			
+			try {
+				otherResource = theResourceSet.getResource(aURI, true); 
+			} catch (Exception e) {
+				if( otherResource != null) {
+					otherResource.getErrors(); // Examine the errors, maybe log them somehow or even show them to the user?
+					otherResource.unload(); // We don't need the errors anymore, unload the resource to clean up.
+				}
+			}
+			if( otherResource != null) {
+				EList aList =  otherResource.getContents();
+				Repositorio aRepositorio = null;
+				try {
+					aRepositorio = (es.gva.cit.simapa.Repositorio) aList.get(0);
+				} catch( ClassCastException anException) {}
+				if ( aRepositorio == null) { return;}
+				aARepositorio.setRepositorio( aRepositorio);
+			
+				theResource.save( theResourceSaveOptions);
+			}
+
+		}
+		catch (Exception exception) {
+			OrgcasiEditorPlugin.INSTANCE.log(exception);
+		}
+
+	}
+
+	/**
+	 * @generated NOT
+	 * OJO ACV
+	 */
+	protected void pLoadSimapaResourceFromWorkspace( ResourceSet theResourceSet, Resource theResource, Map theResourceSaveOptions, EObject theRootObject) {
+		Resource aResource = null;
+		
+		if( theResourceSet == null || theResource == null || theResourceSaveOptions == null || theRootObject == null ) { return;}
+		
+		if( !getAutoLoadDefaultSimapaResource()) { return;}
+		
+		String aDefaultSimapaResourcePath = getDefaultSimapaResource();
+		if ( aDefaultSimapaResourcePath == null || aDefaultSimapaResourcePath.length() < 1) { return;}
+		
+		ARepositorio aARepositorio = null;
+		try {
+			aARepositorio = (ARepositorio) theRootObject;
+		} catch( ClassCastException anException) {}
+		if( aARepositorio == null) { return;}
+		
+		try {
+			Resource otherResource = null;
+			//	 URI aURI = URI.createFileURI("D:/Works/GV/CIT/MAPA2CASI/orgcasiwkspc/orgcasi/instances/SerPre_RA_v01.simapa");
+//	        Bundle bundle = Platform.getBundle("es.gva.cit.gvmetrica.orgcasi.editor");
+//		    URI resourceURI = URI.createPlatformResourceURI(modelFile.getFile().getFullPath().toString());
+//			IWorkspaceRoot aWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();				
+//			String aBaseURL = aWorkspaceRoot.toString();
+//			URI aURI = URI.createURI(aBaseURL + aDefaultSimapaResourcePath );
+			
+
+			IFile aResourceFile = ResourcesPlugin.getWorkspace().getRoot().getFile( newFileCreationPage.getContainerFullPath().append(aDefaultSimapaResourcePath));
+			URI aURI = URI.createPlatformResourceURI(aResourceFile.getFullPath().toString());
+
+			try {
+				otherResource = theResourceSet.getResource(aURI, true); 
+			} catch (Exception e) {
+				if( otherResource != null) {
+					otherResource.getErrors(); // Examine the errors, maybe log them somehow or even show them to the user?
+					otherResource.unload(); // We don't need the errors anymore, unload the resource to clean up.
+				}
+			}
+			if( otherResource != null) {
+				EList aList =  otherResource.getContents();
+				Repositorio aRepositorio = null;
+				try {
+					aRepositorio = (es.gva.cit.simapa.Repositorio) aList.get(0);
+				} catch( ClassCastException anException) {}
+				if ( aRepositorio == null) { return;}
+				aARepositorio.setRepositorio( aRepositorio);
+				
+				OrgcasiAnnotationsBuilder.createAnotacionesParaRepositorio( aARepositorio);
+							
+				theResource.save( theResourceSaveOptions);
+			}
+
+		}
+		catch (Exception exception) {
+			OrgcasiEditorPlugin.INSTANCE.log(exception);
+		}
+
+	}
+
+	
+
+	/**
+	 * Do the work after everything is specified.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 * OJO ACV
+	 */
+	public boolean performFinish() {
+		try {
+			// Remember the file.
+			//
+			final IFile modelFile = getModelFile();
+
+			// Do the work within an operation.
+			//
+			WorkspaceModifyOperation operation =
+				new WorkspaceModifyOperation() {
+					protected void execute(IProgressMonitor progressMonitor) {
+						try {
+							// Create a resource set
+							//
+							ResourceSet aResourceSet = new ResourceSetImpl();
+
+							// Get the URI of the model file.
+							//
+							URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString());
+
+							// Create a resource for this file.
+							//
+							Resource aResource = aResourceSet.createResource(fileURI);
+
+							// Add the initial model object to the contents.
+							//
+							EObject rootObject = createInitialModel();
+							if (rootObject != null) {
+								aResource.getContents().add(rootObject);
+							}
+
+							
+							// Save the contents of the resource to the file system.
+							//
+							Map options = new HashMap();
+							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+							aResource.save(options);
+							
+							// OJO ACV
+							pLoadSimapaResourceFromWorkspace( aResourceSet, aResource, options, rootObject);    							
+							
+							
+						}
+						catch (Exception exception) {
+							OrgcasiEditorPlugin.INSTANCE.log(exception);
+						}
+						finally {
+							progressMonitor.done();
+						}
+					}
+				};
+
+			getContainer().run(false, false, operation);
+
+			// Select the new file resource in the current view.
+			//
+			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+			IWorkbenchPage page = workbenchWindow.getActivePage();
+			final IWorkbenchPart activePart = page.getActivePart();
+			if (activePart instanceof ISetSelectionTarget) {
+				final ISelection targetSelection = new StructuredSelection(modelFile);
+				getShell().getDisplay().asyncExec
+					(new Runnable() {
+						 public void run() {
+							 ((ISetSelectionTarget)activePart).selectReveal(targetSelection);
+						 }
+					 });
+			}
+
+			// Open an editor on the new file.
+			//
+			try {
+				page.openEditor
+					(new FileEditorInput(modelFile),
+					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+			}
+			catch (PartInitException exception) {
+				MessageDialog.openError(workbenchWindow.getShell(), OrgcasiEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				return false;
+			}
+
+			return true;
+		}
+		catch (Exception exception) {
+			OrgcasiEditorPlugin.INSTANCE.log(exception);
+			return false;
+		}
+	}
+
+	/**
+	 * This is the one page of the wizard.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public class OrgcasiModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+		/**
+		 * Pass in the selection.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public OrgcasiModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+			super(pageId, selection);
+		}
+
+		/**
+		 * The framework calls this to see if the file is correct.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected boolean validatePage() {
+			if (super.validatePage()) {
+				// Make sure the file ends in ".orgcasi".
+				//
+				String requiredExt = OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiEditorFilenameExtension");
+				String enteredExt = new Path(getFileName()).getFileExtension();
+				if (enteredExt == null || !enteredExt.equals(requiredExt)) {
+					setErrorMessage(OrgcasiEditorPlugin.INSTANCE.getString("_WARN_FilenameExtension", new Object [] { requiredExt }));
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public IFile getModelFile() {
+			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
+		}
+	}
+
+	/**
+	 * This is the page where the type of object to create is selected.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public class OrgcasiModelWizardInitialObjectCreationPage extends WizardPage {
+		  /*
+		   * @generated NOT
+		   * OJO ACV
+		   */
+		  protected String vDefaultRootObjectClassName;  
+
+		  
+		   /* Sets the class name of the Root Object class shown when this wizard
+		   * is presented to the user.  This method has to be invoke before the wizard
+		   * pages are added.
+		   * @param id
+		   * @generated NOT
+		   * OJO ACV
+		   */
+		  public void setDefaultRootObjectClassName(String theClassName)
+		  {
+			  vDefaultRootObjectClassName = theClassName;
+		  }
+		  
+		   /* Gets the class name of the Root Object class shown when this wizard
+		   * is presented to the user.  This method has to be invoke before the wizard
+		   * pages are added.
+		   * @param id
+		   * @generated NOT
+		   * OJO ACV
+		   */
+		  public String getDefaultRootObjectClassName()
+		  {
+		    return vDefaultRootObjectClassName;
+		  }
+
+		
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected Combo initialObjectField;
+
+		/**
+		 * @generated
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 */
+		protected List encodings;
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected Combo encodingField;
+
+		/**
+		 * Pass in the selection.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public OrgcasiModelWizardInitialObjectCreationPage(String pageId) {
+			super(pageId);
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated NOT
+		 * OJO ACV
+		 */
+		public void createControl(Composite parent) {
+			createControlGen( parent);
+			
+			if( initialObjectField != null ) {
+				String anObjectClassName = getDefaultRootObjectClassName();
+				if ( anObjectClassName != null) {
+
+					/*
+					System.out.print(this.getClass().getName() );
+					System.out.print(  " createControl ObjectClassName="  );
+					System.out.println(anObjectClassName );
+*/
+					String someItems[] = initialObjectField.getItems();
+					int aNumItems = someItems.length;
+					boolean aDone = false;
+					for (int anIndex = 0; !aDone && anIndex < aNumItems; ) {
+						if( anObjectClassName.equals( someItems[anIndex])) { 
+							initialObjectField.select(anIndex);
+							aDone = true;
+						}
+						anIndex += 1;
+					}
+				}
+			}
+			
+
+		}
+		
+		
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public void createControlGen(Composite parent) {
+			Composite composite = new Composite(parent, SWT.NONE);
+			{
+				GridLayout layout = new GridLayout();
+				layout.numColumns = 1;
+				layout.verticalSpacing = 12;
+				composite.setLayout(layout);
+
+				GridData data = new GridData();
+				data.verticalAlignment = GridData.FILL;
+				data.grabExcessVerticalSpace = true;
+				data.horizontalAlignment = GridData.FILL;
+				composite.setLayoutData(data);
+			}
+
+			Label containerLabel = new Label(composite, SWT.LEFT);
+			{
+				containerLabel.setText(OrgcasiEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				containerLabel.setLayoutData(data);
+			}
+
+			initialObjectField = new Combo(composite, SWT.BORDER);
+			{
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				data.grabExcessHorizontalSpace = true;
+				initialObjectField.setLayoutData(data);
+			}
+
+			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
+				initialObjectField.add(getLabel((String)i.next()));
+			}
+
+			if (initialObjectField.getItemCount() == 1) {
+				initialObjectField.select(0);
+			}
+			initialObjectField.addModifyListener(validator);
+
+			Label encodingLabel = new Label(composite, SWT.LEFT);
+			{
+				encodingLabel.setText(OrgcasiEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				encodingLabel.setLayoutData(data);
+			}
+			encodingField = new Combo(composite, SWT.BORDER);
+			{
+				GridData data = new GridData();
+				data.horizontalAlignment = GridData.FILL;
+				data.grabExcessHorizontalSpace = true;
+				encodingField.setLayoutData(data);
+			}
+
+			for (Iterator i = getEncodings().iterator(); i.hasNext(); ) {
+				encodingField.add((String)i.next());
+			}
+
+			encodingField.select(0);
+			encodingField.addModifyListener(validator);
+
+			setPageComplete(validatePage());
+			setControl(composite);
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected ModifyListener validator =
+			new ModifyListener() {
+				public void modifyText(ModifyEvent e) {
+					setPageComplete(validatePage());
+				}
+			};
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected boolean validatePage() {
+			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public void setVisible(boolean visible) {
+			super.setVisible(visible);
+			if (visible) {
+				if (initialObjectField.getItemCount() == 1) {
+					initialObjectField.clearSelection();
+					encodingField.setFocus();
+				}
+				else {
+					encodingField.clearSelection();
+					initialObjectField.setFocus();
+				}
+			}
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public String getInitialObjectName() {
+			String label = initialObjectField.getText();
+
+			for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
+				String name = (String)i.next();
+				if (getLabel(name).equals(label)) {
+					return name;
+				}
+			}
+			return null;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public String getEncoding() {
+			return encodingField.getText();
+		}
+
+		/**
+		 * Returns the label for the specified type name.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected String getLabel(String typeName) {
+			try {
+				return OrgcasiEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
+			}
+			catch(MissingResourceException mre) {
+				OrgcasiEditorPlugin.INSTANCE.log(mre);
+			}
+			return typeName;
+		}
+
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected Collection getEncodings() {
+			if (encodings == null) {
+				encodings = new ArrayList();
+				for (StringTokenizer stringTokenizer = new StringTokenizer(OrgcasiEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+					encodings.add(stringTokenizer.nextToken());
+				}
+			}
+			return encodings;
+		}
+	}
+
+	/**
+	 * The framework calls this to create the contents of the wizard.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 * OJO ACV 
+	 */
+	public void addPages() {
+		addPagesGen();
+
+		if( newFileCreationPage != null) {
+			String aProjectName = getDefaultProjectName();
+			if( aProjectName != null) {
+
+
+				IPath aPath = (new Path(aProjectName)).makeAbsolute();
+				newFileCreationPage.setContainerFullPath ( aPath);
+
+				String aModelName = getDefaultModelName();
+				if( aModelName != null) {
+
+
+					newFileCreationPage.setFileName(aModelName);
+
+					IWorkspaceRoot aWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+					IProject aProject = aWorkspaceRoot.getProject(aProjectName);
+					if(aProject.exists()) {
+
+						// Make up a unique new name here.
+						//
+						String aDefaultModelFilenameExtension = OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiEditorFilenameExtension");
+						String aModelFilename = aModelName + "." + aDefaultModelFilenameExtension;
+						for (int i = 1; aProject.findMember(aModelFilename) != null; ++i) {
+							aModelFilename = aModelName + "_" + i + "." + aDefaultModelFilenameExtension;
+						}
+						newFileCreationPage.setFileName(aModelFilename);	
+					}
+				}
+			}
+
+
+
+		}
+
+		if( initialObjectCreationPage != null) {
+			String anObjectClassName = getDefaultRootObjectClassName();
+			if( anObjectClassName != null) {
+				initialObjectCreationPage.setDefaultRootObjectClassName( anObjectClassName);
+			}
+		}
+
+	}
+
+	
+	
+	
+		
+	/**
+	 * The framework calls this to create the contents of the wizard.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void addPagesGen() {
+		// Create a page, set the title, and the initial model file name.
+		//
+		newFileCreationPage = new OrgcasiModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiModelWizard_label"));
+		newFileCreationPage.setDescription(OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiModelWizard_description"));
+		newFileCreationPage.setFileName(OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiEditorFilenameDefaultBase") + "." + OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiEditorFilenameExtension"));
+		addPage(newFileCreationPage);
+
+		// Try and get the resource selection to determine a current directory for the file dialog.
+		//
+		if (selection != null && !selection.isEmpty()) {
+			// Get the resource...
+			//
+			Object selectedElement = selection.iterator().next();
+			if (selectedElement instanceof IResource) {
+				// Get the resource parent, if its a file.
+				//
+				IResource selectedResource = (IResource)selectedElement;
+				if (selectedResource.getType() == IResource.FILE) {
+					selectedResource = selectedResource.getParent();
+				}
+
+				// This gives us a directory...
+				//
+				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
+					// Set this for the container.
+					//
+					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
+
+					// Make up a unique new name here.
+					//
+					String defaultModelBaseFilename = OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiEditorFilenameDefaultBase");
+					String defaultModelFilenameExtension = OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiEditorFilenameExtension");
+					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
+					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
+						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
+					}
+					newFileCreationPage.setFileName(modelFilename);
+				}
+			}
+		}
+		initialObjectCreationPage = new OrgcasiModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(OrgcasiEditorPlugin.INSTANCE.getString("_UI_OrgcasiModelWizard_label"));
+		initialObjectCreationPage.setDescription(OrgcasiEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		addPage(initialObjectCreationPage);
+	}
+
+	/**
+	 * Get the file from the page.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IFile getModelFile() {
+		return newFileCreationPage.getModelFile();
+	}
+
+}

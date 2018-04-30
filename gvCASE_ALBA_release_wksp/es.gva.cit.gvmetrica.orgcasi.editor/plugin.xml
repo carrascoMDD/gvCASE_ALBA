@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+  <extension
+    point = "org.eclipse.ui.newWizards">
+    <category
+      id = "org.eclipse.emf.ecore.Wizard.category.ID"
+      name="%_UI_Wizard_category">
+    </category>
+    <wizard
+      id = "es.gva.cit.gvmetrica.orgcasi.presentation.OrgcasiModelWizardID"
+      name = "%_UI_OrgcasiModelWizard_label"
+      class = "es.gva.cit.gvmetrica.orgcasi.presentation.OrgcasiModelWizard"
+      category = "org.eclipse.emf.ecore.Wizard.category.ID"
+      icon = "icons/full/obj16/OrgcasiModelFile.gif">
+      <description>%_UI_OrgcasiModelWizard_description</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "es.gva.cit.gvmetrica.orgcasi.presentation.OrgcasiEditorID"
+        name = "%_UI_OrgcasiEditor_label"
+        icon = "icons/full/obj16/OrgcasiModelFile.gif"
+        extensions = "orgcasi"
+        class = "es.gva.cit.gvmetrica.orgcasi.presentation.OrgcasiEditor" 
+        contributorClass="es.gva.cit.gvmetrica.orgcasi.presentation.OrgcasiActionBarContributor" >
+    </editor>
+  </extension>
+  
+  
+  <extension
+        point="org.eclipse.ui.preferencePages">
+     <page
+           name="Orgcasi Tree Preferences"
+           class="es.gva.cit.gvmetrica.orgcasi.preferences.OrgcasiTreePreferences"
+           id="es.gva.cit.gvmetrica.orgcasi.preferences.OrgcasiTreePreferences"/>
+  </extension>    
+   
+</plugin>

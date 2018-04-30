@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Generated-from: 1151574312000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: EMF4ATL Plug-in
+Bundle-SymbolicName: org.atl.engine.repositories.emf4atl
+Bundle-Version: 1.0.0
+Bundle-ClassPath: emf4atl.jar
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Export-Package: org.atl.engine.repositories.emf4atl
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.atl.engine.vm

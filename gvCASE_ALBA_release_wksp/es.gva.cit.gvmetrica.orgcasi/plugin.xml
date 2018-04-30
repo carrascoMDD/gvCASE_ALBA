@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http:///es/gva/cit/gvmetrica/orgcasi.ecore" 
+       class = "es.gva.cit.gvmetrica.orgcasi.OrgcasiPackage"
+       genModel = "model/orgcasi.genmodel" /> 
+  </extension>
+
+</plugin>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<bundle bundleID="314" class="es.gva.cit.simapa.presentation.SimapaEditorPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.simapa.editor" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="315" class="es.gva.cit.gvcase.prototipo.rdbms.provider.RdbmsEditPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.gvcase.prototipo.rdbms.edit" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="316" class="es.gva.cit.gvmetrica.proinso.provider.ProinsoEditPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.proinso.edit" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="317" class="es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsEditorPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.gvcase.prototipo.rdbms.editor" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="318" class="es.gva.cit.gvmetrica.orgcasi.presentation.OrgcasiEditorPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.orgcasi.editor" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="319" class="es.gva.cit.simapa.provider.SimapaEditPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.simapa.edit" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="320" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.proinso.tests" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="321" localization="plugin" name="%pluginName" project="es.gva.cit.gvcase.prototipo.rdbms" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="322" localization="plugin" name="%pluginName" project="es.gva.cit.gvcase.prototipo.rdbms.tests" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="323" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.orgcasi" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="324" class="es.gva.cit.gvmetrica.proinso.presentation.ProinsoEditorPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.proinso.editor" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="325" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.proinso" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="326" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.orgcasi.tests" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="327" class="es.gva.cit.gvmetrica.orgcasi.provider.OrgcasiEditPlugin$Implementation" localization="plugin" name="%pluginName" project="es.gva.cit.gvmetrica.orgcasi.edit" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="328" class="es.gva.cit.gvmetrica.orgcasi.cheatsheets.Activator" localization="plugin" name="ORGCASI Cheatsheets Plug-in" project="es.gva.cit.gvmetrica.orgcasi.cheatsheets" schema="3.2"/>
+	<bundle bundleID="329" localization="plugin" name="%pluginName" project="es.gva.cit.simapa" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="330" localization="plugin" name="%pluginName" project="es.gva.cit.simapa.tests" provider="%providerName" schema="3.0">
+		<library name="."/>
+	</bundle>
+	<bundle bundleID="331" class="es.gva.cit.gvmetrica.proinso.cheatsheets.Activator" localization="plugin" name="PROINSO Cheatsheets Plug-in" project="es.gva.cit.gvmetrica.proinso.cheatsheets" schema="3.2"/>
+	<bundle bundleID="332" class="es.gva.cit.simapa.cheatsheets.Activator" localization="plugin" name="SIMAPA Cheatsheets Plug-in" project="es.gva.cit.simapa.cheatsheets" schema="3.2"/>
+	<bundle bundleID="333" class="es.gva.cit.gvcase.prototipo.rdbms.cheatsheets.Activator" localization="plugin" name="RDBMS Cheatsheets Plug-in" project="es.gva.cit.gvcase.prototipo.rdbms.cheatsheets" schema="3.2"/>
+</map>

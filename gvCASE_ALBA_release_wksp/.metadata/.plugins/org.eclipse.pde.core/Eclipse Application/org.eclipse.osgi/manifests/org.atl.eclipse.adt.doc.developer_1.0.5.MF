@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Generated-from: 1151574312000;type=10
+Bundle-ManifestVersion: 2
+Bundle-Name: ATL Developer Documentation
+Bundle-SymbolicName: org.atl.eclipse.adt.doc.developer; singleton:=true
+Bundle-Version: 1.0.5
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Eclipse-LazyStart: true

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+  <extension
+    point = "org.eclipse.ui.newWizards">
+    <category
+      id = "org.eclipse.emf.ecore.Wizard.category.ID"
+      name="%_UI_Wizard_category">
+    </category>
+    <wizard
+      id = "es.gva.cit.gvmetrica.proinso.presentation.ProinsoModelWizardID"
+      name = "%_UI_ProinsoModelWizard_label"
+      class = "es.gva.cit.gvmetrica.proinso.presentation.ProinsoModelWizard"
+      category = "org.eclipse.emf.ecore.Wizard.category.ID"
+      icon = "icons/full/obj16/ProinsoModelFile.gif">
+      <description>%_UI_ProinsoModelWizard_description</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "es.gva.cit.gvmetrica.proinso.presentation.ProinsoEditorID"
+        name = "%_UI_ProinsoEditor_label"
+        icon = "icons/full/obj16/ProinsoModelFile.gif"
+        extensions = "proinso"
+        class = "es.gva.cit.gvmetrica.proinso.presentation.ProinsoEditor" 
+        contributorClass="es.gva.cit.gvmetrica.proinso.presentation.ProinsoActionBarContributor" >
+    </editor>
+  </extension>   
+  
+ 
+  <extension
+        point="org.eclipse.ui.preferencePages">
+     <page
+           name="Proinso Tree Preferences"
+           class="es.gva.cit.gvmetrica.proinso.preferences.ProinsoTreePreferences"
+           id="es.gva.cit.gvmetrica.proinso.preferences.ProinsoTreePreferences"/>
+  </extension>    
+   
+</plugin>

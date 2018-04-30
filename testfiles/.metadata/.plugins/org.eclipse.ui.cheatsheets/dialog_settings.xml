@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="CheatSheetCategoryBasedSelectionDialog">
+		<item key="CheatSheetCategoryBasedSelectionDialog.STORE_RADIO_SETTING" value="false"/>
+		<item key="CheatSheetCategoryBasedSelectionDialog.STORE_SELECTED_CHEATSHEET_ID" value="es.gva.cit.gvmetrica.orgcasi.cheatsheets.createprojectandmodel"/>
+		<item key="CheatSheetCategoryBasedSelectionDialog.STORE_CHEATSHEET_FILENAME" value=""/>
+		<list key="CheatSheetCategoryBasedSelectionDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="ORGCASI Cheatsheets"/>
+			<item value="SIMAPA Cheatsheets"/>
+		</list>
+	</section>
+</section>

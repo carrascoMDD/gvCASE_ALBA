@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Generated-from: 1151574312000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: ATL Perspective
+Bundle-SymbolicName: org.atl.eclipse.adt.perspective; singleton:=true
+Bundle-Version: 1.0.1
+Bundle-ClassPath: atlPerspective.jar
+Bundle-Activator: org.atl.ui.perspective.AtlPerspectivePlugin
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Export-Package: org.atl.ui.perspective
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.console,
+ org.eclipse.debug.ui,
+ org.eclipse.core.runtime
+Eclipse-LazyStart: true

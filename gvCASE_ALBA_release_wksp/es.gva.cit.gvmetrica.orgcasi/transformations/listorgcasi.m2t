@@ -1,0 +1,226 @@
+/**
+ * transformation VisitORGCASI
+ *
+ *
+ */
+
+texttransformation VisitORGCASI (in oc:"http:///es/gva/cit/gvmetrica/orgcasi.ecore" ) {
+
+  oc.ARepositorio::main() {
+    stdout.println ("BEGIN")
+    stdout.println ("ARepositorio")
+    self.libreriasServicios.libreriasServicios->forEach( aLibreriaServicio) {
+      	aLibreriaServicio.visit()
+    }
+     self.anotacionesProcedimiento.procedimientos->forEach( aProcedimiento) {
+      	aProcedimiento.visit()
+    }
+    stdout.println (" ")
+    
+    stdout.println ("END")
+  }
+  
+
+  oc.AProcedimiento::visit() {
+    space(4)
+   	'Procedimiento ' 
+   	if( self.procedimiento != null) {
+   	  	self.procedimiento.titulo
+   	}
+   	else { '?' }
+   	newline
+   	
+    self.documentos.documentos->forEach( aDocumento) {
+      	aDocumento.visit()
+    }
+    self.estructurasDatos.estructurasDatos->forEach( aEstructuraDatos) {
+      	aEstructuraDatos.visit()
+    }
+
+    self.sistemas.sistemas->forEach( aSistema) {
+      	aSistema.visit()
+    }
+    self.subsistemas.subsistemas->forEach( aSubsistema) {
+      	aSubsistema.visit()
+    }
+    self.sucesos.sucesos->forEach( aSuceso) {
+      	aSuceso.visit()
+    }
+  }
+    
+    
+    
+    
+  oc.Sistema::visit() {
+    space(4)
+   	'Sistema ' self.nombre newline
+    	
+    self.subsistemas.subsistemas->forEach( aSubsistema) {
+      	aSubsistema.visit()
+    }
+    self.sucesos.sucesos->forEach( aSuceso) {
+      	aSuceso.visit()
+    }
+  }
+  
+
+  oc.Subsistema::visit() {
+    space(4)
+   	'Subsistema ' self.nombre newline
+    self.sucesos.sucesos->forEach( aSuceso) {
+      	aSuceso.visit()
+    }
+  }
+  
+
+  oc.SucesoConsultor::visit() {
+    space(8)
+   	'SucesoConsultor ' self.nombre newline
+  }
+  
+  oc.SucesoConstructor::visit() {
+    space(8)
+   	'SucesoConstructor ' self.nombre newline
+  }
+
+        
+  oc.LibreriaServicios::visit() {
+   	space(4) 
+   	'LibreriaServicios ' self.nombre newline
+   	 
+    self.documentos.documentos->forEach( aDocumento) {
+      	aDocumento.visit()
+    }
+    self.estructurasDatos.estructurasDatos->forEach( aEstructuraDatos) {
+      	aEstructuraDatos.visit()
+    }
+
+    self.interfaces.interfaces->forEach( aInterfaz) {
+      	aInterfaz.visit()
+    }
+    
+    self.visitImportacionesServicios()
+  }
+  
+  
+  
+  oc.LibreriaServicios::visitImportacionesServicios() {
+     self.importacionesServicios.importacionesServicios.libreriaServicios.libreriaServicios->forEach( aLibreriaServicios : oc.LibreriaServicios) {
+      	space(8) 
+      	'Importando LibreriaServicios '  
+      	aLibreriaServicios.nombre newline
+    }
+     	 
+  }
+
+
+  oc.EstructuraDatos::visit() {
+   	space(8)
+   'EstructuraDatos ' self.nombre  newline
+   	
+   self.campos->forEach( aCampo) {
+      	aCampo.visitReferencia()
+    }
+   	 
+  }
+  
+  
+  oc.CampoDatos::visitReferencia() {
+   space(12)	 
+   	'CampoDatos ' self.nombre newline
+	
+  }
+  
+  
+  
+  oc.ADocumento::visit() {
+   space(8)	 
+   'Documento ' self.nombre 
+   	
+   if ( self.documento != null) {
+   	' anotando ' self.documento.etiqueta
+   }
+   newline
+   
+   self.estados->forEach( aDocumentoEnEstado) {
+      	aDocumentoEnEstado.visit()
+    }
+   	 
+  }
+
+
+  oc.DocumentoEnEstado::visit() {
+   space(8)	 
+   	'DocumentoEnEstado ' self.nombre  
+   	if ( self.documento != null) {
+   	' anotando ' self.documento.etiqueta
+   }
+   newline   	 
+  }
+
+ 
+  oc.Interfaz::visit() {
+    space(8)
+   	'Interfaz ' self.nombre newline
+   	 
+    self.servicios.servicios->forEach( aServicio) {
+      	aServicio.visit()
+    }
+   	 
+  }
+
+
+ oc.Servicio::visit() {
+   	space(12)
+   	'Servicio ' self.nombre newline
+   	 
+    self.entradas->forEach( aEntradaServicio) {
+      	aEntradaServicio.visit()
+    }
+     self.salidas->forEach( aSalidaServicio) {
+      	aSalidaServicio.visit()
+    }
+   	 
+  }
+
+  oc.EntradaServicio::visit() {
+   	space(16)
+   	'EntradaServicio' self.nombre newline
+   	if( self.documentos.size() > 0) {
+   	   space(20) ' documentos ' newline
+   	}
+  	self.documentos->forEach( aDocumento : oc.ADocumento) {
+ 		space(20) 
+ 		aDocumento.etiqueta newline
+ 	}	  
+   	if( self.estructurasDatos.size() > 0) {
+   	   space(20) ' estructurasDatos ' newline
+   	}
+   	self.estructurasDatos->forEach( aEstructuraDatos : oc.EstructuraDatos) {
+ 		space(20) 
+		aEstructuraDatos.nombre newline
+ 	}	  
+   }
+   
+   
+ oc.SalidaServicio::visit() {
+   	space(16)
+   	'SalidaServicio' self.nombre newline
+   	if( self.documentos.size() > 0) {
+   	   space(20) ' documentos ' newline
+   	}
+  	self.documentos->forEach( aDocumento : oc.ADocumento) {
+ 		space(20) 
+ 		aDocumento.etiqueta newline
+ 	}	  
+   	if( self.estructurasDatos.size() > 0) {
+   	   space(20) ' estructurasDatos ' newline
+   	}
+   	self.estructurasDatos->forEach( aEstructuraDatos : oc.EstructuraDatos) {
+ 		space(20) 
+		aEstructuraDatos.nombre newline
+ 	}	  
+   }
+   
+   
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="PluginImportWizard">
+		<item key="scanAll" value="true"/>
+		<item key="importType" value="3"/>
+		<item key="doother" value="false"/>
+		<item key="addFragments" value="true"/>
+	</section>
+</section>

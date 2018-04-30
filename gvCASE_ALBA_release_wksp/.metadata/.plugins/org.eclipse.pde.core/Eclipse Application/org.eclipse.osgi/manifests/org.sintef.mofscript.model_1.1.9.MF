@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Generated-from: 1158856422290;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.sintef.mofscript.model; singleton:=true
+Bundle-Version: 1.1.9
+Bundle-ClassPath: org.sintef.mofscript.model.jar
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: model,
+ org.sintef.mofscript.MOFScriptModel,
+ org.sintef.mofscript.MOFScriptModel.impl,
+ org.sintef.mofscript.MOFScriptModel.util
+Require-Bundle: org.eclipse.emf.ecore
+Eclipse-LazyStart: true

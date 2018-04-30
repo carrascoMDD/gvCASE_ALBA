@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="FeatureExportWizard">
+		<item key="siteURL" value=""/>
+		<item key="password" value=""/>
+		<item key="destination0" value="D:\Works\GV\CIT\gvCASE\Releases\gvCASE_ALBA_release\gvCASE_ALBA_release_work\gvCASE_ALBA_release_features"/>
+		<item key="keystore" value=""/>
+		<item key="exportSource" value="true"/>
+		<item key="exportUpdate" value="true"/>
+		<item key="saveAsAnt" value="false"/>
+		<item key="exportDirectory" value="true"/>
+		<item key="jnlp" value="false"/>
+		<item key="jre" value=""/>
+		<item key="alias" value=""/>
+		<item key="signJAR" value="false"/>
+	</section>
+</section>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SIMAPA Cheatsheets Plug-in
+Bundle-SymbolicName: es.gva.cit.simapa.cheatsheets;singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-Activator: es.gva.cit.simapa.cheatsheets.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.cheatsheets,
+ es.gva.cit.simapa,
+ org.eclipse.emf.cheatsheets,
+ es.gva.cit.simapa.editor
+Eclipse-LazyStart: true

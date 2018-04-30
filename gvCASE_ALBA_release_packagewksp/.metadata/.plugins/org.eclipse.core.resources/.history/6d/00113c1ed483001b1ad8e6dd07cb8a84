@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="es.gva.cit.gvcase.releases.alba.features"
+      label="ALBA entrega conjunta de gvCASE Feature"
+      version="1.0.0.v200612022000_ALBA">
+
+   <description url="http://www.cit.gva.es">
+      ALBA: entrega conjunta de componentes del proyecto gvCASE, el 2 de Diciembre de 2006.
+Conselleria d&apos;Infraestructures i Transport (CIT) de la Generalitat Valenciana (GVA)
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <includes
+         id="es.gva.cit.gvcase.prototipo.rdbms.features"
+         version="0.0.0"
+         name="RDBMS"
+         optional="true"/>
+
+   <includes
+         id="es.gva.cit.gvmetrica.orgcasi.features"
+         version="0.0.0"
+         name="ORGCASI"
+         optional="true"/>
+
+   <includes
+         id="es.gva.cit.gvmetrica.proinso.features"
+         version="0.0.0"
+         name="SIMAPA"
+         optional="true"/>
+
+   <includes
+         id="es.gva.cit.simapa.features"
+         version="0.0.0"
+         name="SIMAPA"
+         optional="true"/>
+
+</feature>

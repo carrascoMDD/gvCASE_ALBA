@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ORGCASI Cheatsheets Plug-in
+Bundle-SymbolicName: es.gva.cit.gvmetrica.orgcasi.cheatsheets;singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-Activator: es.gva.cit.gvmetrica.orgcasi.cheatsheets.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.cheatsheets,
+ org.eclipse.emf.cheatsheets;visibility:=reexport,
+ es.gva.cit.gvmetrica.orgcasi.editor
+Eclipse-LazyStart: true
+Export-Package: es.gva.cit.gvmetrica.orgcasi.cheatsheets

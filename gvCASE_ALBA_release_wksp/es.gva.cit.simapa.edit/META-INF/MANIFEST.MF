@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: es.gva.cit.simapa.edit;singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-ClassPath: .
+Bundle-Activator: es.gva.cit.simapa.provider.SimapaEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: es.gva.cit.simapa.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.ocl,
+ es.gva.cit.simapa;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport
+Eclipse-LazyStart: true

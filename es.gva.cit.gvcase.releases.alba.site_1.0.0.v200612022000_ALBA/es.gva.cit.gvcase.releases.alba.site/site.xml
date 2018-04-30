@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://gardel.coput.gva.es/archivos/eclipse_gvcase/sites/alba/">
+      ALBA: entrega conjunta de componentes del proyecto gvCASE, el 2 de Diciembre de 2006.
+Incluye las Features RDBMS, PROINSO, SIMAPA y ORGCASI.
+Conselleria d&apos;Infraestructures i Transport (CIT) de la Generalitat Valenciana (GVA)
+   </description>
+   <feature url="features/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.jar" id="es.gva.cit.gvcase.releases.alba.features" version="1.0.0.v200612022000_ALBA">
+      <category name="es.gva.cit.gvcase.releases.alba"/>
+   </feature>
+   <category-def name="es.gva.cit.gvcase.releases.alba" label="ALBA entrega conjunta de gvCASE"/>
+</site>

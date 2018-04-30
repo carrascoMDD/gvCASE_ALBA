@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: es.gva.cit.gvmetrica.proinso.edit; singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-ClassPath: .
+Bundle-Activator: es.gva.cit.gvmetrica.proinso.provider.ProinsoEditPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: es.gva.cit.gvmetrica.proinso.provider
+Require-Bundle: org.eclipse.core.runtime,
+ es.gva.cit.gvmetrica.proinso;visibility:=reexport,
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.emf.ocl
+Eclipse-LazyStart: true

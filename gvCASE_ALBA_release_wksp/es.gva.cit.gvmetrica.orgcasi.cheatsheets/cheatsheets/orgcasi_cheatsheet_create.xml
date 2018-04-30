@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cheatsheet title="Create ORGCASI project and model">
+
+  <intro>
+    <description>
+      This cheat sheet is a step-by-step description of how to create a Project and Model to edit an instance of ORGCASI.
+    </description>
+  </intro>
+
+  <item 
+  	title="Create a General Project">
+  	<description>
+  	  We need a Project to work on a new ORGCASI Model. A &quot;General&quot; Project will suffice. Click &quot;Play&quot; to create a Project.
+  	</description>
+  	
+     <action
+        pluginId="org.eclipse.emf.cheatsheets"
+        class="org.eclipse.emf.cheatsheets.actions.NewProjectAction"
+        param1="ORGCASI test" />
+ 	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="ORGCASI test" 
+  		param2="" 
+  		param3="es.gva.cit.gvmetrica.orgcasi/transformations/listorgcasi.m2t" /> 
+ 	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="ORGCASI test" 
+  		param2="" 
+  		param3="es.gva.cit.gvmetrica.orgcasi/instances/SerPre_RA_v01.simapa" /> 
+        
+  </item>
+  <item 
+  	title="Create a ORGCASI Model">
+  	<description>
+  	  We must create new ORGCASI Model. Click &quot;Play&quot; to create a ORGCASI Model.
+  	</description>
+  	
+     <action
+        pluginId="es.gva.cit.gvmetrica.orgcasi.cheatsheets"
+        class="es.gva.cit.gvmetrica.orgcasi.cheatsheets.OpenORGCASIModelWizardAction" 
+ 		param1="ORGCASI test"
+        param2="TestORGCASI"
+        param3="ARepositorio" />
+  </item>
+
+</cheatsheet>

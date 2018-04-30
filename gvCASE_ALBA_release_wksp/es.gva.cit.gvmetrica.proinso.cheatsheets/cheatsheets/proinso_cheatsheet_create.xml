@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cheatsheet title="Create PROINSO project and model">
+
+  <intro>
+    <description>
+      This cheat sheet is a step-by-step description of how to create a Project and Model to edit an instance of PROINSO.
+    </description>
+  </intro>
+
+  <item 
+  	title="Create a General Project">
+  	<description>
+  	  We need a Project to work on a new PROINSO Model. A &quot;General&quot; Project will suffice. Click &quot;Play&quot; to create a Project.
+  	</description>
+  	
+     <action
+        pluginId="org.eclipse.emf.cheatsheets"
+        class="org.eclipse.emf.cheatsheets.actions.NewProjectAction"
+        param1="PROINSO test" />
+ 	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="PROINSO test" 
+  		param2="" 
+  		param3="es.gva.cit.gvmetrica.proinso/transformations/listproinso.m2t" /> 
+ 	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="PROINSO test" 
+  		param2="" 
+  		param3="es.gva.cit.gvmetrica.proinso/instances/Metrica3.proinso" /> 
+        
+  </item>
+  <item 
+  	title="Create a PROINSO Model">
+  	<description>
+  	  We must create new PROINSO Model. Click &quot;Play&quot; to create a PROINSO Model.
+  	</description>
+  	
+     <action
+        pluginId="es.gva.cit.gvmetrica.proinso.cheatsheets"
+        class="es.gva.cit.gvmetrica.proinso.cheatsheets.OpenPROINSOModelWizardAction" 
+ 		param1="PROINSO test"
+        param2="TestPROINSO"
+        param3="Repositorio" />
+  </item>
+
+</cheatsheet>

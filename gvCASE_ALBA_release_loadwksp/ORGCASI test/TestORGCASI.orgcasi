@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<es.gva.cit.gvmetrica.orgcasi:ARepositorio xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:es.gva.cit.gvmetrica.orgcasi="http:///es/gva/cit/gvmetrica/orgcasi.ecore">
+  <anotacionesProcedimiento>
+    <procedimientos>
+      <subsistemas/>
+      <sucesos/>
+      <documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.0"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.1"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.2"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.3"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.4"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.5"/>
+        </documentos>
+      </documentos>
+      <estructurasDatos/>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios/>
+      <procedimiento href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0"/>
+      <normativas>
+        <normativas>
+          <normativa href="SerPre_RA_v01.simapa#//@normativas/@normativas.0"/>
+        </normativas>
+      </normativas>
+      <terminosGlosario>
+        <terminosGlosario>
+          <terminoGlosario href="SerPre_RA_v01.simapa#//@glosario/@terminos.0"/>
+        </terminosGlosario>
+      </terminosGlosario>
+      <unidadesOrganicas>
+        <unidades>
+          <unidad href="SerPre_RA_v01.simapa#//@unidadesOrganicas/@descomposicion.0/@descomposicion.1"/>
+        </unidades>
+        <unidades>
+          <unidad href="SerPre_RA_v01.simapa#//@unidadesOrganicas/@descomposicion.0/@descomposicion.0"/>
+        </unidades>
+        <unidades>
+          <unidad href="SerPre_RA_v01.simapa#//@unidadesOrganicas/@descomposicion.0/@descomposicion.2"/>
+        </unidades>
+      </unidadesOrganicas>
+      <unidadesExternas/>
+      <unidades/>
+      <estructurasFuncionales/>
+      <aplicaciones>
+        <aplicaciones>
+          <aplicacion href="SerPre_RA_v01.simapa#//@aplicaciones/@aplicaciones.0"/>
+        </aplicaciones>
+        <aplicaciones>
+          <aplicacion href="SerPre_RA_v01.simapa#//@aplicaciones/@aplicaciones.1"/>
+        </aplicaciones>
+      </aplicaciones>
+      <operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.0"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.1"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.2"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ASubprocedimiento">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.3"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.4"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.5"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.6"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.7"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.8"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.9"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.10"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.11"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.12"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.13"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.14"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.15"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.16"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.17"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ASubprocedimiento">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.18"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.19"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.20"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.21"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.22"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.23"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.24"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.25"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.26"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.27"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.28"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.29"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ASubprocedimiento">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.30"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.31"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.32"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.33"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.34"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.35"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.36"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.37"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.38"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.39"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.40"/>
+        </operaciones>
+      </operaciones>
+      <flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.0/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.1/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.2/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.3/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.4/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.4/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.5/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.6/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.6/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.7/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.8/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.9/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.10/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.11/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.12/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.13/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.14/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.15/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.16/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.17/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.18/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.19/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.19/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.20/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.21/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.23/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.24/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.24/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.25/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.26/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.26/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.27/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.28/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.29/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.30/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.32/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.33/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.33/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.34/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.34/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.35/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.37/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.38/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.38/@flujosSalientes.1"/>
+        </flujos>
+      </flujos>
+      <actores/>
+      <sistemas/>
+    </procedimientos>
+    <procedimientos>
+      <subsistemas/>
+      <sucesos/>
+      <documentos/>
+      <estructurasDatos/>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios/>
+      <procedimiento href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.1"/>
+      <normativas/>
+      <terminosGlosario/>
+      <unidadesOrganicas/>
+      <unidadesExternas/>
+      <unidades/>
+      <estructurasFuncionales/>
+      <aplicaciones/>
+      <operaciones/>
+      <flujos/>
+      <actores/>
+      <sistemas/>
+    </procedimientos>
+    <procedimientos>
+      <subsistemas/>
+      <sucesos/>
+      <documentos/>
+      <estructurasDatos/>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios/>
+      <procedimiento href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.2"/>
+      <normativas/>
+      <terminosGlosario/>
+      <unidadesOrganicas/>
+      <unidadesExternas/>
+      <unidades/>
+      <estructurasFuncionales/>
+      <aplicaciones/>
+      <operaciones/>
+      <flujos/>
+      <actores/>
+      <sistemas/>
+    </procedimientos>
+  </anotacionesProcedimiento>
+  <repositorio href="SerPre_RA_v01.simapa#/"/>
+  <libreriasServicios/>
+</es.gva.cit.gvmetrica.orgcasi:ARepositorio>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Generated-from: 1151574310000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: ATL User Documentation
+Bundle-SymbolicName: org.atl.eclipse.adt.doc.user; singleton:=true
+Bundle-Version: 1.0.9
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Eclipse-LazyStart: true

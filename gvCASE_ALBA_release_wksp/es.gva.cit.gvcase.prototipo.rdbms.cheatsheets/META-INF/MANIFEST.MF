@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RDBMS Cheatsheets Plug-in
+Bundle-SymbolicName: es.gva.cit.gvcase.prototipo.rdbms.cheatsheets;singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-Activator: es.gva.cit.gvcase.prototipo.rdbms.cheatsheets.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.cheatsheets,
+ org.eclipse.emf.cheatsheets,
+ es.gva.cit.gvcase.prototipo.rdbms.editor
+Eclipse-LazyStart: true

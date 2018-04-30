@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Generated-from: 1151574310000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: ATL Engine
+Bundle-SymbolicName: org.atl.eclipse.engine; singleton:=true
+Bundle-Version: 1.0.7
+Bundle-ClassPath: org.atl.eclipse.engine.jar,
+ lib/ebnfinjector.jar,
+ lib/antlr.jar,
+ lib/ATL-importer.jar,
+ lib/ebnfextractor.jar
+Bundle-Activator: org.atl.eclipse.engine.EnginePlugin
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Export-Package: org.atl.eclipse.engine,
+ org.atl.eclipse.engine.resources,
+ org.atl.engine.extractors.ebnf,
+ org.atl.engine.injectors.ebnf
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.core.resources,
+ org.eclipse.emf.ecore.xmi,
+ org.atl.engine.vm;visibility:=reexport,
+ org.atl.engine.repositories.emf4atl;visibility:=reexport
+Eclipse-LazyStart: true

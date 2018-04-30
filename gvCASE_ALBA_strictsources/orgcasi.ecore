@@ -1,0 +1,1112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="orgcasi"
+    nsURI="http:///es/gva/cit/gvmetrica/orgcasi.ecore" nsPrefix="es.gva.cit.gvmetrica.orgcasi">
+  <eClassifiers xsi:type="ecore:EClass" name="AAplicacion" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if aplicacion->isEmpty() then '?' else aplicacion.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aplicacion" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//Aplicacion">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="aplicaciones.procedimiento.procedimiento.aplicaciones"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aplicaciones" lowerBound="1"
+        eType="#//CAplicaciones" transient="true" eOpposite="#//CAplicaciones/aplicaciones"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Accion" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if self.oclIsTypeOf(UsoSuceso) &#xD;&#xA;then &#xD;&#xA;  (if self.oclAsType(UsoSuceso).sucesoUsado->isEmpty() then '?' else self.oclAsType(UsoSuceso).sucesoUsado.etiqueta endif).concat( ' por Suceso  ').concat(&#xD;&#xA;   acciones.suceso.etiqueta&#xD;&#xA;  )&#xD;&#xA;else&#xD;&#xA;if self.oclIsTypeOf(UsoServicio) &#xD;&#xA;then &#xD;&#xA;  (if self.oclAsType(UsoServicio).servicio->isEmpty() then '?' else self.oclAsType(UsoServicio).servicio.etiqueta endif).concat( ' por Suceso  ').concat(&#xD;&#xA;   acciones.suceso.etiqueta&#xD;&#xA;  )&#xD;&#xA;else&#xD;&#xA;(if operaciones->isEmpty() then '?' else operaciones->first().etiqueta endif).concat(&#xD;&#xA;if operaciones->size() > 1 then ' ...' else '' endif&#xD;&#xA;)&#xD;&#xA;endif&#xD;&#xA;endif&#xD;&#xA;&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esColaborativa" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operaciones" upperBound="-1"
+        eType="#//AOperacion" eOpposite="#//AOperacion/accionesSuceso">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="acciones.suceso.procedimiento.operaciones.operaciones"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actores" upperBound="-1"
+        eType="#//Actor" eOpposite="#//Actor/acciones">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="acciones.suceso.actores.actores"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" lowerBound="1"
+        eType="#//CEntradasAccion" containment="true" eOpposite="#//CEntradasAccion/accion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" lowerBound="1"
+        eType="#//CSalidasAccion" containment="true" eOpposite="#//CSalidasAccion/accion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acciones" lowerBound="1"
+        eType="#//CAccionesSuceso" transient="true" eOpposite="#//CAccionesSuceso/acciones"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if self.oclIsTypeOf(UsoSuceso) &#xD;&#xA;then &#xD;&#xA;    acciones.suceso.etiqueta&#xD;&#xA;&#xD;&#xA;else&#xD;&#xA;if self.oclIsTypeOf(UsoServicio) &#xD;&#xA;then &#xD;&#xA;   acciones.suceso.etiqueta&#xD;&#xA;&#xD;&#xA;else&#xD;&#xA;(if operaciones->isEmpty() then '?' else operaciones->first().etiqueta endif).concat(&#xD;&#xA;if operaciones->size() > 1 then ' ...' else '' endif&#xD;&#xA;)&#xD;&#xA;endif&#xD;&#xA;endif&#xD;&#xA;&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( &#xD;&#xA;if unidades->isEmpty() then '' else ' '.concat( unidades->first().etiqueta) endif&#xD;&#xA;).concat(&#xD;&#xA;if unidades->size() > 1 then '...' else '' endif&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" upperBound="-1"
+        eType="#//AUnidad" eOpposite="#//AUnidad/actoresSucesos">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="actores.procedimiento.unidadesOrganicas.unidades->collect( aU | aU.oclAsType(AUnidad))->union(actores.procedimiento.unidadesExternas.unidades->collect( aU | aU.oclAsType(AUnidad)))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actorDeSucesos" upperBound="-1"
+        eType="#//CActoresSuceso" changeable="false" eOpposite="#//CActoresSuceso/actores"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acciones" upperBound="-1"
+        eType="#//Accion" changeable="false" eOpposite="#//Accion/actores"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actores" lowerBound="1"
+        eType="#//CActores" transient="true" eOpposite="#//CActores/actores"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActorFuncional" eSuperTypes="#//Actor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombreFuncional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ADocumento" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else nombre endif).concat(&#xD;&#xA;  if self.oclIsTypeOf( DocumentoEnEstado) &#xD;&#xA;  then ' de '.concat( self.oclAsType( DocumentoEnEstado).documentoBase.etiqueta)&#xD;&#xA;  else ''&#xD;&#xA;  endif&#xD;&#xA;).concat(&#xD;&#xA;if documento->isEmpty() then '' else  ' anotando '.concat( documento.etiqueta) endif &#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documento" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//Documento">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if( documentos.contenedor.oclIsTypeOf( AProcedimiento))&#xD;&#xA;then documentos.contenedor.oclAsType( AProcedimiento).procedimiento.documentos&#xD;&#xA;else documentos.contenedor.oclAsType( LibreriaServicios).libreriasServicios.repositorio.repositorio.documentos.documentos&#xD;&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" upperBound="-1"
+        eType="#//EstructuraDatos" eOpposite="#//EstructuraDatos/documentos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradasOSalidas" upperBound="-1"
+        eType="#//EntradaOSalida" changeable="false" eOpposite="#//EntradaOSalida/documentos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estados" upperBound="-1"
+        eType="#//DocumentoEnEstado" containment="true" eOpposite="#//DocumentoEnEstado/documentoBase"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentos" lowerBound="1"
+        eType="#//CDocumentos" transient="true" eOpposite="#//CDocumentos/documentos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosDocumentos" upperBound="-1"
+        eType="#//ADocumento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if self.oclIsKindOf( DocumentoEnEstado)&#xD;&#xA;then self->asOrderedSet()&#xD;&#xA;else self->asOrderedSet()->union(estados)&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ADocumentoFinal" eSuperTypes="#//AOperacion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AEstructuraFuncional" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if estructuraFuncional->isEmpty() then '?' else estructuraFuncional.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructuraFuncional" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//EstructuraFuncional">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="estructurasFuncionales.procedimiento.procedimiento.estructurasFuncionales->closure( descomposicion)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasFuncionales"
+        lowerBound="1" eType="#//CEstructurasFuncionales" transient="true" eOpposite="#//CEstructurasFuncionales/estructurasFuncionales"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AFlujo" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if flujo->isEmpty() then '?' else  flujo.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujo" lowerBound="1" eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//Flujo">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="documentos.procedimiento.procedimiento.operaciones.operaciones.flujosSalientes"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujoDeSucesos" upperBound="-1"
+        eType="#//CFlujosSuceso" changeable="false" eOpposite="#//CFlujosSuceso/flujos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujos" lowerBound="1"
+        eType="#//CFlujos" transient="true" eOpposite="#//CFlujos/flujos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Agrupacion" abstract="true" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codigo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ANormativaYLegislacion" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if normativa->isEmpty() then '?' else normativa.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="normativa" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//NormativaYLegislacion">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="normativas.procedimiento.procedimiento.normativas"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="normativas" lowerBound="1"
+        eType="#//CNormativasYLegislaciones" transient="true" eOpposite="#//CNormativasYLegislaciones/normativas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Anotacion" abstract="true" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idAnotada" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="versionAnotada" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fechaAnotacion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="realizadorAnotacion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="responsableAnotacion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AOperacion" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if operacion->isEmpty() then '?' else operacion.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operacion" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//Operacion">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="operaciones.procedimiento.procedimiento.operaciones.operaciones"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accionesSuceso" upperBound="-1"
+        eType="#//Accion" changeable="false" eOpposite="#//Accion/operaciones"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operaciones" lowerBound="1"
+        eType="#//COperaciones" transient="true" eOpposite="#//COperaciones/operaciones"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AProcedimiento" eSuperTypes="#//Anotacion #//ContenedorSubsistemas #//ContenedorSucesos #//ContenedorDocumentos #//ContenedorDatos #//ImportadorServicios">
+    <eOperations name="crearAnotaciones" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if procedimiento->isEmpty() then '?' else procedimiento.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//Procedimiento">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="procedimientos.repositorio.repositorio.procedimientos.procedimientos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="normativas" lowerBound="1"
+        eType="#//CNormativasYLegislaciones" containment="true" eOpposite="#//CNormativasYLegislaciones/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminosGlosario" lowerBound="1"
+        eType="#//CTerminosGlosario" containment="true" eOpposite="#//CTerminosGlosario/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidadesOrganicas" lowerBound="1"
+        eType="#//CUnidadesOrganicas" containment="true" eOpposite="#//CUnidadesOrganicas/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidadesExternas" lowerBound="1"
+        eType="#//CUnidadesExternas" containment="true" eOpposite="#//CUnidadesExternas/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" lowerBound="1"
+        eType="#//CUnidades" containment="true" eOpposite="#//CUnidades/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasFuncionales"
+        lowerBound="1" eType="#//CEstructurasFuncionales" containment="true" eOpposite="#//CEstructurasFuncionales/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aplicaciones" lowerBound="1"
+        eType="#//CAplicaciones" containment="true" eOpposite="#//CAplicaciones/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operaciones" lowerBound="1"
+        eType="#//COperaciones" containment="true" eOpposite="#//COperaciones/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujos" lowerBound="1"
+        eType="#//CFlujos" containment="true" eOpposite="#//CFlujos/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actores" lowerBound="1"
+        eType="#//CActores" containment="true" eOpposite="#//CActores/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sistemas" eType="#//CSistemas"
+        containment="true" eOpposite="#//CSistemas/procedimiento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimientos" lowerBound="1"
+        eType="#//CProcedimientos" transient="true" eOpposite="#//CProcedimientos/procedimientos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosSucesos" upperBound="-1"
+        eType="#//Suceso" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="sucesos.sucesos->asOrderedSet()->union( subsistemas.subsistemas.todosSucesos->asOrderedSet())->union(sistemas.sistemas.todosSucesos->asOrderedSet())&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosSubsistemas" upperBound="-1"
+        eType="#//Subsistema" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if subsistemas->isEmpty() or subsistemas.subsistemas->isEmpty() then&#xD;&#xA;  sistemas.sistemas.todosSubsistemas&#xD;&#xA;else&#xD;&#xA;if sistemas->isEmpty() or sistemas.sistemas->isEmpty() then&#xD;&#xA;  subsistemas.subsistemas&#xD;&#xA;else&#xD;&#xA;  subsistemas.subsistemas->asOrderedSet()->union(sistemas.sistemas.todosSubsistemas->asOrderedSet())&#xD;&#xA;endif&#xD;&#xA;endif&#xD;&#xA;&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todasEstructurasDatos"
+        upperBound="-1" eType="#//EstructuraDatos" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if  importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty())->size() &lt; 1 &#xD;&#xA;then estructurasDatos.estructurasDatos->asOrderedSet()&#xD;&#xA;else&#xD;&#xA;  estructurasDatos.estructurasDatos->asOrderedSet()->union(&#xD;&#xA;     importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty()).libreriaServicios.todasEstructurasDatos->asOrderedSet()&#xD;&#xA;  )&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosDocumentos" upperBound="-1"
+        eType="#//ADocumento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty())->size() &lt; 1 &#xD;&#xA;then documentos.documentos.todosDocumentos->asOrderedSet()&#xD;&#xA;else&#xD;&#xA;  documentos.documentos->asOrderedSet()->union(&#xD;&#xA;     importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty()).libreriaServicios.todosDocumentos.todosDocumentos->asOrderedSet()&#xD;&#xA;  )&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositorio" eType="#//ARepositorio"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="procedimientos.repositorio"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ARepositorio" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="anotacionesProcedimiento"
+        lowerBound="1" eType="#//CProcedimientos" containment="true" eOpposite="#//CProcedimientos/repositorio"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositorio" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//Repositorio"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelPackage" eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+        changeable="false" volatile="true" transient="true" defaultValueLiteral=""
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libreriasServicios" lowerBound="1"
+        eType="#//CLibreriasServicios" containment="true" eOpposite="#//CLibreriasServicios/repositorio"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ASubprocedimiento" eSuperTypes="#//AOperacion"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ATerminoGlosario" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if terminoGlosario->isEmpty() then '?' else terminoGlosario.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminoGlosario" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//TerminoGlosario">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="terminosGlosario.procedimiento.procedimiento.terminos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminosGlosario" lowerBound="1"
+        eType="#//CTerminosGlosario" transient="true" eOpposite="#//CTerminosGlosario/terminosGlosario"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AUnidad" abstract="true" eSuperTypes="#//Anotacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if unidad->isEmpty() then '?' else unidad.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actoresSucesos" upperBound="-1"
+        eType="#//Actor" eOpposite="#//Actor/unidades"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AUnidadExterna" eSuperTypes="#//AUnidad">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidad" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//UnidadExterna"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" lowerBound="1"
+        eType="#//CUnidadesExternas" transient="true" eOpposite="#//CUnidadesExternas/unidades"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AUnidadOrganica" eSuperTypes="#//AUnidad">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoUnidad" eType="#//TipoUnidad"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidad" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/es.gva.cit.simapa/model/simapa.ecore#//UnidadOrganica">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="unidades.procedimiento.procedimiento.unidades->closure( descomposicion)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" lowerBound="1"
+        eType="#//CUnidadesOrganicas" transient="true" eOpposite="#//CUnidadesOrganicas/unidades"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CAccionesSuceso" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acciones" upperBound="-1"
+        eType="#//Accion" containment="true" eOpposite="#//Accion/acciones"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" transient="true" eOpposite="#//Suceso/acciones"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CActores" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actores" upperBound="-1"
+        eType="#//Actor" containment="true" eOpposite="#//Actor/actores"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" transient="true" eOpposite="#//AProcedimiento/actores"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CActoresSuceso" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="' de '.concat(suceso.etiqueta)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actores" upperBound="-1"
+        eType="#//Actor" eOpposite="#//Actor/actorDeSucesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" transient="true" eOpposite="#//Suceso/actores"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CampoDatos" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="formato" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ejemplo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requerido" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valorPorDefecto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rango" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rangoRazonable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fuenteDatos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="observaciones" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" upperBound="-1"
+        eType="#//EstructuraDatos" changeable="false" eOpposite="#//EstructuraDatos/campos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campos" lowerBound="1"
+        eType="#//CCamposDatos" transient="true" eOpposite="#//CCamposDatos/campos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CAplicaciones" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aplicaciones" upperBound="-1"
+        eType="#//AAplicacion" containment="true" eOpposite="#//AAplicacion/aplicaciones"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" transient="true" eOpposite="#//AProcedimiento/aplicaciones"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CCamposDatos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campos" upperBound="-1"
+        eType="#//CampoDatos" containment="true" eOpposite="#//CampoDatos/campos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//ContenedorDatos" transient="true" eOpposite="#//ContenedorDatos/campos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CDocumentos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentos" upperBound="-1"
+        eType="#//ADocumento" containment="true" eOpposite="#//ADocumento/documentos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//ContenedorDocumentos" eOpposite="#//ContenedorDocumentos/documentos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CEntradasAccion" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" upperBound="-1"
+        eType="#//EntradaAccion" containment="true" eOpposite="#//EntradaAccion/entradas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accion" lowerBound="1"
+        eType="#//Accion" transient="true" eOpposite="#//Accion/entradas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CEntradasSuceso" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" upperBound="-1"
+        eType="#//EntradaSuceso" containment="true" eOpposite="#//EntradaSuceso/entradas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" transient="true" eOpposite="#//Suceso/entradas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CEstructurasDatos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" upperBound="-1"
+        eType="#//EstructuraDatos" containment="true" eOpposite="#//EstructuraDatos/estructurasDatos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//ContenedorDatos" transient="true" eOpposite="#//ContenedorDatos/estructurasDatos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CEstructurasDatosSuceso" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="' de '.concat(suceso.etiqueta)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" upperBound="-1"
+        eType="#//EstructuraDatos" eOpposite="#//EstructuraDatos/coleccionEstructuraDatosDeSuceso">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="suceso.sucesos.procedimiento.todasEstructurasDatos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" transient="true" eOpposite="#//Suceso/estructurasDatos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CFlujos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujos" upperBound="-1"
+        eType="#//AFlujo" containment="true" eOpposite="#//AFlujo/flujos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" transient="true" eOpposite="#//AProcedimiento/flujos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CFlujosSuceso" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujos" upperBound="-1"
+        eType="#//AFlujo" eOpposite="#//AFlujo/flujoDeSucesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" transient="true" eOpposite="#//Suceso/flujos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CEstructurasFuncionales" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasFuncionales"
+        upperBound="-1" eType="#//AEstructuraFuncional" containment="true" eOpposite="#//AEstructuraFuncional/estructurasFuncionales"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" transient="true" eOpposite="#//AProcedimiento/estructurasFuncionales"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CImportacionesPor" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="'de LibreriaServicios '.concat(&#xD;&#xA;  if libreriaServicios->isEmpty()  then '?' else  libreriaServicios.etiqueta endif&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libreriaServicios" lowerBound="1"
+        eType="#//LibreriaServicios" eOpposite="#//LibreriaServicios/importadoPor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importadoPor" upperBound="-1"
+        eType="#//ImportacionServicios" eOpposite="#//ImportacionServicios/libreriaServicios"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CImportacionesServicios" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importador" lowerBound="1"
+        eType="#//ImportadorServicios" eOpposite="#//ImportadorServicios/importacionesServicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importacionesServicios"
+        upperBound="-1" eType="#//ImportacionServicios" containment="true" eOpposite="#//ImportacionServicios/importacionesServicios"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CInterfaces" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" upperBound="-1"
+        eType="#//Interfaz" containment="true" eOpposite="#//Interfaz/interfaces"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libreriaServicios" lowerBound="1"
+        eType="#//LibreriaServicios" eOpposite="#//LibreriaServicios/interfaces"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CLibreriasServicios" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libreriasServicios" upperBound="-1"
+        eType="#//LibreriaServicios" containment="true" eOpposite="#//LibreriaServicios/libreriasServicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositorio" lowerBound="1"
+        eType="#//ARepositorio" eOpposite="#//ARepositorio/libreriasServicios"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CNormativasYLegislaciones" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="normativas" upperBound="-1"
+        eType="#//ANormativaYLegislacion" containment="true" eOpposite="#//ANormativaYLegislacion/normativas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" transient="true" eOpposite="#//AProcedimiento/normativas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConModelClass" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelClass" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"
+        changeable="false" volatile="true" transient="true" defaultValueLiteral=""
+        derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContenedorDatos">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" lowerBound="1"
+        eType="#//CEstructurasDatos" containment="true" eOpposite="#//CEstructurasDatos/contenedor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campos" lowerBound="1"
+        eType="#//CCamposDatos" containment="true" eOpposite="#//CCamposDatos/contenedor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relacionesDatos" lowerBound="1"
+        eType="#//CRelacionesDatos" containment="true" eOpposite="#//CRelacionesDatos/contenedor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContenedorDocumentos" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentos" lowerBound="1"
+        eType="#//CDocumentos" containment="true" eOpposite="#//CDocumentos/contenedor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContenedorSucesos" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucesos" eType="#//CSucesos"
+        containment="true" eOpposite="#//CSucesos/contenedor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContenedorSubsistemas" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsistemas" eType="#//CSubsistemas"
+        containment="true" eOpposite="#//CSubsistemas/contenedor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="COperaciones" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" transient="true" eOpposite="#//AProcedimiento/operaciones"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operaciones" upperBound="-1"
+        eType="#//AOperacion" containment="true" eOpposite="#//AOperacion/operaciones"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CProcedimientos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimientos" upperBound="-1"
+        eType="#//AProcedimiento" containment="true" eOpposite="#//AProcedimiento/procedimientos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositorio" lowerBound="1"
+        eType="#//ARepositorio" changeable="false" transient="true" eOpposite="#//ARepositorio/anotacionesProcedimiento"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CRelacionesDatos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relacionesDatos" upperBound="-1"
+        eType="#//RelacionDatos" containment="true" eOpposite="#//RelacionDatos/relacionesDatos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//ContenedorDatos" transient="true" eOpposite="#//ContenedorDatos/relacionesDatos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CSalidasAccion" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" upperBound="-1"
+        eType="#//SalidaAccion" containment="true" eOpposite="#//SalidaAccion/salidas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accion" lowerBound="1"
+        eType="#//Accion" transient="true" eOpposite="#//Accion/salidas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CSalidasSuceso" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" upperBound="-1"
+        eType="#//SalidaSuceso" containment="true" eOpposite="#//SalidaSuceso/salidas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" transient="true" eOpposite="#//Suceso/salidas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CServicios" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaz" lowerBound="1"
+        eType="#//Interfaz" eOpposite="#//Interfaz/servicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicios" upperBound="-1"
+        eType="#//Servicio" containment="true" eOpposite="#//Servicio/servicios"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CServicioUsadoPorSucesos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="'Servicio '.concat(   if servicio->isEmpty()  then '?' else  servicio.etiqueta endif).concat(&#xD;&#xA; ' Usado por sucesos ').concat(&#xD;&#xA;if usosServicio->isEmpty() then '' else usosServicio->first().etiquetaSimple endif&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicio" lowerBound="1"
+        eType="#//Servicio" eOpposite="#//Servicio/usadoPorSucesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosServicio" upperBound="-1"
+        eType="#//UsoServicio" eOpposite="#//UsoServicio/servicio"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CSistemas" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sistemas" upperBound="-1"
+        eType="#//Sistema" containment="true" eOpposite="#//Sistema/sistemas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" transient="true" eOpposite="#//AProcedimiento/sistemas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CSubsistemas" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsistemas" upperBound="-1"
+        eType="#//Subsistema" containment="true" eOpposite="#//Subsistema/subsistemas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//ContenedorSubsistemas" transient="true" eOpposite="#//ContenedorSubsistemas/subsistemas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if contenedor.oclIsTypeOf(AProcedimiento) then contenedor.oclAsType(AProcedimiento) else &#xD;&#xA; contenedor.oclAsType(Sistema).procedimiento endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CSucesos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucesos" upperBound="-1"
+        eType="#//Suceso" containment="true" eOpposite="#//Suceso/sucesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contenedor" lowerBound="1"
+        eType="#//ContenedorSucesos" transient="true" eOpposite="#//ContenedorSucesos/sucesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if contenedor.oclIsTypeOf(AProcedimiento) then contenedor.oclAsType(AProcedimiento) &#xD;&#xA;else (&#xD;&#xA;   if contenedor.oclIsTypeOf(Sistema) then contenedor.oclAsType(Sistema).procedimiento &#xD;&#xA;   else contenedor.oclAsType(Subsistema).procedimiento endif&#xD;&#xA;) endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTerminosGlosario" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminosGlosario" upperBound="-1"
+        eType="#//ATerminoGlosario" containment="true" eOpposite="#//ATerminoGlosario/terminosGlosario"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" transient="true" eOpposite="#//AProcedimiento/terminosGlosario"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CUnidades" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" upperBound="-1"
+        eType="#//AUnidad" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="procedimiento.unidadesOrganicas.unidades->collect( aU | aU.oclAsType(AUnidad))->union(procedimiento.unidadesExternas.unidades->collect( aU | aU.oclAsType(AUnidad)))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" transient="true" eOpposite="#//AProcedimiento/unidades"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CUnidadesExternas" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" upperBound="-1"
+        eType="#//AUnidadExterna" containment="true" eOpposite="#//AUnidadExterna/unidades"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" transient="true" eOpposite="#//AProcedimiento/unidadesExternas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CUnidadesOrganicas" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unidades" upperBound="-1"
+        eType="#//AUnidadOrganica" containment="true" eOpposite="#//AUnidadOrganica/unidades"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" transient="true" eOpposite="#//AProcedimiento/unidadesOrganicas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CUsadoPorSubsistemas" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if subsistema->isEmpty()  then '?' else  subsistema.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usadoPorSubsistemas" upperBound="-1"
+        eType="#//UsoSubsistema" eOpposite="#//UsoSubsistema/subsistemaUsado"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsistema" lowerBound="1"
+        eType="#//Subsistema" eOpposite="#//Subsistema/usadoPorSubsistemas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CUsadoPorSucesos" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if suceso->isEmpty()  then '?' else  suceso.etiqueta endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suceso" lowerBound="1"
+        eType="#//Suceso" eOpposite="#//Suceso/usadoPorSucesos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosSuceso" upperBound="-1"
+        eType="#//UsoSuceso" eOpposite="#//UsoSuceso/sucesoUsado"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CUsosSubsistemas" eSuperTypes="#//OrgcasiCollection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosSubsistemas" upperBound="-1"
+        eType="#//UsoSubsistema" containment="true" eOpposite="#//UsoSubsistema/usosSubsistemas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsistema" lowerBound="1"
+        eType="#//Subsistema" eOpposite="#//Subsistema/usosSubsistemas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentoEnEstado" eSuperTypes="#//ADocumento">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condicionesEstado" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentoBase" lowerBound="1"
+        eType="#//ADocumento" eOpposite="#//ADocumento/estados"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entrada" eSuperTypes="#//EntradaOSalida">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fuentes" upperBound="-1"
+        eType="#//Salida" eOpposite="#//Salida/destinos">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if self.oclIsTypeOf( EntradaSuceso)&#xD;&#xA;then self.oclAsType( EntradaSuceso).entradas.suceso.procedimiento.todosSucesos.salidas.salidas &#xD;&#xA;else&#xD;&#xA;if self.oclIsTypeOf( EntradaAccion)&#xD;&#xA;then  self.oclAsType( EntradaAccion).entradas.accion.acciones.suceso.acciones.acciones.salidas.salidas &#xD;&#xA;else&#xD;&#xA;  self.oclAsType( EntradaServicio).servicio.salidas&#xD;&#xA;endif&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntradaAccion" eSuperTypes="#//Entrada">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Accion ').concat(&#xD;&#xA;entradas.accion.etiqueta).concat(&#xD;&#xA;if fuentes->isEmpty() then '?' else 'desde '.concat( fuentes->first().oclAsType(SalidaAccion).etiquetaSimple) endif).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructursaDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Accion ').concat(&#xD;&#xA;entradas.accion.etiqueta)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" lowerBound="1"
+        eType="#//CEntradasAccion" transient="true" eOpposite="#//CEntradasAccion/entradas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntradaOSalida" abstract="true" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esDocumentoPapel" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" upperBound="-1"
+        eType="#//EstructuraDatos" eOpposite="#//EstructuraDatos/entradasOSalidas">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if self.oclIsTypeOf(EntradaSuceso) &#xD;&#xA;then self.oclAsType(EntradaSuceso).entradas.suceso.procedimiento.todasEstructurasDatos &#xD;&#xA;else  (&#xD;&#xA;  if self.oclIsTypeOf(SalidaSuceso) &#xD;&#xA;  then self.oclAsType(SalidaSuceso).salidas.suceso.procedimiento.todasEstructurasDatos &#xD;&#xA;  else (&#xD;&#xA;    if self.oclIsTypeOf(EntradaAccion) &#xD;&#xA;    then self.oclAsType(EntradaAccion).entradas.accion.acciones.suceso.procedimiento.todasEstructurasDatos&#xD;&#xA;    else (&#xD;&#xA;      if self.oclIsTypeOf(SalidaAccion) &#xD;&#xA;      then self.oclAsType(SalidaAccion).salidas.accion.acciones.suceso.procedimiento.todasEstructurasDatos&#xD;&#xA;      else (&#xD;&#xA;      if self.oclIsTypeOf(EntradaServicio) &#xD;&#xA;      then self.oclAsType(EntradaServicio).servicio.servicios.interfaz.interfaces.libreriaServicios.todasEstructurasDatos&#xD;&#xA;      else (&#xD;&#xA;        self.oclAsType(SalidaServicio).servicio.servicios.interfaz.interfaces.libreriaServicios.todasEstructurasDatos&#xD;&#xA;      )&#xD;&#xA;      endif&#xD;&#xA;      )&#xD;&#xA;      endif&#xD;&#xA;      )&#xD;&#xA;    endif&#xD;&#xA;  )&#xD;&#xA; endif&#xD;&#xA;)&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentos" upperBound="-1"
+        eType="#//ADocumento" eOpposite="#//ADocumento/entradasOSalidas">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if self.oclIsTypeOf(EntradaSuceso) &#xD;&#xA;then self.oclAsType(EntradaSuceso).entradas.suceso.procedimiento.todosDocumentos&#xD;&#xA;else  (&#xD;&#xA;  if self.oclIsTypeOf(SalidaSuceso) &#xD;&#xA;  then self.oclAsType(SalidaSuceso).salidas.suceso.procedimiento.todosDocumentos &#xD;&#xA;  else (&#xD;&#xA;    if self.oclIsTypeOf(EntradaAccion) &#xD;&#xA;    then self.oclAsType(EntradaAccion).entradas.accion.acciones.suceso.procedimiento.todosDocumentos&#xD;&#xA;    else (&#xD;&#xA;      if self.oclIsTypeOf(SalidaAccion) &#xD;&#xA;      then self.oclAsType(SalidaAccion).salidas.accion.acciones.suceso.procedimiento.todosDocumentos&#xD;&#xA;      else (&#xD;&#xA;      if self.oclIsTypeOf(EntradaServicio) &#xD;&#xA;      then self.oclAsType(EntradaServicio).servicio.servicios.interfaz.interfaces.libreriaServicios.todosDocumentos&#xD;&#xA;      else (&#xD;&#xA;        self.oclAsType(SalidaServicio).servicio.servicios.interfaz.interfaces.libreriaServicios.todosDocumentos&#xD;&#xA;      )&#xD;&#xA;      endif&#xD;&#xA;      )&#xD;&#xA;      endif&#xD;&#xA;      )&#xD;&#xA;    endif&#xD;&#xA;  )&#xD;&#xA; endif&#xD;&#xA;)&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntradaServicio" eSuperTypes="#//Entrada">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Servicio ').concat(&#xD;&#xA;servicio.etiqueta).concat(&#xD;&#xA;' desde '.concat( if fuentes->isEmpty() then '?' else fuentes->first().oclAsType( SalidaServicio).etiquetaSimple endif)).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicio" lowerBound="1"
+        eType="#//Servicio" eOpposite="#//Servicio/entradas"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Servicio ').concat(&#xD;&#xA;servicio.etiqueta).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntradaSuceso" eSuperTypes="#//Entrada">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Suceso ').concat(&#xD;&#xA;entradas.suceso.etiqueta).concat(&#xD;&#xA;' desde '.concat( if fuentes->isEmpty() then '?' else fuentes->first().oclAsType( SalidaSuceso).etiquetaSimple endif)).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documento '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esInformacionPrevia" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" lowerBound="1"
+        eType="#//CEntradasSuceso" transient="true" eOpposite="#//CEntradasSuceso/entradas"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Suceso ').concat(&#xD;&#xA;entradas.suceso.etiqueta).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EstructuraDatos" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campos" upperBound="-1"
+        eType="#//CampoDatos" eOpposite="#//CampoDatos/estructurasDatos">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="estructurasDatos.procedimiento.campos.campos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentos" upperBound="-1"
+        eType="#//ADocumento" eOpposite="#//ADocumento/estructurasDatos">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="estructurasDatos.procedimiento.documentos.documentos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="miembroRelaciones" upperBound="-1"
+        eType="#//MiembroRelacion" changeable="false" defaultValueLiteral="" eOpposite="#//MiembroRelacion/estructuraDatos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradasOSalidas" upperBound="-1"
+        eType="#//EntradaOSalida" changeable="false" eOpposite="#//EntradaOSalida/estructurasDatos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructuraDatosDeSuceso"
+        upperBound="-1" eType="#//Suceso" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="coleccionEstructuraDatosDeSuceso.suceso"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coleccionEstructuraDatosDeSuceso"
+        upperBound="-1" eType="#//CEstructurasDatosSuceso" changeable="false" eOpposite="#//CEstructurasDatosSuceso/estructurasDatos"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" lowerBound="1"
+        eType="#//CEstructurasDatos" transient="true" eOpposite="#//CEstructurasDatos/estructurasDatos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportacionServicios" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if importacionesServicios.importador.oclIsTypeOf( AProcedimiento) &#xD;&#xA;then&#xD;&#xA;  ' por Procedimiento '.concat(&#xD;&#xA;    importacionesServicios.importador.oclAsType( AProcedimiento).etiqueta.concat(' de LibreriaServicios ').concat(&#xD;&#xA;      if libreriaServicios->isEmpty()  then '?' else  libreriaServicios.etiqueta endif&#xD;&#xA;    )&#xD;&#xA;  )&#xD;&#xA;else&#xD;&#xA;  ' por LibreriaServicios '.concat(&#xD;&#xA;    importacionesServicios.importador.oclAsType( LibreriaServicios).etiqueta.concat(' de LibreriaServicios ').concat(&#xD;&#xA;      if libreriaServicios->isEmpty()  then '?' else  libreriaServicios.etiqueta endif&#xD;&#xA;    )&#xD;&#xA;  )&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importacionesServicios"
+        lowerBound="1" eType="#//CImportacionesServicios" eOpposite="#//CImportacionesServicios/importacionesServicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libreriaServicios" eType="#//CImportacionesPor"
+        eOpposite="#//CImportacionesPor/importadoPor">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if importacionesServicios.importador.oclIsTypeOf( AProcedimiento) &#xD;&#xA;then&#xD;&#xA;  importacionesServicios.importador.oclAsType( AProcedimiento).repositorio.libreriasServicios.libreriasServicios.importadoPor&#xD;&#xA;else&#xD;&#xA;  importacionesServicios.importador.oclAsType( LibreriaServicios).repositorio.libreriasServicios.libreriasServicios.importadoPor&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportadorServicios" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importacionesServicios"
+        lowerBound="1" eType="#//CImportacionesServicios" containment="true" eOpposite="#//CImportacionesServicios/importador"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interfaz" eSuperTypes="#//Agrupacion #//ConModelClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicios" lowerBound="1"
+        eType="#//CServicios" containment="true" eOpposite="#//CServicios/interfaz"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
+        eType="#//CInterfaces" eOpposite="#//CInterfaces/interfaces"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rolSolicitante" lowerBound="1"
+        eType="#//RolSolicitante" containment="true" eOpposite="#//RolSolicitante/interfaz"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rolSolicitado" lowerBound="1"
+        eType="#//RolSolicitado" containment="true" eOpposite="#//RolSolicitado/interfaz"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LibreriaServicios" eSuperTypes="#//Agrupacion #//ContenedorDocumentos #//ContenedorDatos #//ImportadorServicios">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importadoPor" lowerBound="1"
+        eType="#//CImportacionesPor" containment="true" eOpposite="#//CImportacionesPor/libreriaServicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libreriasServicios" lowerBound="1"
+        eType="#//CLibreriasServicios" eOpposite="#//CLibreriasServicios/libreriasServicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
+        eType="#//CInterfaces" containment="true" eOpposite="#//CInterfaces/libreriaServicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosDocumentos" upperBound="-1"
+        eType="#//ADocumento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if importacionesServicios.importacionesServicios->isEmpty() or importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty())->size() &lt; 1 &#xD;&#xA;then documentos.documentos.todosDocumentos->asOrderedSet()&#xD;&#xA;else&#xD;&#xA;  documentos.documentos.todosDocumentos->asOrderedSet()->union(&#xD;&#xA;     importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty()).libreriaServicios.todosDocumentos.todosDocumentos->asOrderedSet()&#xD;&#xA;  )&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todasEstructurasDatos"
+        upperBound="-1" eType="#//EstructuraDatos" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if  importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty())->size() &lt; 1 &#xD;&#xA;then estructurasDatos.estructurasDatos->asOrderedSet()&#xD;&#xA;else&#xD;&#xA;  estructurasDatos.estructurasDatos->asOrderedSet()->union(&#xD;&#xA;     importacionesServicios.importacionesServicios.libreriaServicios->select(a | a->notEmpty()).libreriaServicios.todasEstructurasDatos->asOrderedSet()&#xD;&#xA;  )&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repositorio" eType="#//ARepositorio"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="libreriasServicios.repositorio"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MiembroRelacion" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat(' ').concat(&#xD;&#xA;if estructuraDatos->isEmpty() then '?' else estructuraDatos.etiqueta endif)&#xD;&#xA;&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoRelacion" eType="#//TipoRelacion"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicidadMinima" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicidadMaxima" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructuraDatos" lowerBound="1"
+        eType="#//EstructuraDatos" eOpposite="#//EstructuraDatos/miembroRelaciones">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="relacion.relacionesDatos.procedimiento.estructurasDatos.estructurasDatos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relacion" lowerBound="1"
+        eType="#//RelacionDatos" transient="true" eOpposite="#//RelacionDatos/miembros"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrgcasiCollection" abstract="true" eSuperTypes="#//OrgcasiObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrgcasiObject" eSuperTypes="#//ConModelClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelacionDatos" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="miembros" lowerBound="2"
+        upperBound="-1" eType="#//MiembroRelacion" containment="true" eOpposite="#//MiembroRelacion/relacion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relacionesDatos" lowerBound="1"
+        eType="#//CRelacionesDatos" transient="true" eOpposite="#//CRelacionesDatos/relacionesDatos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rol" abstract="true" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comentario" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RolSolicitante" eSuperTypes="#//Rol">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaz" lowerBound="1"
+        eType="#//Interfaz" eOpposite="#//Interfaz/rolSolicitante"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RolSolicitado" eSuperTypes="#//Rol">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaz" lowerBound="1"
+        eType="#//Interfaz" eOpposite="#//Interfaz/rolSolicitado"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Salida" eSuperTypes="#//EntradaOSalida">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destinos" upperBound="-1"
+        eType="#//Entrada" eOpposite="#//Entrada/fuentes">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="if self.oclIsTypeOf( SalidaSuceso)&#xD;&#xA;then self.oclAsType( SalidaSuceso).salidas.suceso.procedimiento.todosSucesos.entradas.entradas &#xD;&#xA;else&#xD;&#xA;if self.oclIsTypeOf( SalidaAccion)&#xD;&#xA;then  self.oclAsType( SalidaAccion).salidas.accion.acciones.suceso.acciones.acciones.entradas.entradas &#xD;&#xA;else&#xD;&#xA;  self.oclAsType(SalidaServicio).servicio.entradas&#xD;&#xA;endif&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SalidaAccion" eSuperTypes="#//Salida">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Accion ').concat(&#xD;&#xA;salidas.accion.etiqueta).concat(&#xD;&#xA;if destinos->isEmpty() then '?' else 'hacia '.concat( destinos->first().oclAsType(EntradaAccion).etiquetaSimple) endif).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documento '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Accion ').concat(&#xD;&#xA;salidas.accion.etiqueta)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" lowerBound="1"
+        eType="#//CSalidasAccion" transient="true" eOpposite="#//CSalidasAccion/salidas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SalidaServicio" eSuperTypes="#//Salida">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Servicio ').concat(&#xD;&#xA;servicio.etiqueta).concat(&#xD;&#xA;' hacia '.concat( if destinos->isEmpty() then '?' else destinos->first().oclAsType( EntradaServicio).etiquetaSimple endif)).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicio" lowerBound="1"
+        eType="#//Servicio" eOpposite="#//Servicio/salidas"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Servicio ').concat(&#xD;&#xA;servicio.etiqueta).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SalidaSuceso" eSuperTypes="#//Salida">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Suceso ').concat(&#xD;&#xA;salidas.suceso.etiqueta).concat(&#xD;&#xA;' hacia '.concat( if destinos->isEmpty() then '?' else destinos->first().oclAsType( EntradaSuceso).etiquetaSimple endif)).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esDistribucion" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" lowerBound="1"
+        eType="#//CSalidasSuceso" transient="true" eOpposite="#//CSalidasSuceso/salidas"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if nombre->isEmpty() or nombre.size() &lt; 1 then '?' else  nombre endif).concat( ' en Suceso ').concat(&#xD;&#xA;salidas.suceso.etiqueta).concat(&#xD;&#xA;  if estructurasDatos->notEmpty() then ' de estructurasDatos '.concat( estructurasDatos->first().etiqueta) else '' endif&#xD;&#xA;).concat(' ').concat( &#xD;&#xA;  if documentos->notEmpty() then ' de documentos '.concat( documentos->first().etiqueta) else '' endif&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Servicio" eSuperTypes="#//Agrupacion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usadoPorSucesos" lowerBound="1"
+        eType="#//CServicioUsadoPorSucesos" containment="true" eOpposite="#//CServicioUsadoPorSucesos/servicio"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicios" lowerBound="1"
+        eType="#//CServicios" eOpposite="#//CServicios/servicios"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" upperBound="-1"
+        eType="#//EntradaServicio" containment="true" eOpposite="#//EntradaServicio/servicio"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" upperBound="-1"
+        eType="#//SalidaServicio" containment="true" eOpposite="#//SalidaServicio/servicio"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sistema" eSuperTypes="#//Agrupacion #//ContenedorSubsistemas #//ContenedorSucesos">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="sistemas.procedimiento"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosSucesos" upperBound="-1"
+        eType="#//Suceso" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="sucesos.sucesos->union(subsistemas.subsistemas.todosSucesos)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosSubsistemas" upperBound="-1"
+        eType="#//Subsistema" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="subsistemas.subsistemas"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sistemas" lowerBound="1"
+        eType="#//CSistemas" transient="true" eOpposite="#//CSistemas/sistemas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subsistema" eSuperTypes="#//Agrupacion #//ContenedorSucesos">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipoSubsistema" eType="#//TipoSubsistema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="subsistemas.procedimiento"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="todosSucesos" upperBound="-1"
+        eType="#//Suceso" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="sucesos.sucesos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosSubsistemas" lowerBound="1"
+        eType="#//CUsosSubsistemas" containment="true" eOpposite="#//CUsosSubsistemas/subsistema">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="subsistemas.procedimiento.todosSubsistemas"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usadoPorSubsistemas" lowerBound="1"
+        eType="#//CUsadoPorSubsistemas" containment="true" eOpposite="#//CUsadoPorSubsistemas/subsistema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsistemas" lowerBound="1"
+        eType="#//CSubsistemas" transient="true" eOpposite="#//CSubsistemas/subsistemas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Suceso" abstract="true" eSuperTypes="#//Agrupacion">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prioridad" eType="#//TipoPrioridad"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rendimiento" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disparo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distribucion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preCondicion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postCondicion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="esColaborativo" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="acciones" lowerBound="1"
+        eType="#//CAccionesSuceso" containment="true" eOpposite="#//CAccionesSuceso/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actores" lowerBound="1"
+        eType="#//CActoresSuceso" containment="true" eOpposite="#//CActoresSuceso/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="estructurasDatos" lowerBound="1"
+        eType="#//CEstructurasDatosSuceso" containment="true" eOpposite="#//CEstructurasDatosSuceso/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flujos" lowerBound="1"
+        eType="#//CFlujosSuceso" containment="true" eOpposite="#//CFlujosSuceso/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entradas" lowerBound="1"
+        eType="#//CEntradasSuceso" containment="true" eOpposite="#//CEntradasSuceso/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="salidas" lowerBound="1"
+        eType="#//CSalidasSuceso" containment="true" eOpposite="#//CSalidasSuceso/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usadoPorSucesos" lowerBound="1"
+        eType="#//CUsadoPorSucesos" containment="true" eOpposite="#//CUsadoPorSucesos/suceso"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedimiento" lowerBound="1"
+        eType="#//AProcedimiento" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="sucesos.procedimiento"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucesos" lowerBound="1"
+        eType="#//CSucesos" transient="true" eOpposite="#//CSucesos/sucesos"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SucesoConstructor" eSuperTypes="#//Suceso"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SucesoConsultor" eSuperTypes="#//Suceso"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UsoServicio" eSuperTypes="#//Accion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicio" lowerBound="1"
+        eType="#//CServicioUsadoPorSucesos" eOpposite="#//CServicioUsadoPorSucesos/usosServicio">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="acciones.suceso.procedimiento.importacionesServicios.importacionesServicios.libreriaServicios.libreriaServicios.interfaces.interfaces.servicios.servicios.usadoPorSucesos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsoSubsistema" eSuperTypes="#//OrgcasiObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="' de '.concat(&#xD;&#xA;  if subsistemaUsado->isEmpty()  then '?' else  subsistemaUsado.etiqueta endif&#xD;&#xA;).concat( ' por ').concat(&#xD;&#xA; usosSubsistemas.subsistema.etiqueta &#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsistemaUsado" lowerBound="1"
+        eType="#//CUsadoPorSubsistemas" eOpposite="#//CUsadoPorSubsistemas/usadoPorSubsistemas">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="usosSubsistemas.subsistema.procedimiento.todosSubsistemas.usadoPorSubsistemas"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usosSubsistemas" lowerBound="1"
+        eType="#//CUsosSubsistemas" eOpposite="#//CUsosSubsistemas/usosSubsistemas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsoSuceso" eSuperTypes="#//Accion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucesoUsado" lowerBound="1"
+        eType="#//CUsadoPorSucesos" eOpposite="#//CUsadoPorSucesos/usosSuceso">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="acciones.suceso.sucesos.procedimiento.todosSucesos.usadoPorSucesos"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoUsoDocumento">
+    <eLiterals name="entrada"/>
+    <eLiterals name="salida" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoPrioridad">
+    <eLiterals name="ALTA"/>
+    <eLiterals name="MEDIA" value="1"/>
+    <eLiterals name="BAJA" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoUnidad">
+    <eLiterals name="A"/>
+    <eLiterals name="B" value="1"/>
+    <eLiterals name="mas" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoSubsistema">
+    <eLiterals name="I"/>
+    <eLiterals name="EC" value="1"/>
+    <eLiterals name="EX" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoRelacion">
+    <eLiterals name="Referencia"/>
+    <eLiterals name="Agregacion" value="1"/>
+    <eLiterals name="Agregado" value="2"/>
+    <eLiterals name="Composicion" value="3"/>
+    <eLiterals name="Componente" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoAgrupacionPredefinida">
+    <eLiterals name="Sistema"/>
+    <eLiterals name="Subsistema" value="1"/>
+    <eLiterals name="Suceso" value="2"/>
+    <eLiterals name="Coreografia" value="3"/>
+    <eLiterals name="ModeloInformacion" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TipoPropiedadClaseAgrupacion">
+    <eLiterals name="Numero"/>
+    <eLiterals name="Entero" value="1"/>
+    <eLiterals name="Decimal" value="2"/>
+    <eLiterals name="Fraccion" value="3"/>
+    <eLiterals name="Porcentaje" value="4"/>
+    <eLiterals name="Alfanumerico" value="5"/>
+    <eLiterals name="Fecha" value="6"/>
+    <eLiterals name="Hora" value="7"/>
+    <eLiterals name="FechaHora" value="8"/>
+    <eLiterals name="Enumeracion" value="9"/>
+  </eClassifiers>
+</ecore:EPackage>

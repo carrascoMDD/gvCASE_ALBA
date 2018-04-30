@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: es.gva.cit.gvmetrica.proinso.tests; singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: es.gva.cit.gvmetrica.proinso.tests
+Require-Bundle: org.eclipse.core.runtime,
+ es.gva.cit.gvmetrica.proinso;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.junit;visibility:=reexport
+Eclipse-LazyStart: true

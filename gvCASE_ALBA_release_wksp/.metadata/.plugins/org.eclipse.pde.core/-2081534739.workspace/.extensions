@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extensions>
+	<bundle bundleID="314">
+		<extension line="15" point="org.eclipse.ui.newWizards"/>
+		<extension line="31" point="org.eclipse.ui.editors"/>
+		<extension line="43" point="org.eclipse.ui.preferencePages"/>
+	</bundle>
+	<bundle bundleID="315">
+		<extension line="13" point="org.eclipse.emf.edit.itemProviderAdapterFactories"/>
+	</bundle>
+	<bundle bundleID="316">
+		<extension line="13" point="org.eclipse.emf.edit.itemProviderAdapterFactories"/>
+	</bundle>
+	<bundle bundleID="317">
+		<extension line="15" point="org.eclipse.ui.newWizards"/>
+		<extension line="31" point="org.eclipse.ui.editors"/>
+		<extension line="43" point="org.eclipse.ui.preferencePages"/>
+	</bundle>
+	<bundle bundleID="318">
+		<extension line="15" point="org.eclipse.ui.newWizards"/>
+		<extension line="31" point="org.eclipse.ui.editors"/>
+		<extension line="44" point="org.eclipse.ui.preferencePages"/>
+	</bundle>
+	<bundle bundleID="319">
+		<extension line="13" point="org.eclipse.emf.edit.itemProviderAdapterFactories"/>
+	</bundle>
+	<bundle bundleID="321">
+		<extension line="13" point="org.eclipse.emf.ecore.generated_package"/>
+	</bundle>
+	<bundle bundleID="323">
+		<extension line="13" point="org.eclipse.emf.ecore.generated_package"/>
+	</bundle>
+	<bundle bundleID="324">
+		<extension line="15" point="org.eclipse.ui.newWizards"/>
+		<extension line="31" point="org.eclipse.ui.editors"/>
+		<extension line="44" point="org.eclipse.ui.preferencePages"/>
+	</bundle>
+	<bundle bundleID="325">
+		<extension line="13" point="org.eclipse.emf.ecore.generated_package"/>
+	</bundle>
+	<bundle bundleID="327">
+		<extension line="13" point="org.eclipse.emf.edit.itemProviderAdapterFactories"/>
+	</bundle>
+	<bundle bundleID="328">
+		<extension line="5" point="org.eclipse.ui.cheatsheets.cheatSheetContent"/>
+	</bundle>
+	<bundle bundleID="329">
+		<extension line="13" point="org.eclipse.emf.ecore.generated_package"/>
+	</bundle>
+	<bundle bundleID="331">
+		<extension line="5" point="org.eclipse.ui.cheatsheets.cheatSheetContent"/>
+	</bundle>
+	<bundle bundleID="332">
+		<extension line="5" point="org.eclipse.ui.cheatsheets.cheatSheetContent"/>
+	</bundle>
+	<bundle bundleID="333">
+		<extension line="5" point="org.eclipse.ui.cheatsheets.cheatSheetContent"/>
+	</bundle>
+</extensions>

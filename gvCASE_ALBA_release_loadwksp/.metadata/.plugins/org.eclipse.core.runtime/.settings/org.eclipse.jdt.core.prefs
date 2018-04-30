@@ -1,0 +1,4 @@
+#Mon Dec 04 21:25:01 CET 2006
+eclipse.preferences.version=1
+org.eclipse.jdt.core.builder.resourceCopyExclusionFilter=,*.g
+org.eclipse.jdt.core.classpathVariable.ANTLR_HOME=D\:/dvpt/eclipse-SDK-3.2-win32/plugins/org.antlr_2.7.6

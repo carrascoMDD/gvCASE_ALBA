@@ -1,0 +1,151 @@
+
+
+
+/**
+ * transformation gvprocessgendocbook
+ *
+ *
+ */
+
+texttransformation gvprocessgendocbook (in  com: "http:///com.ecore") {
+/*
+  com.Schema::main () { // can also use module::main, which is the same	
+   	self.tables->forEach( aTable) {
+		aTable.genDDL()
+	}
+    self.tables->forEach( aTable) {
+		aTable.genForeignKeysDDL()
+	} 
+    self.views->forEach( aView) {
+		aView.genDDL()
+	}
+  }
+    
+
+  
+  
+   com.Table::genDDL () {
+	'CREATE TABLE ' self.name.toUpper() ' ('
+	newline
+ 	self.columns->forEach( aColumn) {
+ 		aColumn.genDDL()  
+ 	}
+ 	if( self.primaryKey <> null) { 
+ 	  self.primaryKey.genDDL()  
+ 	}
+	space(4)
+	')' newline '/' newline
+   }
+   
+   
+   
+   
+    com.Table::genForeignKeysDDL () {
+      	self.foreignKeys->forEach( aForeignKey) {
+        	aForeignKey.genDDL()
+      	}
+   }
+  
+    com.ForeignKey::genDDL () {
+		'ALTER TABLE ' self.table.name.toUpper() ' ADD ( CONSTRAINT ' self.name.toUpper() ' FOREIGN KEY ('
+
+ 		self.keyColumns->forEach( aForeignKeyColumn) {
+ 			aForeignKeyColumn.genOwnColumnDDL()  
+ 		}
+ 		')'
+ 		' REFERENCES ' self.primaryKey.table.name.toUpper() ' ( '
+   		self.keyColumns->forEach( aForeignKeyColumn) {
+ 			aForeignKeyColumn.genForeignColumnDDL()  
+ 		}
+ 		'))' newline '/' newline
+   }
+  
+  
+  	com.ForeignKeyColumn::genOwnColumnDDL () {
+    	self.ownColumn.name.toUpper() ''
+       	if( self <> self.key.keyColumns.last() ) {
+     		','  
+     	}
+  	}
+ 
+  	com.ForeignKeyColumn::genForeignColumnDDL () {
+    	self.foreignColumn.name.toUpper() ''
+       	if( self <> self.key.keyColumns.last() ) {
+     		','  
+     	}
+  	}
+  
+  
+   	com.Column::genDDL () {
+    	space(4)
+    	self.name.toUpper() ' ' self.dataType.name.toUpper() ' NOT NULL' newline
+   	}
+
+
+
+
+  	com.PrimaryKey::genDDL () {
+    	space(4)
+    	'CONSTRAINT '
+    	self.name ' PRIMARY KEY ('
+    	self.columns->forEach( aPrimaryKeyColumn) { 
+    		aPrimaryKeyColumn.genPrimaryKeyColumnDDL()
+    	}  
+		')' newline
+   	}
+
+
+
+   	com.Column::genPrimaryKeyColumnDDL () {
+     	self.name.toUpper() ''
+     	if( self <> self.table.primaryKey.columns.last() ) {
+     		','  
+     	}
+   	}
+  
+ 
+    com.View::genDDL () {
+	'CREATE VIEW ' self.name.toUpper() ' ('
+	newline
+ 	self.viewColumns->forEach( aViewColumn) {
+ 		space(4)
+ 		aViewColumn.name.toUpper()  '' 
+     	if( aViewColumn <> self.viewColumns.last() ) {
+     		','  
+     		newline
+     	}
+ 	}
+ 	newline
+ 		') AS SELECT '
+ 	newline	
+  	self.viewColumns->forEach( aViewColumn) {
+ 		space(4)
+ 		aViewColumn.column.table.name.toUpper() ''
+ 		'.'
+ 		aViewColumn.column.name.toUpper()  ''
+     	if( aViewColumn <> self.viewColumns.last() ) {
+     		','  
+     		newline
+     	}
+ 	}
+ 	newline
+ 	' FROM '	
+   	
+   	self.tables->forEach( aTable) {
+ 		aTable.name.toUpper() ''
+     	if( aTable <> self.tables.last() ) {
+     		','  
+     	}
+ 	}
+ 	newline
+ 	' WHERE '
+ 	self.whereClause	
+ 		
+	 newline '/' newline
+   }
+   
+   
+   
+ */
+ 
+}

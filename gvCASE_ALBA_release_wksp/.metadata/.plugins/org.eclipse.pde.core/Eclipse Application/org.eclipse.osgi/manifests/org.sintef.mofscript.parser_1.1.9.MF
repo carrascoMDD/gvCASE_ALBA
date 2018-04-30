@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Generated-from: 1158856422320;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: MOFScript Parser
+Bundle-SymbolicName: org.sintef.mofscript.parser
+Bundle-Version: 1.1.9
+Bundle-ClassPath: org.sintef.mofscript.parser.jar
+Bundle-Vendor: SINTEF
+Bundle-Localization: plugin
+Export-Package: org.sintef.mofscript.parser,
+ org.sintef.mofscript.uml2Extensions.parser
+Require-Bundle: org.eclipse.emf,
+ org.eclipse.emf.ecore.xmi,
+ org.sintef.mofscript.model;visibility:=reexport,
+ org.sintef.mofscript.runtime,
+ org.antlr;bundle-version="2.5";visibility:=reexport

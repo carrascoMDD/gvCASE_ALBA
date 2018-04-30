@@ -1,0 +1,88 @@
+<%
+String derive = null;
+EStructuralFeature eFeature = genFeature.getEcoreFeature();
+EAnnotation ocl = eFeature.getEAnnotation(oclNsURI);
+if (ocl != null) derive = (String) ocl.getDetails().get("derive");
+if (derive == null) { %>
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+<% } else {
+	final String expr = genFeature.getSafeName() + "DeriveOCL";
+	if (genFeature.isListType()) { // we will need the feature to create the EcoreEList %>
+		<%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%> eFeature = (<%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%>) <%=genPackage.getPackageInterfaceName()%>.eINSTANCE.get<%=genClass.getName()%>().getEAllStructuralFeatures().get(<%=genClass.getEcoreClass().getEAllStructuralFeatures().indexOf(eFeature)%>);
+	<% } %>
+//		if (<%=expr%> == null) { <% if (!genFeature.isListType()) { // declare locally for OCL initialization only %>
+			<%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%> eFeature = (<%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%>) <%=genPackage.getPackageInterfaceName()%>.eINSTANCE.get<%=genClass.getName()%>().getEAllStructuralFeatures().get(<%=genClass.getEcoreClass().getEAllStructuralFeatures().indexOf(eFeature)%>);
+			<% } %>
+			<%=genModel.getImportedName("org.eclipse.emf.ocl.parser.Environment")%> env = <%=genModel.getImportedName("org.eclipse.emf.ocl.expressions.util.ExpressionsUtil")%>.createPropertyContext(eClass(), eFeature);
+			<%=genModel.getImportedName("org.eclipse.emf.ecore.EAnnotation")%> ocl = eFeature.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String derive = (String) ocl.getDetails().get("derive");<%=genModel.getNonNLS()%>
+			
+			try {
+				<%=expr%> = <%=genModel.getImportedName("org.eclipse.emf.ocl.expressions.util.ExpressionsUtil")%>.createQuery(env, derive, true);
+			} catch (<%=genModel.getImportedName("org.eclipse.emf.ocl.parser.ParserException")%> e) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL exception ");
+System.out.println(e.getLocalizedMessage());
+System.out.println(e.getStackTrace());
+
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+//		}
+		
+		<%=genModel.getImportedName("org.eclipse.emf.ocl.query.Query")%> query = <%=genModel.getImportedName("org.eclipse.emf.ocl.query.QueryFactory")%>.eINSTANCE.createQuery(<%=expr%>);
+		<%=genModel.getImportedName("org.eclipse.emf.ocl.expressions.util.EvalEnvironment")%> evalEnv = new <%=genModel.getImportedName("org.eclipse.emf.ocl.expressions.util.EvalEnvironment")%>();
+		query.setEvaluationEnvironment(evalEnv);
+	<% if (genFeature.isListType()) { %>
+		if( query.evaluate(this).toString().equals( "OclInvalid")  /* == org.eclipse.emf.ocl.types.util.Types.OCL_INVALID */) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL EVALUATION exception ");
+		}
+		try {
+			<%=genModel.getImportedName("java.util.Collection")%> result = (<%=genModel.getImportedName("java.util.Collection")%>) query.evaluate(this);
+			return new <%=genModel.getImportedName("org.eclipse.emf.ecore.util.EcoreEList")%>.UnmodifiableEList(this, eFeature, result.size(), result.toArray());
+		} catch(Exception anException  ) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL EVALUATION exception ");
+System.out.println(anException.getLocalizedMessage());
+System.out.println(anException.getStackTrace());
+			throw new RuntimeException( "<%=genClass.getName()%> <%=genFeature.getSafeName()%>", anException);
+		}
+	<% } else if (genFeature.isPrimitiveType()) { %>
+		if( query.evaluate(this).toString().equals( "OclInvalid")  /* == org.eclipse.emf.ocl.types.util.Types.OCL_INVALID */) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL EVALUATION exception ");
+		}
+		try {
+			return ((<%=genFeature.getObjectType()%>) query.evaluate(this)).<%=genFeature.getPrimitiveValueFunction()%>();
+		} catch(Exception anException  ) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL EVALUATION exception ");
+System.out.println(anException.getLocalizedMessage());
+System.out.println(anException.getStackTrace());
+			throw new RuntimeException( "<%=genClass.getName()%> <%=genFeature.getSafeName()%>", anException);
+		}
+	<% } else { %>
+		if( query.evaluate(this).toString().equals( "OclInvalid")  /* == org.eclipse.emf.ocl.types.util.Types.OCL_INVALID */) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL EVALUATION exception ");
+		}
+		try {
+			return (<%=genFeature.getImportedType()%>) query.evaluate(this);
+		} catch(Exception anException  ) {
+System.out.println("<%=genClass.getName()%>");
+System.out.println("<%=genFeature.getSafeName()%>");
+System.out.print("OCL EVALUATION exception ");
+System.out.println(anException.getLocalizedMessage());
+System.out.println(anException.getStackTrace());
+			throw new RuntimeException( "<%=genClass.getName()%> <%=genFeature.getSafeName()%>", anException);
+		}
+	<% } %>
+<% } %>

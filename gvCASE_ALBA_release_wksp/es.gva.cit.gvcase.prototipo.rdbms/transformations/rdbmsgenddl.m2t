@@ -1,0 +1,173 @@
+
+
+
+/**
+ * transformation rdbmsgenddl
+ *
+ *
+ */
+
+texttransformation rdbmsgenddl (in   rdbms: "http:///es/gva/cit/gvcase/prototipo/rdbms.ecore") {
+
+  rdbms.Schema::main () { // can also use module::main, which is the same	
+   	self.tables->forEach( aTable) {
+		aTable.genDDL()
+	}
+    self.tables->forEach( aTable) {
+		aTable.genForeignKeysDDL()
+	} 
+    self.views->forEach( aView) {
+		aView.genDDL()
+	}
+  }
+    
+
+  
+  
+   rdbms.Table::genDDL () {
+	'CREATE TABLE ' self.name.toUpper() ' ('
+	newline
+ 	self.columns->forEach( aColumn) {
+ 		aColumn.genDDL()  
+ 	}
+ 	if( self.primaryKey <> null) { 
+ 	  self.primaryKey.genDDL()  
+ 	}
+	space(4)
+	')' newline '/' newline
+   }
+   
+   
+   
+   
+    rdbms.Table::genForeignKeysDDL () {
+      	self.foreignKeys->forEach( aForeignKey) {
+        	aForeignKey.genDDL()
+      	}
+   }
+  
+    rdbms.ForeignKey::genDDL () {
+		'ALTER TABLE ' self.table.name.toUpper() ' ADD ( CONSTRAINT ' self.name.toUpper() ' FOREIGN KEY ('
+
+ 		self.keyColumns->forEach( aForeignKeyColumn) {
+ 			aForeignKeyColumn.genOwnColumnDDL()  
+     		if( aForeignKeyColumn <> self.keyColumns.last()) {
+      			',' 
+    		} 
+ 		}
+ 		')'
+ 		' REFERENCES ' self.primaryKey.table.name.toUpper() ' ( '
+   		self.keyColumns->forEach( aForeignKeyColumn) {
+ 			aForeignKeyColumn.genForeignColumnDDL()  
+     		if( aForeignKeyColumn <> self.keyColumns.last()) {
+      			',' 
+    		} 
+ 		}
+ 		'))' newline '/' newline
+   }
+  
+  
+  	rdbms.ForeignKeyColumn::genOwnColumnDDL () {
+    	self.ownColumn.name.toUpper() ''
+  	}
+ 
+  	rdbms.ForeignKeyColumn::genForeignColumnDDL () {
+    	self.foreignColumn.name.toUpper() ''
+   	}
+  
+  
+   	rdbms.Column::genDDL () {
+    	space(4)
+    	self.name.toUpper() ' ' self.dataType.name.toUpper() ' NOT NULL' newline
+   	}
+
+
+
+
+  	rdbms.PrimaryKey::genDDL () {
+    	space(4)
+    	'CONSTRAINT '
+    	self.name ' PRIMARY KEY ('
+    	self.columns->forEach( aPrimaryKeyColumn) { 
+    		aPrimaryKeyColumn.genPrimaryKeyColumnDDL()
+    		if( aPrimaryKeyColumn <> self.columns.last()) {
+      			',' 
+    		} 
+    	}  
+		')' newline
+   	}
+
+
+
+   	rdbms.Column::genPrimaryKeyColumnDDL () {
+     	self.name.toUpper() ''
+   	}
+  
+ 
+     rdbms.View::genDDL () {
+		'CREATE VIEW ' self.name.toUpper() ' ('
+		newline
+ 		self.viewColumns->forEach( aViewColumn) {
+ 			space(4)
+ 			aViewColumn.name.toUpper()  '' 
+     		if( aViewColumn <> self.viewColumns.last() ) {
+     			','  
+     			newline
+     		}
+ 		}
+ 		newline
+ 		') AS SELECT '
+ 		newline	
+  		self.viewColumns->forEach( aViewColumn) {
+ 			space(4)
+ 			aViewColumn.column.table.name.toUpper() ''
+ 			'.'
+ 			aViewColumn.column.name.toUpper()  ''
+    	 	if( aViewColumn <> self.viewColumns.last() ) {
+    	 		','  
+    	 		newline
+    	 	}
+ 		}
+ 		newline
+ 		' FROM '	
+   	
+   		self.tables->forEach( aTable) {
+ 			aTable.name.toUpper() ''
+    	 	if( aTable <> self.tables.last() ) {
+     			','  
+     		}
+ 		}
+ 		newline
+ 		self.genWhereClauseDDL()
+ 	}
+   
+   
+   
+  	rdbms.View::genWhereClauseDDL () {
+   
+ 		' WHERE '
+  		
+  		self.joins->forEach( aJoin : rdbms.Join) {
+  			aJoin.columns.first().table.name  '.' aJoin.columns.first().name '=' 
+			aJoin.columns.last().table.name  '.' aJoin.columns.last().name 
+ 
+      	 	if( aJoin <> self.joins.last() ) {
+     			' AND '  
+     		}
+  		}
+  		
+  		if ( self.whereClause.size()>0) {
+  		  ' AND '
+ 			self.whereClause	
+  		}
+  		
+	 	newline '/' newline
+   
+  }
+ 
+}   
+   
+   
+ 
+ 
+}

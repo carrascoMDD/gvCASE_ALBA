@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cheatsheet title="Create RDBMS project and model">
+
+  <intro>
+    <description>
+      This cheat sheet is a step-by-step description of how to create a Project and Model to edit an instance of RDBMS schema.
+    </description>
+  </intro>
+
+  <item 
+  	title="Create a General Project">
+  	<description>
+  	  We need a Project to work on a new RDBMS Model. A &quot;General&quot; Project will suffice. Click &quot;Play&quot; to create a Project.
+  	</description>
+  	
+    <action
+        pluginId="org.eclipse.emf.cheatsheets"
+        class="org.eclipse.emf.cheatsheets.actions.NewProjectAction"
+        param1="RDBMS test" />
+  	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="RDBMS test" 
+  		param2="" 
+  		param3="es.gva.cit.gvcase.prototipo.rdbms/transformations/rdbmsgenddl.m2t" /> 
+  	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="RDBMS test" 
+  		param2="" 
+  		param3="es.gva.cit.gvcase.prototipo.rdbms/instances/Ejemplo Esquema RDBMS.rdbms" /> 
+  </item>
+
+  <item 
+  	title="Create a RDBMS Model">
+  	<description>
+  	  We must create new RDBMS Model. Click &quot;Play&quot; to create a RDBMS Models.
+  	</description>
+  	
+     <action
+        pluginId="es.gva.cit.gvcase.prototipo.rdbms.cheatsheets"
+        class="es.gva.cit.gvcase.prototipo.rdbms.cheatsheets.OpenRDBMSModelWizardAction" 
+        param1="RDBMS test"
+        param2="TestRDBMS"
+        param3="Schema" />
+  </item>
+
+</cheatsheet>

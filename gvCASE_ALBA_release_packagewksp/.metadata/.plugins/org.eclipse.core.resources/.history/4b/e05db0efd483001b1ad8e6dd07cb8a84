@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.jar" id="es.gva.cit.gvcase.releases.alba.features" version="1.0.0.v200612022000_ALBA">
+      <category name="es.gva.cit.gvcase.releases.alba"/>
+   </feature>
+   <category-def name="es.gva.cit.gvcase.releases.alba" label="ALBA entrega conjunta de gvCASE"/>
+</site>

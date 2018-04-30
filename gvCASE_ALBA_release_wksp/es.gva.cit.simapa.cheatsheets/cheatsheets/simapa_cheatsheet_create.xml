@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cheatsheet title="Create SIMAPA project and model">
+
+  <intro>
+    <description>
+      This cheat sheet is a step-by-step description of how to create a Project and Model to edit an instance of SIMAPA.
+    </description>
+  </intro>
+
+  <item 
+  	title="Create a General Project">
+  	<description>
+  	  We need a Project to work on a new SIMAPA Model. A &quot;General&quot; Project will suffice. Click &quot;Play&quot; to create a Project.
+  	</description>
+  	
+     <action
+        pluginId="org.eclipse.emf.cheatsheets"
+        class="org.eclipse.emf.cheatsheets.actions.NewProjectAction"
+        param1="SIMAPA test" />
+  	<action
+  		pluginId="org.eclipse.emf.cheatsheets" 
+  		class="org.eclipse.emf.cheatsheets.actions.CopyFileFromPluginAction" 
+  		param1="SIMAPA test" 
+  		param2="" 
+  		param3="es.gva.cit.simapa/instances/SerPre_RA_v01.simapa" /> 
+          
+  </item>
+  <item 
+  	title="Create a SIMAPA Model">
+  	<description>
+  	  We must create a new SIMAPA Model. Click &quot;Play&quot; to create a SIMAPA Model.
+  	</description>
+  	
+     <action
+        pluginId="es.gva.cit.simapa.cheatsheets"
+        class="es.gva.cit.simapa.cheatsheets.OpenSIMAPAModelWizardAction" 
+ 		param1="SIMAPA test"
+        param2="TestSIMAPA"
+        param3="Repositorio" />
+  </item>
+
+</cheatsheet>

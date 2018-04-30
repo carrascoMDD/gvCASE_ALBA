@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Generated-from: 1151574312000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: ATL Debugger
+Bundle-SymbolicName: org.atl.eclipse.adt.debug; singleton:=true
+Bundle-Version: 1.0.9
+Bundle-ClassPath: org.atl.eclipse.adt.debug.jar
+Bundle-Activator: org.atl.eclipse.adt.debug.AtlDebugPlugin
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Export-Package: org.atl.eclipse.adt.debug,
+ org.atl.eclipse.adt.debug.core,
+ org.atl.eclipse.adt.debug.ui,
+ org.atl.eclipse.adt.launching,
+ org.atl.eclipse.adt.launching.sourcelookup
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.debug.core,
+ org.eclipse.debug.ui,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.swt,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.workbench.texteditor,
+ org.atl.eclipse.engine,
+ org.eclipse.pde.core,
+ org.eclipse.emf.ecore,
+ org.eclipse.gmt.atl.oclquery.core
+Eclipse-LazyStart: true

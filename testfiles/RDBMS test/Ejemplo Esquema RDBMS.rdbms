@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<es.gva.cit.gvcase.prototipo.rdbms:Schema xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:es.gva.cit.gvcase.prototipo.rdbms="http:///es/gva/cit/gvcase/prototipo/rdbms.ecore" name="Ejemplo Esquema RDBMS">
+  <tables name="CONVOCATORIAS">
+    <columns name="IDENTIFICADOR_CONVOCATORIA" foreignOfKeyColumns="//@tables.1/@foreignKeys.0/@keyColumns.0 //@tables.2/@foreignKeys.0/@keyColumns.0 //@tables.3/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.0/@primaryKey" joins="//@views.0/@joins.0"/>
+    <columns name="FECHA_CONVOCATORIA" dataType="//@dataTypes.1"/>
+    <primaryKey name="CONVOCATORIAS_PK" columns="//@tables.0/@columns.0" primaryKeyOfForeignKeys="//@tables.1/@foreignKeys.0 //@tables.2/@foreignKeys.0 //@tables.3/@foreignKeys.0"/>
+  </tables>
+  <tables name="ACTAS">
+    <columns name="IDENTIFICADOR_ACTA" foreignOfKeyColumns="//@tables.6/@foreignKeys.0/@keyColumns.1" dataType="//@dataTypes.0" primaryKey="//@tables.1/@primaryKey"/>
+    <columns name="IDENTIFICADOR_CONVOCATORIA" foreignOfKeyColumns="//@tables.6/@foreignKeys.0/@keyColumns.0" ownOfKeyColumns="//@tables.1/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.1/@primaryKey"/>
+    <primaryKey name="ACTAS_PK" columns="//@tables.1/@columns.1 //@tables.1/@columns.0" primaryKeyOfForeignKeys="//@tables.6/@foreignKeys.0"/>
+    <foreignKeys name="CONVOCATORIA_FK" primaryKey="//@tables.0/@primaryKey">
+      <keyColumns foreignColumn="//@tables.0/@columns.0" ownColumn="//@tables.1/@columns.1"/>
+    </foreignKeys>
+  </tables>
+  <tables name="EXAMENES">
+    <columns name="IDENTIFICADOR_EXAMEN" foreignOfKeyColumns="//@tables.5/@foreignKeys.0/@keyColumns.1" dataType="//@dataTypes.0" primaryKey="//@tables.2/@primaryKey" joins="//@views.0/@joins.1"/>
+    <columns name="FECHA" dataType="//@dataTypes.1"/>
+    <columns name="TIPOVIA" dataType="//@dataTypes.0"/>
+    <columns name="NUMERO_EN_VIA" dataType="//@dataTypes.0"/>
+    <columns name="ESCALERA" dataType="//@dataTypes.0"/>
+    <columns name="PUERTA" dataType="//@dataTypes.0"/>
+    <columns name="CODIGO_POSTAL" dataType="//@dataTypes.0"/>
+    <columns name="POBLACION" dataType="//@dataTypes.0"/>
+    <columns name="PROVINCIA" dataType="//@dataTypes.0"/>
+    <columns name="COMUNIDAD_AUTONOMA" dataType="//@dataTypes.0"/>
+    <columns name="PAIS" dataType="//@dataTypes.0"/>
+    <columns name="HORA_COMIENZO" dataType="//@dataTypes.2"/>
+    <columns name="DURACION" dataType="//@dataTypes.2"/>
+    <columns name="IDENTIFICADOR_CONVOCATORIA" foreignOfKeyColumns="//@tables.5/@foreignKeys.0/@keyColumns.0" ownOfKeyColumns="//@tables.2/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.2/@primaryKey" joins="//@views.0/@joins.0"/>
+    <columns name="IDENTIFICADOR_PROFESOR" ownOfKeyColumns="//@tables.2/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0"/>
+    <columns name="IDENTIFICADOR_TITULACION" ownOfKeyColumns="//@tables.2/@foreignKeys.2/@keyColumns.0" dataType="//@dataTypes.0"/>
+    <columns name="IDENTIFICACION_ASIGNATURA" ownOfKeyColumns="//@tables.2/@foreignKeys.2/@keyColumns.1" dataType="//@dataTypes.0"/>
+    <primaryKey name="EXAMENES_PK" columns="//@tables.2/@columns.13 //@tables.2/@columns.0" primaryKeyOfForeignKeys="//@tables.5/@foreignKeys.0"/>
+    <foreignKeys name="CONVOCATORIA_FK" primaryKey="//@tables.0/@primaryKey">
+      <keyColumns foreignColumn="//@tables.0/@columns.0" ownColumn="//@tables.2/@columns.13"/>
+    </foreignKeys>
+    <foreignKeys name="PROFESOR_FK" primaryKey="//@tables.7/@primaryKey">
+      <keyColumns foreignColumn="//@tables.7/@columns.0" ownColumn="//@tables.2/@columns.14"/>
+    </foreignKeys>
+    <foreignKeys name="ASIGNATURA_PARA_TITULACION_FK" primaryKey="//@tables.10/@primaryKey">
+      <keyColumns foreignColumn="//@tables.10/@columns.0" ownColumn="//@tables.2/@columns.15"/>
+      <keyColumns foreignColumn="//@tables.10/@columns.1" ownColumn="//@tables.2/@columns.16"/>
+    </foreignKeys>
+  </tables>
+  <tables name="MIEMBROS_DE_TRIBUNALES">
+    <columns name="IDENTIFICADOR_PERSONA" dataType="//@dataTypes.0" primaryKey="//@tables.3/@primaryKey"/>
+    <columns name="NOMBRE" dataType="//@dataTypes.0"/>
+    <columns name="PRIMER_APELLIDO" dataType="//@dataTypes.0"/>
+    <columns name="SEGUNDO_APELLIDO" dataType="//@dataTypes.0"/>
+    <columns name="CARGO" dataType="//@dataTypes.0"/>
+    <columns name="ES_TITULAR" dataType="//@dataTypes.0"/>
+    <columns name="IDENTIFICADOR_CONVOCATORIA" ownOfKeyColumns="//@tables.3/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0"/>
+    <primaryKey name="MIEMBROS_DE_TRIBUNALES_PK" columns="//@tables.3/@columns.0"/>
+    <foreignKeys name="CONVOCATORIA_FK" primaryKey="//@tables.0/@primaryKey">
+      <keyColumns foreignColumn="//@tables.0/@columns.0" ownColumn="//@tables.3/@columns.6"/>
+    </foreignKeys>
+  </tables>
+  <tables name="ALUMNOS">
+    <columns name="NIF_ALUMNO" foreignOfKeyColumns="//@tables.5/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.4/@primaryKey" joins="//@views.0/@joins.2"/>
+    <columns name="FECHA_NACIMIENTO" dataType="//@dataTypes.0"/>
+    <columns name="NOMBRE" dataType="//@dataTypes.0"/>
+    <columns name="PRIMER_APELLIDO" dataType="//@dataTypes.0"/>
+    <columns name="SEGUNDO_APELLIDO" dataType="//@dataTypes.0"/>
+    <columns name="NOMBRE_VIA" dataType="//@dataTypes.0"/>
+    <columns name="TIPOVIA" dataType="//@dataTypes.0"/>
+    <columns name="NUMERO_EN_VIA" dataType="//@dataTypes.0"/>
+    <columns name="PISO" dataType="//@dataTypes.0"/>
+    <columns name="ESCALERA" dataType="//@dataTypes.0"/>
+    <columns name="PUERTA" dataType="//@dataTypes.0"/>
+    <columns name="CODIGO_POSTAL" dataType="//@dataTypes.0"/>
+    <columns name="POBLACION" dataType="//@dataTypes.0"/>
+    <columns name="PROVINCIA" dataType="//@dataTypes.0"/>
+    <columns name="COMUNIDAD_AUTONOMA" dataType="//@dataTypes.0"/>
+    <columns name="PAIS" dataType="//@dataTypes.0"/>
+    <columns name="TELEFONO_FIJO" dataType="//@dataTypes.0"/>
+    <columns name="TELEFONO_MOVIL" dataType="//@dataTypes.0"/>
+    <columns name="CORREO_ELECTRONICO" dataType="//@dataTypes.0"/>
+    <primaryKey name="ALUMNOS_PK" columns="//@tables.4/@columns.0" primaryKeyOfForeignKeys="//@tables.5/@foreignKeys.1"/>
+  </tables>
+  <tables name="SOLICITUDES">
+    <columns name="IDENTIFICADOR_SOLICITUD" foreignOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.3" dataType="//@dataTypes.0" primaryKey="//@tables.5/@primaryKey"/>
+    <columns name="ESTAN_FOTOS_DISPONIBLES" dataType="//@dataTypes.0"/>
+    <columns name="ESTA_FOTOCOPIA_DNI_DISPONIBLE" dataType="//@dataTypes.0"/>
+    <columns name="ESTA_CERTIFICADO_MEDICO_DISPONIBLE" dataType="//@dataTypes.0"/>
+    <columns name="IDENTIFICADOR_EXAMEN" foreignOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.1" ownOfKeyColumns="//@tables.5/@foreignKeys.0/@keyColumns.1" dataType="//@dataTypes.0" primaryKey="//@tables.5/@primaryKey" joins="//@views.0/@joins.1"/>
+    <columns name="NIF_ALUMNO" foreignOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.2" ownOfKeyColumns="//@tables.5/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.5/@primaryKey" joins="//@views.0/@joins.2"/>
+    <columns name="IDENTIFICADOR_CONVOCATORIA " foreignOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.0" ownOfKeyColumns="//@tables.5/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.5/@primaryKey"/>
+    <primaryKey name="SOLICITUDES_PK" columns="//@tables.5/@columns.6 //@tables.5/@columns.4 //@tables.5/@columns.5 //@tables.5/@columns.0" primaryKeyOfForeignKeys="//@tables.6/@foreignKeys.1"/>
+    <foreignKeys name="EXAMEN_FK" primaryKey="//@tables.2/@primaryKey">
+      <keyColumns foreignColumn="//@tables.2/@columns.13" ownColumn="//@tables.5/@columns.6"/>
+      <keyColumns foreignColumn="//@tables.2/@columns.0" ownColumn="//@tables.5/@columns.4"/>
+    </foreignKeys>
+    <foreignKeys name="ALUMNO_FK" primaryKey="//@tables.4/@primaryKey">
+      <keyColumns foreignColumn="//@tables.4/@columns.0" ownColumn="//@tables.5/@columns.5"/>
+    </foreignKeys>
+  </tables>
+  <tables name="RESOLUCIONES">
+    <columns name="ES_CONVALIDACIÓN" dataType="//@dataTypes.0"/>
+    <columns name="IDENTIFICADOR_CONVOCATORIA " ownOfKeyColumns="//@tables.6/@foreignKeys.0/@keyColumns.0 //@tables.6/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.6/@primaryKey"/>
+    <columns name="IDENTIFICADOR_ACTA" ownOfKeyColumns="//@tables.6/@foreignKeys.0/@keyColumns.1" dataType="//@dataTypes.0" primaryKey="//@tables.6/@primaryKey"/>
+    <columns name="IDENTIFICADOR_EXAMEN" ownOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.1" dataType="//@dataTypes.0"/>
+    <columns name="IDENTIFICADOR_SOLICITUD" ownOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.3" dataType="//@dataTypes.0"/>
+    <columns name="NIF_ALUMNO" ownOfKeyColumns="//@tables.6/@foreignKeys.1/@keyColumns.2" dataType="//@dataTypes.0"/>
+    <primaryKey name="RESOLUCIONES_PK" columns="//@tables.6/@columns.1 //@tables.6/@columns.2"/>
+    <foreignKeys name="ACTA_FK" primaryKey="//@tables.1/@primaryKey">
+      <keyColumns foreignColumn="//@tables.1/@columns.1" ownColumn="//@tables.6/@columns.1"/>
+      <keyColumns foreignColumn="//@tables.1/@columns.0" ownColumn="//@tables.6/@columns.2"/>
+    </foreignKeys>
+    <foreignKeys name="SOLICITUD_FK" primaryKey="//@tables.5/@primaryKey">
+      <keyColumns foreignColumn="//@tables.5/@columns.6" ownColumn="//@tables.6/@columns.1"/>
+      <keyColumns foreignColumn="//@tables.5/@columns.4" ownColumn="//@tables.6/@columns.3"/>
+      <keyColumns foreignColumn="//@tables.5/@columns.5" ownColumn="//@tables.6/@columns.5"/>
+      <keyColumns foreignColumn="//@tables.5/@columns.0" ownColumn="//@tables.6/@columns.4"/>
+    </foreignKeys>
+  </tables>
+  <tables name="PROFESORES">
+    <columns name="IDENTIFICADOR_PROFESOR" foreignOfKeyColumns="//@tables.2/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.7/@primaryKey"/>
+    <columns name="NOMBRE" dataType="//@dataTypes.0"/>
+    <columns name="PRIMER_APELLIDO" dataType="//@dataTypes.0"/>
+    <columns name="SEGUNDO_APELLIDO" dataType="//@dataTypes.0"/>
+    <primaryKey name="PROFESORES_PK" columns="//@tables.7/@columns.0" primaryKeyOfForeignKeys="//@tables.2/@foreignKeys.1"/>
+  </tables>
+  <tables name="ASIGNATURAS">
+    <columns name="IDENTIFICDOR_ASIGNATURA" foreignOfKeyColumns="//@tables.10/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.8/@primaryKey"/>
+    <columns name="DESCRIPCION_EN_CASTELLANO" dataType="//@dataTypes.0"/>
+    <columns name="DESCRIPCION_EN_VALENCIANO" dataType="//@dataTypes.0"/>
+    <columns name="NUMERO_DE_HORAS" dataType="//@dataTypes.3"/>
+    <columns name="TEORICA_O_PRACTICA" dataType="//@dataTypes.0"/>
+    <primaryKey name="ASIGNATURAS_PK" columns="//@tables.8/@columns.0" primaryKeyOfForeignKeys="//@tables.10/@foreignKeys.1"/>
+  </tables>
+  <tables name="TITULACIONES">
+    <columns name="IDENTIFICADOR_TITULACION" foreignOfKeyColumns="//@tables.10/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.9/@primaryKey"/>
+    <columns name="DESCRIPCION_EN_CASTELLANO" dataType="//@dataTypes.0"/>
+    <columns name="DESCRIPCION_EN_VALENCIANO" dataType="//@dataTypes.0"/>
+    <primaryKey name="TITULACIONES_PK" columns="//@tables.9/@columns.0" primaryKeyOfForeignKeys="//@tables.10/@foreignKeys.0"/>
+  </tables>
+  <tables name="ASIGNATURAS_PARA_TITULACIONES">
+    <columns name="IDENTIFICADOR_TITULACION" foreignOfKeyColumns="//@tables.2/@foreignKeys.2/@keyColumns.0" ownOfKeyColumns="//@tables.10/@foreignKeys.0/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.10/@primaryKey"/>
+    <columns name="IDENTIFICDOR_ASIGNATURA" foreignOfKeyColumns="//@tables.2/@foreignKeys.2/@keyColumns.1" ownOfKeyColumns="//@tables.10/@foreignKeys.1/@keyColumns.0" dataType="//@dataTypes.0" primaryKey="//@tables.10/@primaryKey"/>
+    <primaryKey name="ASIGNATURAS_PARA_TITULACIONES_PK" columns="//@tables.10/@columns.0 //@tables.10/@columns.1" primaryKeyOfForeignKeys="//@tables.2/@foreignKeys.2"/>
+    <foreignKeys name="TITULACION_FK" primaryKey="//@tables.9/@primaryKey">
+      <keyColumns foreignColumn="//@tables.9/@columns.0" ownColumn="//@tables.10/@columns.0"/>
+    </foreignKeys>
+    <foreignKeys name="ASIGNATURA_FK" primaryKey="//@tables.8/@primaryKey">
+      <keyColumns foreignColumn="//@tables.8/@columns.0" ownColumn="//@tables.10/@columns.1"/>
+    </foreignKeys>
+  </tables>
+  <dataTypes name="VARCHAR2" columns="//@tables.0/@columns.0 //@tables.1/@columns.1 //@tables.1/@columns.0 //@tables.2/@columns.0 //@tables.2/@columns.2 //@tables.2/@columns.3 //@tables.2/@columns.4 //@tables.2/@columns.5 //@tables.2/@columns.6 //@tables.2/@columns.7 //@tables.2/@columns.8 //@tables.2/@columns.9 //@tables.2/@columns.10 //@tables.2/@columns.13 //@tables.2/@columns.14 //@tables.2/@columns.15 //@tables.2/@columns.16 //@tables.3/@columns.0 //@tables.3/@columns.1 //@tables.3/@columns.2 //@tables.3/@columns.3 //@tables.3/@columns.4 //@tables.3/@columns.5 //@tables.3/@columns.6 //@tables.4/@columns.0 //@tables.4/@columns.1 //@tables.4/@columns.2 //@tables.4/@columns.3 //@tables.4/@columns.4 //@tables.4/@columns.5 //@tables.4/@columns.6 //@tables.4/@columns.7 //@tables.4/@columns.8 //@tables.4/@columns.9 //@tables.4/@columns.10 //@tables.4/@columns.11 //@tables.4/@columns.12 //@tables.4/@columns.13 //@tables.4/@columns.14 //@tables.4/@columns.15 //@tables.4/@columns.16 //@tables.4/@columns.17 //@tables.4/@columns.18 //@tables.5/@columns.0 //@tables.5/@columns.1 //@tables.5/@columns.2 //@tables.5/@columns.3 //@tables.5/@columns.6 //@tables.6/@columns.0 //@tables.6/@columns.1 //@tables.6/@columns.2 //@tables.6/@columns.3 //@tables.6/@columns.4 //@tables.7/@columns.0 //@tables.7/@columns.1 //@tables.7/@columns.2 //@tables.7/@columns.3 //@tables.8/@columns.0 //@tables.8/@columns.1 //@tables.8/@columns.2 //@tables.8/@columns.4 //@tables.9/@columns.0 //@tables.9/@columns.1 //@tables.9/@columns.2 //@tables.10/@columns.0 //@tables.10/@columns.1 //@tables.5/@columns.5 //@tables.5/@columns.4 //@tables.6/@columns.5"/>
+  <dataTypes name="DATE" columns="//@tables.0/@columns.1 //@tables.2/@columns.1"/>
+  <dataTypes name="TIME" columns="//@tables.2/@columns.11 //@tables.2/@columns.12"/>
+  <dataTypes name="NUMBER" columns="//@tables.8/@columns.3"/>
+  <views name="ALUMNOS_SOLICITANDO_EXAMENES_DE_CONVOCATORIAS" tables="//@tables.0 //@tables.2 //@tables.5 //@tables.4" whereClause="">
+    <viewColumns name="IDENTIFICADOR_CONVOCATORIA" column="//@tables.0/@columns.0"/>
+    <viewColumns name="FECHA_CONVOCATORIA" column="//@tables.0/@columns.1"/>
+    <viewColumns name="IDENTIFICADOR_EXAMEN" column="//@tables.2/@columns.0"/>
+    <viewColumns name="FECHA" column="//@tables.2/@columns.1"/>
+    <viewColumns name="TIPOVIA_EXAMEN" column="//@tables.2/@columns.2"/>
+    <viewColumns name="NUMERO_EN_VIA_EXAMEN" column="//@tables.2/@columns.3"/>
+    <viewColumns name="ESCALERA_EXAMEN" column="//@tables.2/@columns.4"/>
+    <viewColumns name="PUERTA_EXAMEN" column="//@tables.2/@columns.5"/>
+    <viewColumns name="CODIGO_POSTAL_EXAMEN" column="//@tables.2/@columns.6"/>
+    <viewColumns name="POBLACION_EXAMEN" column="//@tables.2/@columns.7"/>
+    <viewColumns name="PROVINCIA_EXAMEN" column="//@tables.2/@columns.8"/>
+    <viewColumns name="COMUNIDAD_AUTONOMA_EXAMEN" column="//@tables.2/@columns.9"/>
+    <viewColumns name="PAIS_EXAMEN" column="//@tables.2/@columns.10"/>
+    <viewColumns name="HORA_COMIENZO" column="//@tables.2/@columns.11"/>
+    <viewColumns name="DURACION" column="//@tables.2/@columns.12"/>
+    <viewColumns name="IDENTIFICADOR_PROFESOR" column="//@tables.2/@columns.14"/>
+    <viewColumns name="IDENTIFICADOR_TITULACION" column="//@tables.2/@columns.15"/>
+    <viewColumns name="IDENTIFICACION_ASIGNATURA" column="//@tables.2/@columns.16"/>
+    <viewColumns name="IDENTIFICADOR_SOLICITUD" column="//@tables.5/@columns.0"/>
+    <viewColumns name="ESTAN_FOTOS_DISPONIBLES" column="//@tables.5/@columns.1"/>
+    <viewColumns name="ESTA_FOTOCOPIA_DNI_DISPONIBLE" column="//@tables.5/@columns.2"/>
+    <viewColumns name="ESTA_CERTIFICADO_MEDICO_DISPONIBLE" column="//@tables.5/@columns.3"/>
+    <viewColumns name="IDENTIFICADOR_EXAMEN" column="//@tables.5/@columns.4"/>
+    <viewColumns name="NIF_ALUMNO" column="//@tables.4/@columns.0"/>
+    <viewColumns name="FECHA_NACIMIENTO" column="//@tables.4/@columns.1"/>
+    <viewColumns name="NOMBRE" column="//@tables.4/@columns.2"/>
+    <viewColumns name="PRIMER_APELLIDO" column="//@tables.4/@columns.3"/>
+    <viewColumns name="SEGUNDO_APELLIDO" column="//@tables.4/@columns.4"/>
+    <viewColumns name="NOMBRE_VIA" column="//@tables.4/@columns.5"/>
+    <viewColumns name="TIPOVIA" column="//@tables.4/@columns.6"/>
+    <viewColumns name="NUMERO_EN_VIA" column="//@tables.4/@columns.7"/>
+    <viewColumns name="PISO" column="//@tables.4/@columns.8"/>
+    <viewColumns name="ESCALERA" column="//@tables.4/@columns.9"/>
+    <viewColumns name="PUERTA" column="//@tables.4/@columns.10"/>
+    <viewColumns name="CODIGO_POSTAL" column="//@tables.4/@columns.11"/>
+    <viewColumns name="POBLACION" column="//@tables.4/@columns.12"/>
+    <viewColumns name="PROVINCIA" column="//@tables.4/@columns.13"/>
+    <viewColumns name="COMUNIDAD_AUTONOMA" column="//@tables.4/@columns.14"/>
+    <viewColumns name="PAIS" column="//@tables.4/@columns.15"/>
+    <viewColumns name="TELEFONO_FIJO" column="//@tables.4/@columns.16"/>
+    <viewColumns name="TELEFONO_MOVIL" column="//@tables.4/@columns.17"/>
+    <viewColumns name="CORREO_ELECTRONICO" column="//@tables.4/@columns.18"/>
+    <joins columns="//@tables.2/@columns.13 //@tables.0/@columns.0"/>
+    <joins columns="//@tables.5/@columns.4 //@tables.2/@columns.0"/>
+    <joins columns="//@tables.4/@columns.0 //@tables.5/@columns.5"/>
+  </views>
+</es.gva.cit.gvcase.prototipo.rdbms:Schema>

@@ -1,0 +1,3191 @@
+Dim	gInputBasePath As String 
+Dim gProcesosFolder As String 
+Dim gActividadesFolder As String 
+Dim gTareasFolder As String 
+Dim	gOutputBasePath As String 
+Dim	gOutputFileName As String 
+
+
+Const cProcesos_InitialCollectionSize 			As Integer = 16
+Const cActividades_InitialCollectionSize 		As Integer = 128
+Const cTareas_InitialCollectionSize 			As Integer = 256
+Const cProductos_InitialCollectionSize 			As Integer = 512
+Const cEntradas_InitialCollectionSize 			As Integer = 1024
+Const cSalidas_InitialCollectionSize 			As Integer = 1024
+Const cTecnicas_InitialCollectionSize 			As Integer = 128
+Const cUsosTecnicas_InitialCollectionSize 		As Integer = 512
+Const cPracticas_InitialCollectionSize 			As Integer = 128
+Const cUsosPracticas_InitialCollectionSize 		As Integer = 512
+Const cParticipantes_InitialCollectionSize 		As Integer = 128
+Const cUsosParticipantes_InitialCollectionSize 	As Integer = 512
+
+Const cInterfaces_InitialCollectionSize 		As Integer = 16
+Const cProcesosInterfaz_InitialCollectionSize 	As Integer = 64
+
+
+
+
+
+Dim gNumProcesos					   									As Integer
+Dim gProcesos_codigos(cProcesos_InitialCollectionSize) 					As String
+Dim gProcesos_nombres(cProcesos_InitialCollectionSize) 					As String
+Dim gProcesos_descripciones(cProcesos_InitialCollectionSize) 			As String
+Dim gProcesos_Actividades_firstIndex(cProcesos_InitialCollectionSize) 	As Integer
+Dim gProcesos_Actividades_count(cProcesos_InitialCollectionSize) 		As Integer
+Dim gNumActividades														As Integer
+Dim gActividades_procesoIndex(cActividades_InitialCollectionSize) 		As Integer
+Dim gActividades_codigos(cActividades_InitialCollectionSize) 			As String
+Dim gActividades_nombres(cActividades_InitialCollectionSize) 			As String
+Dim gActividades_descripciones(cActividades_InitialCollectionSize) 		As String
+Dim gActividades_Tareas_firstIndex(cActividades_InitialCollectionSize) 	As Integer
+Dim gActividades_Tareas_count(cActividades_InitialCollectionSize) 		As Integer
+Dim gNumTareas															As Integer
+Dim gTareas_actividadIndex(cTareas_InitialCollectionSize) 				As Integer
+Dim gTareas_codigos(cTareas_InitialCollectionSize) 						As String
+Dim gTareas_nombres(cTareas_InitialCollectionSize) 						As String
+Dim gTareas_descripciones(cTareas_InitialCollectionSize) 		   		As String
+Dim gTareas_Entradas_firstIndex(cTareas_InitialCollectionSize) 			As Integer
+Dim gTareas_Entradas_count(cTareas_InitialCollectionSize) 		   		As Integer
+Dim gTareas_Salidas_firstIndex(cTareas_InitialCollectionSize) 	   		As Integer
+Dim gTareas_Salidas_count(cTareas_InitialCollectionSize) 		   		As Integer
+Dim gTareas_UsosTecnicas_firstIndex(cTareas_InitialCollectionSize) 		As Integer
+Dim gTareas_UsosTecnicas_count(cTareas_InitialCollectionSize) 		   	As Integer
+Dim gTareas_UsosPracticas_firstIndex(cTareas_InitialCollectionSize) 	As Integer
+Dim gTareas_UsosPracticas_count(cTareas_InitialCollectionSize) 		   	As Integer
+Dim gTareas_UsosParticipantes_firstIndex(cTareas_InitialCollectionSize)	As Integer
+Dim gTareas_UsosParticipantes_count(cTareas_InitialCollectionSize) 	   	As Integer
+Dim gNumProductos					   									As Integer
+Dim gProductos_codigos(cProductos_InitialCollectionSize) 				As String
+Dim gProductos_nombres(cProductos_InitialCollectionSize) 				As String
+Dim gProductos_descripciones(cProductos_InitialCollectionSize) 			As String
+Dim gNumEntradas														As Integer
+Dim gEntradas_tareaIndex(cEntradas_InitialCollectionSize) 				As Integer
+Dim gEntradas_codigos(cEntradas_InitialCollectionSize) 					As String
+Dim gEntradas_nombres(cEntradas_InitialCollectionSize) 					As String
+Dim gEntradas_descripciones(cEntradas_InitialCollectionSize) 		   	As String
+Dim gEntradas_productoIndex(cEntradas_InitialCollectionSize) 		   	As Integer
+Dim gEntradas_codigoTareaPreliminar(cEntradas_InitialCollectionSize) 	As String
+Dim gNumSalidas															As Integer
+Dim gSalidas_tareaIndex(cSalidas_InitialCollectionSize) 				As Integer
+Dim gSalidas_codigos(cSalidas_InitialCollectionSize) 					As String
+Dim gSalidas_nombres(cSalidas_InitialCollectionSize) 					As String
+Dim gSalidas_descripciones(cSalidas_InitialCollectionSize) 		   		As String
+Dim gSalidas_productoIndex(cSalidas_InitialCollectionSize) 		   		As Integer
+Dim gSalidas_codigoTareaPreliminar(cEntradas_InitialCollectionSize) 	As String
+Dim gNumTecnicas														As Integer
+Dim gTecnicas_codigos(cTecnicas_InitialCollectionSize) 					As String
+Dim gTecnicas_nombres(cTecnicas_InitialCollectionSize) 					As String
+Dim gTecnicas_descripciones(cTecnicas_InitialCollectionSize) 		   	As String
+Dim gNumUsosTecnicas												   	As Integer
+Dim gUsosTecnicas_tareaIndex(cUsosTecnicas_InitialCollectionSize) 		As Integer
+Dim gUsosTecnicas_tecnicaIndex(cUsosTecnicas_InitialCollectionSize) 	As Integer
+Dim gNumPracticas														As Integer
+Dim gPracticas_codigos(cPracticas_InitialCollectionSize) 				As String
+Dim gPracticas_nombres(cPracticas_InitialCollectionSize) 				As String
+Dim gPracticas_descripciones(cPracticas_InitialCollectionSize) 		   	As String
+Dim gNumUsosPracticas												   	As Integer
+Dim gUsosPracticas_tareaIndex(cUsosPracticas_InitialCollectionSize) 	As Integer
+Dim gUsosPracticas_practicaIndex(cUsosPracticas_InitialCollectionSize) 	As Integer
+Dim gNumParticipantes													As Integer
+Dim gParticipantes_tareaIndex(cParticipantes_InitialCollectionSize) 	As Integer
+Dim gParticipantes_codigos(cParticipantes_InitialCollectionSize) 		As String
+Dim gParticipantes_nombres(cParticipantes_InitialCollectionSize) 		As String
+Dim gParticipantes_descripciones(cParticipantes_InitialCollectionSize) 	As String
+Dim gNumUsosParticipantes												As Integer
+Dim gUsosParticipantes_tareaIndex(cUsosParticipantes_InitialCollectionSize) 	As Integer
+Dim gUsosParticipantes_participanteIndex(cUsosParticipantes_InitialCollectionSize) 	As Integer
+
+Dim gNumInterfaces					   									As Integer
+Dim gInterfaces_codigos(cInterfaces_InitialCollectionSize) 					As String
+Dim gInterfaces_nombres(cInterfaces_InitialCollectionSize) 					As String
+Dim gInterfaces_descripciones(cInterfaces_InitialCollectionSize) 			As String
+Dim gInterfaces_Procesos_firstIndex(cInterfaces_InitialCollectionSize) 	As Integer
+Dim gInterfaces_Procesos_count(cInterfaces_InitialCollectionSize) 		As Integer
+
+Dim gNumProcesosInterfaz							   									As Integer
+Dim gProcesosInterfaz_codigos(cProcesosInterfaz_InitialCollectionSize) 					As String
+Dim gProcesosInterfaz_nombres(cProcesosInterfaz_InitialCollectionSize) 					As String
+Dim gProcesosInterfaz_descripciones(cProcesosInterfaz_InitialCollectionSize) 			As String
+Dim gProcesosInterfaz_Actividades_firstIndex(cProcesosInterfaz_InitialCollectionSize) 	As Integer
+Dim gProcesosInterfaz_Actividades_count(cProcesosInterfaz_InitialCollectionSize) 		As Integer
+
+
+
+Const cCRLF As String = CHR$(13) & CHR$(10)					   
+
+Const cTrace 				As Boolean = True
+Const cTraceProceso 		As Boolean = cTrace And False
+Const cTraceActividad 		As Boolean = cTrace And False
+Const cTraceTarea	 		As Boolean = cTrace And False
+Const cTraceProducto 		As Boolean = cTrace And False
+Const cTraceEntrada	 		As Boolean = cTrace And False
+Const cTraceSalida	 		As Boolean = cTrace And False
+Const cTraceTecnica	 		As Boolean = cTrace And False
+Const cTraceUsoTecnica	 	As Boolean = cTrace And False
+Const cTracePractica	 	As Boolean = cTrace And False
+Const cTraceUsoPractica	 	As Boolean = cTrace And False
+Const cTraceParticipante	As Boolean = cTrace And False
+Const cTraceUsoParticipante	As Boolean = cTrace And False
+
+Const cTraceFileActividad	As Boolean = cTrace And False
+
+
+
+
+
+Const cDump 				As Boolean = True
+Const cDumpDescripciones 	As Boolean = cDump And False
+Const cDumpProceso 			As Boolean = cDump And False
+Const cDumpActividad 		As Boolean = cDump And False
+Const cDumpTarea 			As Boolean = cDump And False
+Const cDumpProducto 		As Boolean = cDump And False
+Const cDumpEntrada 			As Boolean = cDump And False
+Const cDumpSalida	 		As Boolean = cDump And False
+Const cDumpTecnica	 		As Boolean = cDump And False
+Const cDumpUsoTecnica	 	As Boolean = cDump And False
+Const cDumpPractica	 		As Boolean = cDump And False
+Const cDumpUsoPractica	 	As Boolean = cDump And False
+Const cDumpParticipante	 	As Boolean = cDump And False
+Const cDumpUsoParticipante	As Boolean = cDump And False
+
+
+Const cDoubleQuote	As String = CHR$(34)
+Const cSingleQuote	As String = CHR$(39)
+
+
+ 
+Sub pInitGlobals
+
+	gInputBasePath 			= "E:\works\GV\CIT\gvMetrica\metamodel\sources\Metrica3\Prestigia_Noimgs\"
+	gProcesosFolder 	= "Procesos"
+	gActividadesFolder 	= "Actividades"
+	gTareasFolder 		= "Tareas"
+
+	gNumProductos 			= 0
+	gNumProcesos 			= 0
+	gNumActividades 		= 0
+	gNumTareas 				= 0
+	gNumEntradas 			= 0
+	gNumSalidas				= 0
+	gNumTecnicas			= 0
+	gNumUsosTecnicas		= 0
+	gNumPracticas			= 0
+	gNumUsosPracticas		= 0
+	gNumParticipantes		= 0
+	gNumUsosParticipantes 	= 0
+
+	gOutputBasePath 			= "E:\works\GV\CIT\gvMetrica\metamodel\gvprocess\runtime-EclipseApplication\aa\"
+	gOutputFileName				= "Metrica3.processmm"
+End Sub
+
+
+
+Const cIndentChar As String = " "
+Const cIndentWidth As Integer = 2
+
+
+'---------------------------------------------------
+' STRING BUFFER FUNCTIONS
+'
+'---------------------------------------------------
+
+  
+Function fInd( theIndent As Integer) As String
+ 	fInd = String( cIndentWidth * theIndent , cIndentChar)	
+End Function
+
+
+
+
+Function fQ2q( theString As String) As String
+	Dim anIndex 	As Integer
+	Dim aLen	 As Integer
+	Dim aString 	As String
+
+	aString = theString
+	aLen = Len( aString)
+	
+	anIndex = 0
+	Do
+		anIndex = Instr( anIndex + 1, theString, cSingleQuote)
+		If anIndex < 1 Then
+			fQ2q = aString
+			Exit Function
+		Else
+			aString = Left( aString, anIndex -1) & cDoubleQuote & Right( aString, aLen - anIndex )
+		End If
+	Loop 	
+End Function
+
+
+
+
+
+Function f4XML( theString As String) As String
+	Dim anIndex 	As Integer
+	Dim aLen	 As Integer
+	Dim aString 	As String
+
+	aString = theString
+	aLen = Len( aString)
+	
+	anIndex = 0
+	Do
+		anIndex = Instr( anIndex + 1, aString, cDoubleQuote)
+		If anIndex < 1 Then
+			Exit Do
+		Else
+			aString = Left( aString, anIndex -1) & cSingleQuote & Right( aString, aLen - anIndex )
+		End If
+	Loop 	
+	anIndex = 1
+	Do
+		anIndex = Instr( anIndex + 1, aString, "<")
+		If anIndex < 1 Then
+			Exit Do
+		Else
+			aString = Left( aString, anIndex -1) & "_" & Right( aString, aLen - anIndex )
+		End If
+	Loop 	
+	anIndex = 0
+	Do
+		anIndex = Instr( anIndex + 1, aString, ">")
+		If anIndex < 1 Or anIndex = aLen Then
+			Exit Do
+		Else
+			aString = Left( aString, anIndex -1) & "_" & Right( aString, aLen - anIndex )
+		End If
+	Loop 
+	f4XML = aString
+		
+End Function
+
+
+
+
+
+Function fLineStartsWith( theLine As String, theStart As String) As Boolean
+	Dim unaLinea 	As String
+	Dim unaLen  	As Integer
+
+	unaLen = Len( theLine)
+	If unaLen < 1 Then Exit Function
+
+	otraLen = Len( theStart)
+	If otraLen < 1 Then Exit Function
+	
+	If unaLen < otraLen Then Exit Function
+			
+	fLineStartsWith = Left( theLine, otraLen) = theStart 
+End Function
+
+
+
+
+Function fConvertChars( theString As String) As String
+	Dim aResult		As String
+	Dim aLen 		As Integer
+	Dim anIndex		As Integer
+
+	aLen = Len( theString)
+	If aLen < 1 Then Exit Function
+
+	aResult = theString
+
+ 	fConvertChars = theString
+End Function
+
+
+
+
+Function fSkipUpToLine( theLine As String) As Boolean
+	Dim unaLinea 	As String
+	Dim unaLen  	As Integer
+
+	unaLen = Len( theLine)
+	If unaLen < 1 Then Exit Function
+
+	While Not EOF( 1) 
+		Line Input #1, unaLinea
+		If Len( unaLinea) >= unaLen Then
+			If Left( unaLinea, unaLen) = theLine Then
+				fSkipUpToLine = True
+				Exit Function
+			End If
+		End If
+	Wend
+End Function
+
+
+Function fSkipUpToLineAndReturnRightOfLine( theLine As String) As String
+	Dim unaLinea 	As String
+	Dim unaLen  	As Integer
+
+	unaLen = Len( theLine)
+	If unaLen < 1 Then Exit Function
+
+	While Not EOF( 1) 
+		Line Input #1, unaLinea
+		If Len( unaLinea) >= unaLen Then
+			If Left( unaLinea, unaLen) = theLine Then
+				fSkipUpToLineAndReturnRightOfLine = fConvertChars( Right( unaLinea, Len( unaLinea) - unaLen - 1))
+				Exit Function
+			End If
+		End If
+	Wend
+End Function
+
+
+
+
+
+Function fGetUpToLine( theLine As String) As String
+	Dim someLines 	As String
+	Dim unaLinea 	As String
+	Dim unaLen  	As Integer
+
+	someLines = ""
+
+	unaLen = Len( theLine)
+	If unaLen < 1 Then Exit Function
+
+	While Not EOF( 1) 
+		Line Input #1, unaLinea
+		If Len( unaLinea) >= unaLen And Left( unaLinea, unaLen) = theLine Then
+			fGetUpToLine = someLines
+			Exit Function
+		Else
+			If Len( someLines) > 0 Then
+				someLines = someLines & cCRLF &   fConvertChars(unaLinea)
+			Else 
+				someLines = fConvertChars(unaLinea)
+			End If
+		End If
+	Wend
+End Function
+
+
+
+				   
+Function fGetLine( ) As String
+	Dim aLine 			As String
+	Dim aConvertedLine 	As String
+
+	Line Input #1, aLine
+	aConvertedLine = fConvertChars(aLine)
+	fGetLine = aConvertedLine
+End Function
+
+
+
+
+
+'---------------------------------------------------
+' CROSS REF AND SEARCH FUNCTIONS
+'
+'---------------------------------------------------
+
+
+
+
+
+Function fProcesoIndexPorCodigo( theCodigo As String) As Integer
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If Len( theCodigo) < 1 Then 
+		fProcesoIndexPorCodigo = -1
+		Exit Function
+	End If
+
+	For anIndex = 0 To gNumProcesos - 1
+		unCodigo = gProcesos_codigos( anIndex)
+		If unCodigo = theCodigo Then
+			fProcesoIndexPorCodigo = anIndex
+			Exit Function
+		End If
+	Next anIndex
+
+	fProcesoIndexPorCodigo = -1
+End Function
+
+
+
+
+Function fCodigoProcesoPorIndex( theIndex As Integer) As String
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If theIndex < 0 Or theIndex >= gNumProcesos Then 
+		fCodigoProcesoPorIndex = "?"
+		Exit Function
+	End If
+
+	fCodigoProcesoPorIndex = gProcesos_codigos( theIndex)									  	
+End Function
+
+
+
+
+Function fIndexTareaEnActividad( theIndexTarea As Integer) As Integer
+	Dim anIndexActividad 	As Integer
+	Dim aFirstTareaIndex 	As Integer
+	Dim aNumTareas 			As Integer
+	Dim aLastTareaIndex 	As Integer
+
+	If theIndexTarea < 0 Or theIndexTarea >= gNumTareas Then
+		fIndexTareaEnActividad = -1
+		Exit Function
+	End If
+
+
+	anIndexActividad = gTareas_actividadIndex( theIndexTarea)
+	If anIndexActividad < 0 Or anIndexActividad >= gNumActividades Then
+		fIndexTareaEnActividad = -1
+		Exit Function
+	End If
+
+	aFirstTareaIndex = gActividades_Tareas_firstIndex( anIndexActividad)
+	aNumTareas = gActividades_Tareas_count( anIndexActividad)
+	aLastTareaIndex = aFirstTareaIndex + aNumTareas - 1
+
+	If theIndexTarea < aFirstTareaIndex Or theIndexTarea > aLastTareaIndex Then
+		fIndexTareaEnActividad = -1
+		Exit Function
+	End If
+
+	aFoundIndex = theIndexTarea - aFirstTareaIndex
+	fIndexTareaEnActividad = aFoundIndex
+End Function
+
+
+
+
+Function fIndexActividadEnProceso( theIndexActividad As Integer) As Integer
+	Dim anIndexProceso 	As Integer
+	Dim aFirstActividadIndex 	As Integer
+	Dim aNumActividades 			As Integer
+	Dim aLastActividadIndex 	As Integer
+
+	If theIndexActividad < 0 Or theIndexActividad >= gNumActividades Then
+		fIndexActividadEnProceso = -1
+		Exit Function
+	End If
+
+
+	anIndexProceso = gActividades_procesoIndex( theIndexActividad)
+	If anIndexProceso < 0 Or anIndexProceso >= gNumProcesos Then
+		fIndexActividadEnProceso = -1
+		Exit Function
+	End If
+
+	aFirstActividadIndex = gProcesos_Actividades_firstIndex( anIndexProceso)
+	aNumActividades = gProcesos_Actividades_count( anIndexProceso)
+	aLastActividadIndex = aFirstActividadIndex + aNumActividades - 1
+
+	If theIndexActividad < aFirstActividadIndex Or theIndexActividad > aLastActividadIndex Then
+		fIndexActividadEnProceso = -1
+		Exit Function
+	End If
+
+	aFoundIndex = theIndexActividad - aFirstActividadIndex
+	fIndexActividadEnProceso = aFoundIndex
+End Function
+
+
+
+
+
+
+Function fActividadIndexPorCodigo( theCodigoProceso As String, theCodigoActividad As String) As Integer
+  	Dim anIndex As Integer
+  	Dim unProcesoIndex As Integer
+
+	If Len( theCodigoProceso) < 1 Then 
+		fActividadIndexPorCodigo = -1
+		Exit Function
+	End If
+
+	If Len( theCodigoActividad) < 1 Then 
+		fActividadIndexPorCodigo = -1
+		Exit Function
+	End If
+
+	unProcesoIndex = fProcesoIndexPorCodigo( theCodigoProceso)
+	If unProcesoIndex < 0 Then
+		fActividadIndexPorCodigo = -1
+		Exit Function
+	End If
+
+	For anIndex = 0 To gNumActividades - 1
+		If unProcesoIndex = gActividades_procesoIndex( anIndex) And gActividades_codigos( anIndex) = theCodigoActividad Then
+			fActividadIndexPorCodigo = anIndex
+			Exit Function
+		End If
+	Next anIndex
+End Function
+
+
+
+
+Function fCodigoActividadPorIndex( theIndex As Integer) As String
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If theIndex < 0 Or theIndex >= gNumActividades Then 
+		fCodigoActividadPorIndex = "?"
+		Exit Function
+	End If
+
+	fCodigoActividadPorIndex = gActividades_codigos( theIndex)									  	
+End Function
+
+
+
+
+
+
+
+'---------------------------------------------------
+' PROCESOS
+'
+'---------------------------------------------------
+
+
+
+Sub pRegisterProceso( theCodigo As String, theNombre As String, theDescripcion As String)
+	Dim aProcesoIndex As Integer
+
+	aProcesoIndex = gNumProcesos
+	gNumProcesos = gNumProcesos + 1
+										 	
+	gProcesos_codigos( aProcesoIndex) = theCodigo
+	gProcesos_nombres( aProcesoIndex) = theNombre
+	gProcesos_descripciones( aProcesoIndex) = theDescripcion
+	gProcesos_Actividades_firstIndex( aProcesoIndex) = -1
+	gProcesos_Actividades_count( aProcesoIndex) = 0
+
+	If cTraceProceso Then
+		Print
+		Print "+++PROCESO [" & aProcesoIndex & "] " & theNombre	& " ->" & theCodigo 
+		Print theDescripcion
+	End If
+
+End Sub
+
+
+
+Sub pDumpProcesos
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If Not cDumpProceso Then Exit Sub
+
+	Print
+	Print "-------------------------------------"
+	Print "PROCESOS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumProcesos - 1
+		unCodigo = gProcesos_codigos( anIndex)
+		unNombre = gProcesos_nombres( anIndex)
+		unaDescripcion = gProcesos_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "PROCESO [" & anIndex & "] " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+'---------------------------------------------------
+' ACTIVIDADES
+'
+'---------------------------------------------------
+
+
+Sub pRegisterActividad( theCodigoProceso As String, theCodigoActividad As String, theNombre As String, theDescripcion As String)
+	Dim unProcesoIndex		As Integer
+	Dim anActividadIndex	As Integer
+
+	unProcesoIndex = fProcesoIndexPorCodigo( theCodigoProceso)
+	If unProcesoIndex < 0 Then
+		Print 
+		Print
+		Print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		Print "Proceso " & theCodigoProceso & " not found!!!"
+		Print
+		Print
+		Call pRegisterProceso( theCodigoProceso, "~ (" & theCodigoProceso & ")", "")
+		unProcesoIndex = fProcesoIndexPorCodigo( theCodigoProceso)
+		If unProcesoIndex < 0 Then
+			Print
+	   		Print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	   		Print "Proceso " & theCodigoProceso & " not found!!!"
+	   		Print
+
+	   		Exit Sub
+		End If
+	End If
+
+	anActividadIndex = 	gNumActividades
+	gNumActividades = gNumActividades + 1
+
+	If gProcesos_Actividades_count(unProcesoIndex) < 1 Then
+		gProcesos_Actividades_firstIndex( unProcesoIndex) = anActividadIndex
+	End If
+	gProcesos_Actividades_count(unProcesoIndex) = gProcesos_Actividades_count(unProcesoIndex) + 1
+
+	gActividades_procesoIndex( anActividadIndex) = unProcesoIndex
+	gActividades_codigos( anActividadIndex) = theCodigoActividad
+	gActividades_nombres( anActividadIndex) = theNombre
+	gActividades_descripciones( anActividadIndex) = theDescripcion
+	gActividades_Tareas_firstIndex( anActividadIndex) = -1
+	gActividades_Tareas_count( anActividadIndex) = 0
+
+
+
+	If cTraceActividad Then
+		Print
+		Print "+++ACTIVIDAD [" & anActividadIndex & "] " & theNombre	& " ->" & theCodigoProceso & "<-->" & theCodigoActividad & "<-->" & theNombre
+		If cDumpDescripciones Then
+			Print theDescripcion
+		End If
+	End If
+
+End Sub
+
+
+
+
+
+
+Sub pDumpActividades
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpActividad Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "ACTIVIDADES"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumActividades - 1
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( anIndex))
+		unCodigo = gActividades_codigos( anIndex)
+		unNombre = gActividades_nombres( anIndex)
+		unaDescripcion = gActividades_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "ACTIVIDAD [" & anIndex & "] " & unCodigoProceso & " " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' TAREAS
+'
+'---------------------------------------------------
+
+
+
+Function fRegisterTarea( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String) As Integer
+	Dim unaActividadIndex	As Integer
+	Dim unaTareaIndex	As Integer
+
+	unaActividadIndex = fActividadIndexPorCodigo( theCodigoProceso, theCodigoActividad)
+	If unaActividadIndex < 0 Then
+		Print 
+		Print
+		Print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		Print "Actividad " & theCodigoProceso & " " & theCodigoActividad & " not found!!!"
+		Print
+		Print
+	End If
+
+	unaTareaIndex = gNumTareas
+	gNumTareas = gNumTareas + 1
+
+	If gActividades_Tareas_count(unaActividadIndex) < 1 Then
+		gActividades_Tareas_firstIndex( unaActividadIndex) = unaTareaIndex
+	End If
+	gActividades_Tareas_count(unaActividadIndex) = gActividades_Tareas_count(unaActividadIndex) + 1
+
+	gTareas_actividadIndex( unaTareaIndex) 			 		= unaActividadIndex
+	gTareas_codigos( unaTareaIndex) 		   				= theCodigoTarea
+	gTareas_nombres( unaTareaIndex) 		   				= theNombre
+	gTareas_descripciones( unaTareaIndex) 					= theDescripcion
+	gTareas_Entradas_firstIndex( unaTareaIndex) 			= -1
+	gTareas_Entradas_count( unaTareaIndex) 					= 0
+	gTareas_Salidas_firstIndex( unaTareaIndex) 	   			= -1
+	gTareas_Salidas_count( unaTareaIndex) 		   			= 0
+	gTareas_UsosTecnicas_firstIndex( unaTareaIndex)    		= -1
+	gTareas_UsosTecnicas_count( unaTareaIndex) 				= 0
+	gTareas_UsosPracticas_firstIndex( unaTareaIndex) 		= -1
+	gTareas_UsosPracticas_count( unaTareaIndex) 			= 0
+	gTareas_UsosParticipantes_firstIndex( unaTareaIndex) 	= -1
+	gTareas_UsosParticipantes_count( unaTareaIndex) 		= 0
+
+	If cTraceTarea Then
+		Print
+		Print "+++TAREA [" & unaTareaIndex & "] " & theNombre	& "[" & unaTareaIndex & "]" & " ->" & theCodigoProceso & "<-->" & theCodigoActividad 
+		Print theDescripcion
+	End If
+
+	fRegisterTarea = unaTareaIndex
+End Function
+
+
+
+
+
+Function fCodigoTareaPorIndex( theIndex As Integer) As String
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If theIndex < 0 Or theIndex >= gNumTareas Then 
+		fCodigoTareaPorIndex = "?"
+		Exit Function
+	End If
+
+	fCodigoTareaPorIndex = gTareas_codigos( theIndex)									  	
+End Function
+
+
+
+
+
+Sub pDumpTareas
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpTarea Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "TAREAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumTareas - 1
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( anIndex))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( anIndex)))
+		unCodigo = gTareas_codigos( anIndex)
+		unNombre = gTareas_nombres( anIndex)
+		unaDescripcion = gTareas_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "TAREA [" & anIndex & "] " & unCodigoProceso & " " & unCodigoActividad & " " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' PRODUCTOS
+'
+'---------------------------------------------------
+
+
+
+
+Function fProductoIndexPorNombre( theNombre As String) As Integer
+  	Dim anIndex 			As Integer
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+	Dim unNombreUpper		As String
+
+	If Len( theNombre) < 1 Then 
+		fProductoIndexPorNombre = -1
+		Exit Function
+	End If
+
+	unNombreUpper = UCASE( theNombre)
+											  	
+	For anIndex = 0 To gNumProductos - 1
+		unNombre = gProductos_nombres( anIndex)
+		If UCASE( unNombre) = unNombreUpper Then
+			fProductoIndexPorNombre = anIndex
+			Exit Function
+		End If
+	Next anIndex
+		
+	fProductoIndexPorNombre = -1
+End Function
+
+
+
+
+
+
+
+Function fFindOrRegisterProducto ( theNombreProducto As String) As Integer
+	Dim unProductoIndex	As Integer
+
+	unProductoIndex = fProductoIndexPorNombre( theNombreProducto) 
+	If unProductoIndex >= 0 Then
+		fFindOrRegisterProducto = unProductoIndex
+		Exit Function
+	End If
+
+	unProductoIndex = gNumProductos
+	gNumProductos = gNumProductos + 1
+
+	gProductos_codigos( unProductoIndex) 				= ""
+	gProductos_nombres( unProductoIndex) 				= theNombreProducto
+	gProductos_descripciones( unProductoIndex) 			= ""
+
+	If cTraceProducto Then
+		Print
+		Print "+++PRODUCTO [" & unProductoIndex & "] " & theNombreProducto	
+	End If
+
+	fFindOrRegisterProducto = unProductoIndex
+End Function
+
+
+
+
+
+
+Sub pDumpProductos
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If Not cDumpProducto Then Exit Sub
+
+	Print
+	Print "-------------------------------------"
+	Print "PRODUCTOS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumProductos - 1
+		unCodigo = gProductos_codigos( anIndex)
+		unNombre = gProductos_nombres( anIndex)
+		unaDescripcion = gProductos_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "PRODUCTO [" & anIndex & "] " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' ENTRADAS 
+'
+'---------------------------------------------------
+
+
+Function fRegisterEntrada( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String, theTareaIndex As Integer, theEntradaLine As String) As Integer
+ 	Dim  unaEntradaIndex				As Integer
+	Dim  unNombreProducto				As String
+	Dim  unIndexProducto				As String
+	Dim  unCodigoCopletoTareaPreliminar	As String
+ 	Dim  unParenthesisIndex				As Integer
+ 	Dim  otroParentesisIndex				As Integer
+
+
+	If theTareaIndex < 0 Then Exit Function
+ 	
+	unaEntradaLineLen = Len( theEntradaLine)
+	If unaEntradaLineLen < 1 Then Exit Function
+
+
+	unParenthesisIndex = Instr( 1,  theEntradaLine, "(")
+	If unParenthesisIndex < 1 Then
+		unNombreProducto = Trim( theEntradaLine)
+		unIndexProducto = fFindOrRegisterProducto( unNombreProducto)
+		unCodigoCopletoTareaPreliminar = ""
+	Else
+		unNombreProducto = Trim( Left(theEntradaLine, unParenthesisIndex - 1))
+		otroParentesisIndex = Instr( unParenthesisIndex + 1,  theEntradaLine, ")")
+		If otroParentesisIndex > 0 Then
+			unCodigoCopletoTareaPreliminar = Mid( theEntradaLine, unParenthesisIndex + 1, otroParentesisIndex - unParenthesisIndex - 1) 	
+		Else
+			unCodigoCopletoTareaPreliminar = ""
+		End If
+
+		unIndexProducto = fFindOrRegisterProducto( unNombreProducto)
+	End If
+
+
+	unaEntradaIndex = gNumEntradas
+	gNumEntradas = gNumEntradas + 1
+
+	If gTareas_Entradas_count(theTareaIndex) < 1 Then
+		gTareas_Entradas_firstIndex( theTareaIndex) = unaEntradaIndex
+	End If
+	gTareas_Entradas_count(theTareaIndex) = gTareas_Entradas_count(theTareaIndex) + 1
+
+	gEntradas_tareaIndex( unaEntradaIndex) 				= theTareaIndex
+	gEntradas_codigos( unaEntradaIndex) 				= ""
+	gEntradas_nombres( unaEntradaIndex) 				= unNombreProducto
+	gEntradas_descripciones( unaEntradaIndex) 			= ""
+	gEntradas_productoIndex( unaEntradaIndex) 			= unIndexProducto
+	gEntradas_codigoTareaPreliminar( unaEntradaIndex) 	= unCodigoCopletoTareaPreliminar
+
+   	If cTraceEntrada Then
+		Print
+		Print "+++ENTRADA [" & unaEntradaIndex & "] : " &  unNombreProducto	& " [" & unIndexProducto & "] in (" & _
+			gProcesos_codigos( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex))) & " " & _
+			gActividades_codigos( gTareas_actividadIndex( theTareaIndex))  & "." & _
+			gTareas_codigos( theTareaIndex) & ") " & gTareas_nombres( theTareaIndex) & " [" & theTareaIndex & "]"
+	End If
+
+
+	fRegisterEntrada = unaEntradaIndex
+End Function
+
+
+
+
+
+Sub pDumpEntradas
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 			As String
+	Dim unCodigoTarea 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpEntrada Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "ENTRADAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumEntradas - 1
+		unCodigoTarea = fCodigoTareaPorIndex( gEntradas_tareaIndex( anIndex))
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( gEntradas_tareaIndex( anIndex)))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( gEntradas_tareaIndex( anIndex))))
+		unNombreProducto = gProductos_nombres( gEntradas_productoIndex( anIndex))
+		unCodigo = gEntradas_codigos( anIndex)
+		unNombre = gEntradas_nombres( anIndex)
+		unaDescripcion = gEntradas_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "ENTRADA [" & anIndex & "] Producto " & unNombreProducto & "[" & gEntradas_productoIndex( anIndex) & "]" & " -> " & unCodigoProceso & " " & unCodigoActividad & " " & unCodigoTarea & " " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' SALIDAS
+'
+'---------------------------------------------------
+
+
+Function fRegisterSalida( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String, theTareaIndex As Integer, theSalidaLine As String) As Integer
+ 	Dim  unaSalidaIndex				As Integer
+	Dim  unNombreProducto				As String
+	Dim  unIndexProducto				As String
+	Dim  unCodigoCopletoTareaPreliminar	As String
+ 	Dim  unParenthesisIndex				As Integer
+ 	Dim  otroParentesisIndex				As Integer
+
+
+	If theTareaIndex < 0 Then Exit Function
+ 	
+	unaSalidaLineLen = Len( theSalidaLine)
+	If unaSalidaLineLen < 1 Then Exit Function
+
+
+	unParenthesisIndex = Instr( 1,  theSalidaLine, "(")
+	If unParenthesisIndex < 1 Then
+		unNombreProducto = Trim( theSalidaLine)
+		unIndexProducto = fFindOrRegisterProducto( unNombreProducto)
+		unCodigoCopletoTareaPreliminar = ""
+	Else
+		unNombreProducto = Trim( Left(theSalidaLine, unParenthesisIndex - 1))
+		otroParentesisIndex = Instr( unParenthesisIndex + 1,  theSalidaLine, ")")
+		If otroParentesisIndex > 0 Then
+			unCodigoCopletoTareaPreliminar = Mid( theSalidaLine, unParenthesisIndex + 1, otroParentesisIndex - unParenthesisIndex - 1) 	
+		Else
+			unCodigoCopletoTareaPreliminar = ""
+		End If
+
+		unIndexProducto = fFindOrRegisterProducto( unNombreProducto)
+	End If
+
+
+	unaSalidaIndex = gNumSalidas
+	gNumSalidas = gNumSalidas + 1
+
+	If gTareas_Salidas_count(theTareaIndex) < 1 Then
+		gTareas_Salidas_firstIndex( theTareaIndex) = unaSalidaIndex
+	End If
+	gTareas_Salidas_count(theTareaIndex) = gTareas_Salidas_count(theTareaIndex) + 1
+
+
+	gSalidas_tareaIndex( unaSalidaIndex) 			= theTareaIndex
+	gSalidas_codigos( unaSalidaIndex) 				= ""
+	gSalidas_nombres( unaSalidaIndex) 				= unNombreProducto
+	gSalidas_descripciones( unaSalidaIndex) 		= ""
+	gSalidas_productoIndex( unaSalidaIndex) 		= unIndexProducto
+	gSalidas_codigoTareaPreliminar( unaSalidaIndex) = unCodigoCopletoTareaPreliminar
+
+   	If cTraceSalida Then
+		Print
+		Print "+++SALIDA [" & unaSalidaIndex & "] : " &  unNombreProducto	& " [" & unIndexProducto & "] in (" & _
+			gProcesos_codigos( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex))) & " " & _
+			gActividades_codigos( gTareas_actividadIndex( theTareaIndex))  & "." & _
+			gTareas_codigos( theTareaIndex) & ") " & gTareas_nombres( theTareaIndex) & " [" & theTareaIndex & "]"
+	End If
+
+
+	fRegisterSalida = unaSalidaIndex
+End Function
+
+
+
+
+
+Sub pDumpSalidas
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 			As String
+	Dim unCodigoTarea 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpSalida Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "SALIDAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumSalidas - 1
+		unCodigoTarea = fCodigoTareaPorIndex( gSalidas_tareaIndex( anIndex))
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( gSalidas_tareaIndex( anIndex)))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( gSalidas_tareaIndex( anIndex))))
+		unCodigo = gSalidas_codigos( anIndex)
+		unNombre = gSalidas_nombres( anIndex)
+		unaDescripcion = gSalidas_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "SALIDA [" & anIndex & "] " & unCodigoProceso & " " & unCodigoActividad & " " & unCodigoTarea & " " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' TECNICAS
+'
+'---------------------------------------------------
+
+
+
+
+Function fTecnicaIndexPorNombre( theNombre As String) As Integer
+  	Dim anIndex 			As Integer
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+	Dim unNombreUpper		As String
+
+	If Len( theNombre) < 1 Then 
+		fTecnicaIndexPorNombre = -1
+		Exit Function
+	End If
+
+	unNombreUpper = UCASE( theNombre)
+											  	
+	For anIndex = 0 To gNumTecnicas - 1
+		unNombre = gTecnicas_nombres( anIndex)
+		If UCASE( unNombre) = unNombreUpper Then
+			fTecnicaIndexPorNombre = anIndex
+			Exit Function
+		End If
+	Next anIndex
+		
+	fTecnicaIndexPorNombre = -1
+End Function
+
+
+
+
+
+
+
+Function fFindOrRegisterTecnica ( theNombreTecnica As String) As Integer
+	Dim unTecnicaIndex	As Integer
+
+	unTecnicaIndex = fTecnicaIndexPorNombre( theNombreTecnica) 
+	If unTecnicaIndex >= 0 Then
+		fFindOrRegisterTecnica = unTecnicaIndex
+		Exit Function
+	End If
+
+	unTecnicaIndex = gNumTecnicas
+	gNumTecnicas = gNumTecnicas + 1
+
+	gTecnicas_codigos( unTecnicaIndex) 				= ""
+	gTecnicas_nombres( unTecnicaIndex) 				= theNombreTecnica
+	gTecnicas_descripciones( unTecnicaIndex) 			= ""
+
+	If cTraceTecnica Then
+		Print
+		Print "+++TECNICA [" & unTecnicaIndex & "] " & theNombreTecnica	
+	End If
+
+	fFindOrRegisterTecnica = unTecnicaIndex
+End Function
+
+
+
+
+
+
+Sub pDumpTecnicas
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If Not cDumpTecnica Then Exit Sub
+
+	Print
+	Print "-------------------------------------"
+	Print "TECNICAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumTecnicas - 1
+		unCodigo = gTecnicas_codigos( anIndex)
+		unNombre = gTecnicas_nombres( anIndex)
+		unaDescripcion = gTecnicas_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "TECNICA [" & anIndex & "] " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' USOS TECNICA
+'
+'---------------------------------------------------
+
+
+Function fRegisterUsoTecnica( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String, theTareaIndex As Integer, theTecnicaLine As String) As Integer
+	Dim  unNombreTecnica				As String
+	Dim  unIndexTecnica					As Integer
+	Dim  unUsoTecnicaIndex				As Integer
+
+
+	If theTareaIndex < 0 Then Exit Function
+
+	unNombreTecnica = Trim( theTecnicaLine)
+	If Len( unNombreTecnica) < 1 Then Exit Function
+	
+	unIndexTecnica = fFindOrRegisterTecnica( unNombreTecnica)
+
+	unUsoTecnicaIndex = gNumUsosTecnicas
+	gNumUsosTecnicas = gNumUsosTecnicas + 1
+
+	If gTareas_UsosTecnicas_count(theTareaIndex) < 1 Then
+		gTareas_UsosTecnicas_firstIndex( theTareaIndex) = unUsoTecnicaIndex
+	End If
+	gTareas_UsosTecnicas_count(theTareaIndex) = gTareas_UsosTecnicas_count(theTareaIndex) + 1
+
+	
+	gUsosTecnicas_tareaIndex( unUsoTecnicaIndex) 	= theTareaIndex
+	gUsosTecnicas_tecnicaIndex( unUsoTecnicaIndex) 	= unIndexTecnica
+
+   	If cTraceUsoTecnica Then
+		Print
+		Print "+++USOTECNICA [" & unUsoTecnicaIndex & "] : " &  unNombreTecnica	& " [" & unIndexTecnica & "] in (" & _
+			gProcesos_codigos( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex))) & " " & _
+			gActividades_codigos( gTareas_actividadIndex( theTareaIndex))  & "." & _
+			gTareas_codigos( theTareaIndex) & ") " & gTareas_nombres( theTareaIndex) & " [" & theTareaIndex & "]"
+	End If
+
+
+	fRegisterUsoTecnica = unUsoTecnicaIndex
+End Function
+
+
+
+
+
+Sub pDumpUsosTecnicas
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 			As String
+	Dim unCodigoTarea 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpUsoTecnica Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "USOSTECNICAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumUsosTecnicas - 1
+		unCodigoTarea = fCodigoTareaPorIndex( gUsosTecnicas_tareaIndex( anIndex))
+		unNombreTecnica = gTecnicas_nombres( gUsosTecnicas_tecnicaIndex( anIndex))
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( gUsosTecnicas_tareaIndex( anIndex)))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( gUsosTecnicas_tareaIndex( anIndex))))
+		Print "-------------------------------------"
+		Print "USOTECNICA [" & anIndex & "] " & unNombreTecnica & "[" & gUsosTecnicas_tecnicaIndex( anIndex) & "] " & unCodigoProceso & " " & unCodigoActividad & " " & unCodigoTarea
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' PRACTICAS
+'
+'---------------------------------------------------
+
+
+
+Function fPracticaIndexPorNombre( theNombre As String) As Integer
+  	Dim anIndex 			As Integer
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+	Dim unNombreUpper		As String
+
+	If Len( theNombre) < 1 Then 
+		fPracticaIndexPorNombre = -1
+		Exit Function
+	End If
+
+	unNombreUpper = UCASE( theNombre)
+											  	
+	For anIndex = 0 To gNumPracticas - 1
+		unNombre = gPracticas_nombres( anIndex)
+		If UCASE( unNombre) = unNombreUpper Then
+			fPracticaIndexPorNombre = anIndex
+			Exit Function
+		End If
+	Next anIndex
+		
+	fPracticaIndexPorNombre = -1
+End Function
+
+
+
+
+
+
+
+Function fFindOrRegisterPractica ( theNombrePractica As String) As Integer
+	Dim unPracticaIndex	As Integer
+
+	unPracticaIndex = fPracticaIndexPorNombre( theNombrePractica) 
+	If unPracticaIndex >= 0 Then
+		fFindOrRegisterPractica = unPracticaIndex
+		Exit Function
+	End If
+
+	unPracticaIndex = gNumPracticas
+	gNumPracticas = gNumPracticas + 1
+
+	gPracticas_codigos( unPracticaIndex) 				= ""
+	gPracticas_nombres( unPracticaIndex) 				= theNombrePractica
+	gPracticas_descripciones( unPracticaIndex) 			= ""
+
+	If cTracePractica Then
+		Print
+		Print "+++PRACTICA [" & unPracticaIndex & "] " & theNombrePractica	
+	End If
+
+	fFindOrRegisterPractica = unPracticaIndex
+End Function
+
+
+
+
+
+
+Sub pDumpPracticas
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If Not cDumpPractica Then Exit Sub
+
+	Print
+	Print "-------------------------------------"
+	Print "PRACTICAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumPracticas - 1
+		unCodigo = gPracticas_codigos( anIndex)
+		unNombre = gPracticas_nombres( anIndex)
+		unaDescripcion = gPracticas_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "PRACTICA [" & anIndex & "] " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' USOS PRACTICA
+'
+'---------------------------------------------------
+
+
+Function fRegisterUsoPractica( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String, theTareaIndex As Integer, thePracticaLine As String) As Integer
+	Dim  unNombrePractica				As String
+	Dim  unIndexPractica				As Integer
+	Dim  unUsoPracticaIndex				As Integer
+	Dim  unCodigoCopletoTareaPreliminar	As String
+ 	Dim  unParenthesisIndex				As Integer
+ 	Dim  otroParentesisIndex				As Integer
+
+
+	If theTareaIndex < 0 Then Exit Function
+
+	unNombrePractica = Trim( thePracticaLine)
+	If Len( unNombrePractica) < 1 Then Exit Function
+	
+	unIndexPractica = fFindOrRegisterPractica( unNombrePractica)
+
+	unUsoPracticaIndex = gNumUsosPracticas
+	gNumUsosPracticas = gNumUsosPracticas + 1
+
+	If gTareas_UsosPracticas_count(theTareaIndex) < 1 Then
+		gTareas_UsosPracticas_firstIndex( theTareaIndex) = unUsoPracticaIndex
+	End If
+	gTareas_UsosPracticas_count(theTareaIndex) = gTareas_UsosPracticas_count(theTareaIndex) + 1
+
+	gUsosPracticas_tareaIndex( unUsoPracticaIndex) 	= theTareaIndex
+	gUsosPracticas_practicaIndex( unUsoPracticaIndex) 	= unIndexPractica
+
+   	If cTraceUsoPractica Then
+		Print
+		Print "+++USOPRACTICA [" & unUsoPracticaIndex & "] : " &  unNombrePractica	& " [" & unIndexPractica & "] in (" & _
+			gProcesos_codigos( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex))) & " " & _
+			gActividades_codigos( gTareas_actividadIndex( theTareaIndex))  & "." & _
+			gTareas_codigos( theTareaIndex) & ") " & gTareas_nombres( theTareaIndex) & " [" & theTareaIndex & "]"
+	End If
+
+
+	fRegisterUsoPractica = unUsoPracticaIndex
+End Function
+
+
+
+
+
+Sub pDumpUsosPracticas
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 			As String
+	Dim unCodigoTarea 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpUsoPractica Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "USOSPRACTICAS"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumUsosPracticas - 1
+		unCodigoTarea = fCodigoTareaPorIndex( gUsosPracticas_tareaIndex( anIndex))
+		unNombrePractica = gPracticas_nombres( gUsosPracticas_practicaIndex( anIndex))
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( gUsosPracticas_tareaIndex( anIndex)))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( gUsosPracticas_tareaIndex( anIndex))))
+		Print "-------------------------------------"
+		Print "USOPRACTICA [" & anIndex & "] " & unNombrePractica & "[" & gUsosPracticas_practicaIndex( anIndex) & "] " & unCodigoProceso & " " & unCodigoActividad & " " & unCodigoTarea 
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' PARTICIPANTES
+'
+'---------------------------------------------------
+
+
+
+
+Function fParticipanteIndexPorNombre( theNombre As String) As Integer
+  	Dim anIndex 			As Integer
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+	Dim unNombreUpper		As String
+
+	If Len( theNombre) < 1 Then 
+		fParticipanteIndexPorNombre = -1
+		Exit Function
+	End If
+
+	unNombreUpper = UCASE( theNombre)
+											  	
+	For anIndex = 0 To gNumParticipantes - 1
+		unNombre = gParticipantes_nombres( anIndex)
+		If UCASE( unNombre) = unNombreUpper Then
+			fParticipanteIndexPorNombre = anIndex
+			Exit Function
+		End If
+	Next anIndex
+		
+	fParticipanteIndexPorNombre = -1
+End Function
+
+
+
+
+
+
+
+Function fFindOrRegisterParticipante ( theNombreParticipante As String) As Integer
+	Dim unParticipanteIndex	As Integer
+
+	unParticipanteIndex = fParticipanteIndexPorNombre( theNombreParticipante) 
+	If unParticipanteIndex >= 0 Then
+		fFindOrRegisterParticipante = unParticipanteIndex
+		Exit Function
+	End If
+
+	unParticipanteIndex = gNumParticipantes
+	gNumParticipantes = gNumParticipantes + 1
+
+	gParticipantes_codigos( unParticipanteIndex) 				= ""
+	gParticipantes_nombres( unParticipanteIndex) 				= theNombreParticipante
+	gParticipantes_descripciones( unParticipanteIndex) 			= ""
+
+	If cTraceParticipante Then
+		Print
+		Print "+++PARTICIPANTE [" & unParticipanteIndex & "] " & theNombreParticipante	
+	End If
+
+	fFindOrRegisterParticipante = unParticipanteIndex
+End Function
+
+
+
+
+
+
+Sub pDumpParticipantes
+  	Dim anIndex As Integer
+	Dim unCodigo As String
+	Dim unNombre As String
+	Dim unaDescripcion As String
+
+	If Not cDumpParticipante Then Exit Sub
+
+	Print
+	Print "-------------------------------------"
+	Print "PARTICIPANTES"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumParticipantes - 1
+		unCodigo = gParticipantes_codigos( anIndex)
+		unNombre = gParticipantes_nombres( anIndex)
+		unaDescripcion = gParticipantes_descripciones( anIndex)
+		Print "-------------------------------------"
+		Print "PARTICIPANTE [" & anIndex & "] " & unCodigo & " " & unNombre
+		If cDumpDescripciones Then
+			Print unaDescripcion
+		End If
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' USOS PARTICIPANTES
+'
+'---------------------------------------------------
+
+
+Function fRegisterUsoParticipante( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String, theTareaIndex As Integer, theParticipanteLine As String) As Integer
+	Dim  unNombreParticipante				As String
+	Dim  unIndexParticipante				As Integer
+	Dim  unUsoParticipanteIndex				As Integer
+	Dim  unCodigoCopletoTareaPreliminar	As String
+ 	Dim  unParenthesisIndex				As Integer
+ 	Dim  otroParentesisIndex				As Integer
+
+
+	If theTareaIndex < 0 Then Exit Function
+
+	unNombreParticipante = Trim( theParticipanteLine)
+	If Len( unNombreParticipante) < 1 Then Exit Function
+	
+	unIndexParticipante = fFindOrRegisterParticipante( unNombreParticipante)
+
+	unUsoParticipanteIndex = gNumUsosParticipantes
+	gNumUsosParticipantes = gNumUsosParticipantes + 1
+
+	If gTareas_UsosParticipantes_count(theTareaIndex) < 1 Then
+		gTareas_UsosParticipantes_firstIndex( theTareaIndex) = unUsoParticipanteIndex
+	End If
+	gTareas_UsosParticipantes_count(theTareaIndex) = gTareas_UsosParticipantes_count(theTareaIndex) + 1
+
+
+	gUsosParticipantes_tareaIndex( unUsoParticipanteIndex) 	= theTareaIndex
+	gUsosParticipantes_participanteIndex( unUsoParticipanteIndex) 	= unIndexParticipante
+
+   	If cTraceUsoParticipante Then
+		Print
+		Print "+++USOPARTICIPANTE [" & unUsoParticipanteIndex & "] : " &  unNombreParticipante	& " [" & unIndexParticipante & "] in (" & _
+			gProcesos_codigos( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex))) & " " & _
+			gActividades_codigos( gTareas_actividadIndex( theTareaIndex))  & "." & _
+			gTareas_codigos( theTareaIndex) & ") " & gTareas_nombres( theTareaIndex) & " [" & theTareaIndex & "]"
+	End If
+
+
+	fRegisterUsoParticipante = unUsoParticipanteIndex
+End Function
+
+
+
+
+
+Sub pDumpUsosParticipantes
+  	Dim anIndex 			As Integer
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 			As String
+	Dim unCodigoTarea 			As String
+	Dim unNombre 			As String
+	Dim unaDescripcion 		As String
+
+	If Not cDumpUsoParticipante Then Exit Sub
+										  	
+	Print
+	Print "-------------------------------------"
+	Print "USOSPARTICIPANTES"
+	Print "-------------------------------------"
+	Print
+
+	For anIndex = 0 To gNumUsosParticipantes - 1
+		unCodigoTarea = fCodigoTareaPorIndex( gUsosParticipantes_tareaIndex( anIndex))
+		unNombreParticipante = gParticipantes_nombres( gUsosParticipantes_participanteIndex( anIndex))
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( gUsosParticipantes_tareaIndex( anIndex)))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( gUsosParticipantes_tareaIndex( anIndex))))
+		Print "-------------------------------------"
+		Print "USOPARTICIPANTE [" & anIndex & "] " & unNombreParticipante & "[" & gUsosParticipantes_participanteIndex( anIndex) & "] " & unCodigoProceso & " " & unCodigoActividad & " " & unCodigoTarea 
+		Print unaDescripcion
+		Print "-------------------------------------"
+		Print	 
+	Next anIndex
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' PARSE FUNCTIONS
+'
+'---------------------------------------------------
+
+
+
+
+Sub pParseProcesoFile( theFileName As String)
+	Dim aName 				As String
+	Dim unCodigo 			As String
+	Dim unNombre 			As String
+	Dim unaLinea			As String
+	Dim someLines			As String
+	Dim aProcesoIndex 		As Integer
+	Dim aSecondSpaceIndex 	As Integer
+	Dim aPrestigiaIndex 	As Integer
+
+	If Len( theFileName) < 1 Then Exit Sub
+	
+	aName = FileParse$(theFileName, 3)
+	If Len( aName) < 1 Then
+		Print "Empty File Name"
+		Exit Sub
+	End If
+
+
+	aProcesoIndex = Instr(1, aName, "PROCESO")
+	If aProcesoIndex < 1  Then 
+		Print "PROCESO expected in fileName"
+		Exit Sub
+	End If
+
+	If Not(Mid(aName, aProcesoIndex + Len( "PROCESO"), 1) = " ")  Then 
+		Print "Space expected after PROCESO in fileName "
+		Exit Sub
+	End If
+
+	aSecondSpaceIndex = Instr( aProcesoIndex + Len( "PROCESO") + 2, aName, " ")
+	If aSecondSpaceIndex < 1  Then 
+		Print "Process Code expected in fileName as word 1"
+		Exit Sub
+	End If
+
+	unCodigo = Mid(aName, aProcesoIndex + Len( "PROCESO") + 1, aSecondSpaceIndex - aProcesoIndex - Len( "PROCESO") - 1)
+	unCodigo = UCASE( unCodigo)
+
+	aPrestigiaIndex = Instr(aSecondSpaceIndex + 1, aName, "PRESTIGIA")
+	If aPrestigiaIndex < 1  Then 
+		Print "PRESTIGIA expected in fileName as word 1"
+		Exit Sub
+	End If
+
+	unNombre = 	Mid(aName, aSecondSpaceIndex + 1, aPrestigiaIndex - aSecondSpaceIndex - 3)
+	
+	If Len( unCodigo) < 1 Or Len( unNombre) < 1 Then 
+		Print "Invalid Codigo or Nombre for Proceso"
+		Exit Sub
+	End If
+
+	Open theFileName For Input Access Read Shared As #1
+
+	If Not EOF( 1) Then Line Input #1, unaLinea
+
+	unNombre = fSkipUpToLineAndReturnRightOfLine("PROCESO " & unCodigo  &":")
+	unNombre = Trim( unNombre)
+	If Len( unNombre) > 0 Then
+		
+		someLines = fGetUpToLine( "Fuente original:") 
+
+	 	Call pRegisterProceso( unCodigo, unNombre, someLines)
+	End If
+
+	Close #1
+End Sub
+
+
+
+
+
+
+
+
+Sub pParseActividadFile( theFileName As String)
+	Dim aName 				As String
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 	As String
+	Dim unNombre 			As String
+	Dim unaLinea			As String
+	Dim someLines			As String
+	Dim aActividadIndex 	As Integer
+	Dim aSecondSpaceIndex 	As Integer
+	Dim aPrestigiaIndex 	As Integer
+
+	If Len( theFileName) < 1 Then Exit Sub
+	
+	If cTraceFileActividad Then
+		Print "Parsing Actividad File " & theFileName
+	End If
+	
+	aName = FileParse$(theFileName, 3)
+	If Len( aName) < 1 Then
+		Print "Empty File Name"
+		Exit Sub
+	End If
+
+
+	aActividadIndex = Instr(1, aName, "Actividad")
+	If aActividadIndex < 1  Then 
+		Print "Actividad expected in fileName"
+		Exit Sub
+	End If
+
+	If Not(Mid(aName, aActividadIndex + Len( "Actividad"), 1) = " ")  Then 
+		Print "Space expected after Actividad in fileName "
+		Exit Sub
+	End If
+
+	aSecondSpaceIndex = Instr( aActividadIndex + Len( "Actividad") + 2, aName, " ")
+	If aSecondSpaceIndex < 1  Then 
+		Print "Process Code expected in fileName as word 1"
+		Exit Sub
+	End If
+
+	unCodigoProceso = Mid(aName, aActividadIndex + Len( "Actividad") + 1, aSecondSpaceIndex - aActividadIndex - Len( "Actividad") - 1)
+	unCodigoProceso = UCASE( unCodigoProceso)
+
+	aPrestigiaIndex = Instr(aSecondSpaceIndex + 1, aName, "PRESTIGIA")
+	If aPrestigiaIndex < 1  Then 
+		Print "PRESTIGIA expected in fileName as word 1"
+		Exit Sub
+	End If
+
+	unCodigoActividad =  Mid(aName, aSecondSpaceIndex + 1, aPrestigiaIndex - aSecondSpaceIndex - 3)
+
+	
+	If Len( unCodigoProceso) < 1 Or Len( unCodigoActividad) < 1 Then 
+		Print "Invalid Codigo or Nombre for Actividad"
+		Exit Sub
+	End If
+
+	Open theFileName For Input Access Read Shared As #1
+
+	If Not EOF( 1) Then Line Input #1, unaLinea
+
+	If fSkipUpToLine("Actividad " & unCodigoProceso  & " " & unCodigoActividad) Then
+
+		unNombre = fGetLine()
+		unNombre = Trim( unNombre)
+
+		someLines = fGetUpToLine( "anterior") 
+		If Len( unNombre) > 0 Then
+			Call pRegisterActividad( unCodigoProceso, unCodigoActividad, unNombre, someLines)
+		End If
+	End If
+
+	Close #1
+End Sub
+
+
+
+
+
+Function fTargetStateAfterESTPP ( theLine As String) As String
+	If fLineStartsWith( theLine, "Técnicas") Then
+		fTargetStateAfterESTPP = "Get Tecnicas"					
+	Else
+	If fLineStartsWith( theLine, "Prácticas") Then
+		fTargetStateAfterESTPP = "Get Practicas"					
+	Else
+	If fLineStartsWith( theLine, "Participantes") Then
+		fTargetStateAfterESTPP = "Get Participantes"					
+	Else
+
+	End If
+	End If
+	End If
+End Function
+
+
+
+
+
+ 
+Sub pParseTareaDetails( theCodigoProceso As String, theCodigoActividad As String, theCodigoTarea As String, theNombre As String, theDescripcion As String, theTareaIndex As Integer)
+	Dim aLine 					As String
+	Dim aState 					As String
+	Dim aNewState				As String
+	Dim anIndexEntrada			As Integer
+	Dim anIndexSalida			As Integer
+	Dim anIndexUsoTecnica 		As Integer
+	Dim anIndexUsoPractica 		As Integer
+	Dim anIndexUsoParticipante 	As Integer
+
+	If theTareaIndex < 0 Then Exit Sub
+
+	aState = "Expect De Entrada"
+
+	While Not EOF( 1)
+		aLine = fGetLine()
+		If Len( trim( aLine)) > 0 Then
+
+			If aState = "Expect De Entrada" Then
+				If fLineStartsWith( aLine, "De entrada") Then
+					aState = "Get Entrada Expect De salida"	
+				End If
+			Else
+
+
+			If aState = "Get Entrada Expect De salida" Then
+				If fLineStartsWith( aLine, "De salida") Then
+					aState = "Get Salida Expect Tecnicas"
+				Else
+					anIndexEntrada =  fRegisterEntrada( theCodigoProceso , theCodigoActividad , theCodigoTarea , theNombre , theDescripcion , theTareaIndex, aLine)					
+				End If
+			Else
+
+			If aState = "Get Salida Expect Tecnicas" Then
+				aNewState = fTargetStateAfterESTPP( aLine)
+				If Len( aNewState) > 0 Then
+					aState = aNewState					
+				Else
+					anIndexSalida =  fRegisterSalida( theCodigoProceso , theCodigoActividad , theCodigoTarea , theNombre , theDescripcion , theTareaIndex, aLine)					
+				End If
+			Else
+
+			If aState = "Get Tecnicas" Then
+				aNewState = fTargetStateAfterESTPP( aLine)
+				If Len( aNewState) > 0 Then
+					aState = aNewState					
+				Else
+					anIndexUsoTecnica = fRegisterUsoTecnica( theCodigoProceso , theCodigoActividad , theCodigoTarea , theNombre , theDescripcion , theTareaIndex, aLine)
+					
+				End If
+			Else
+
+			If aState = "Get Practicas" Then
+				aNewState = fTargetStateAfterESTPP( aLine)
+				If Len( aNewState) > 0 Then
+					aState = aNewState					
+				Else
+					anIndexUsoPractica = fRegisterUsoPractica( theCodigoProceso , theCodigoActividad , theCodigoTarea , theNombre , theDescripcion , theTareaIndex, aLine)
+					
+				End If
+			Else
+
+
+			If aState = "Get Participantes" Then
+				If fLineStartsWith( aLine, "anterior") Then
+					Exit Sub					
+				Else
+					aNewState = fTargetStateAfterESTPP( aLine)
+					If Len( aNewState) > 0 Then
+						aState = aNewState					
+					Else
+						anIndexUsoParticipante = fRegisterUsoParticipante( theCodigoProceso , theCodigoActividad , theCodigoTarea , theNombre , theDescripcion , theTareaIndex, aLine)
+					End If
+				End If
+			Else
+				Print "!!!!!"
+				Print "!!!!!"
+				Print "UNKNOWN STATE"
+				Print "!!!!!"
+				Print "!!!!!"
+
+			End If
+			End If
+			End If
+			End If
+			End If
+			End If
+		End If
+	Wend
+	
+
+End Sub
+
+
+
+
+
+Sub pParseTareaFile( theFileName As String)
+	Dim aName 					As String
+	Dim unCodigoProceso 		As String
+	Dim unCodigoActividadYTarea As String
+	Dim unCodigoActividad 		As String
+	Dim unCodigoTarea 			As String
+	Dim unNombre 				As String
+	Dim unaLinea				As String
+	Dim someDescripcionLines	As String
+	Dim aTareaIndex 			As Integer
+	Dim aSecondSpaceIndex 		As Integer
+	Dim aPrestigiaIndex 		As Integer
+	Dim unHypenIndex			As Integer
+	
+
+
+	If Len( theFileName) < 1 Then Exit Sub
+	
+	aName = FileParse$(theFileName, 3)
+	If Len( aName) < 1 Then
+		Print "Empty File Name"
+		Exit Sub
+	End If
+
+
+	aTareaIndex = Instr(1, aName, "Tarea")
+	If aTareaIndex < 1  Then 
+		Print "Tarea expected in fileName"
+		Exit Sub
+	End If
+
+	If Not(Mid(aName, aTareaIndex + Len( "Tarea"), 1) = " ")  Then 
+		Print "Space expected after Tarea in fileName "
+		Exit Sub
+	End If
+
+	aSecondSpaceIndex = Instr( aTareaIndex + Len( "Tarea") + 2, aName, " ")
+	If aSecondSpaceIndex < 1  Then 
+		Print "Process Code expected in fileName as word 1"
+		Exit Sub
+	End If
+
+	unCodigoProceso = Mid(aName, aTareaIndex + Len( "Tarea") + 1, aSecondSpaceIndex - aTareaIndex - Len( "Tarea") - 1)
+	unCodigoProceso = UCASE( unCodigoProceso)
+
+	aPrestigiaIndex = Instr(aSecondSpaceIndex + 1, aName, "PRESTIGIA")
+	If aPrestigiaIndex < 1  Then 
+		Print "PRESTIGIA expected in fileName as word 1"
+		Exit Sub
+	End If
+
+	unCodigoActividadYTarea =  Mid(aName, aSecondSpaceIndex + 1, aPrestigiaIndex - aSecondSpaceIndex - 3)
+	unHypenIndex = 	Instr(1, unCodigoActividadYTarea, "_")
+	
+	If unHypenIndex < 1 Then 
+		Print "Invalid Codigo for Tarea"
+		Exit Sub
+	End If
+	unCodigoActividad = Left( unCodigoActividadYTarea, unHypenIndex - 1)
+	unCodigoTarea = Right( unCodigoActividadYTarea, Len(unCodigoActividadYTarea) - unHypenIndex)
+	
+
+	If Len( unCodigoProceso) < 1 Or Len( unCodigoActividad) < 1 Or Len( unCodigoTarea) < 1Then 
+		Print "Invalid Codigo or Nombre for Tarea"
+		Exit Sub
+	End If
+
+	Open theFileName For Input Access Read Shared As #1
+
+	If Not EOF( 1) Then Line Input #1, unaLinea
+
+	If fSkipUpToLine("Tarea " & unCodigoProceso  & " " & unCodigoActividad & "." & unCodigoTarea) Then
+
+		unNombre = fGetLine()
+		unNombre = Trim( unNombre)
+
+		If Len( unNombre) > 0 Then
+
+			someDescripcionLines = fGetUpToLine( "Productos") 
+			If Len( someDescripcionLines) > 0 Then
+				If cTraceTarea Then
+				End If
+			
+				aTareaIndex = fRegisterTarea( unCodigoProceso, unCodigoActividad, unCodigoTarea, unNombre, someDescripcionLines)
+				If aTareaIndex < 0 Then
+					Print "ERROR Registering Tarea " & aName	& " ->" & unCodigoProceso & "<-->" & unCodigoActividad & "<-->" & unCodigoTarea & "<-->" & unNombre
+				Else
+					Call pParseTareaDetails( unCodigoProceso, unCodigoActividad, unCodigoTarea, unNombre, someDescripcionLines, aTareaIndex)
+				End If
+			End If
+
+		End If
+	End If
+
+	Close #1
+End Sub
+
+	
+	   
+	 
+	 
+	 
+	 
+	   
+
+'---------------------------------------------------
+' FILE LOOP FUNCTIONS
+'
+'---------------------------------------------------
+	   	  
+
+
+Sub pParseProcesos
+	Dim aCurDir As String
+	Dim aDir As String
+	Dim aFileName As String
+
+
+	aCurDir = CurDir()
+	aDir = gInputBasePath & gProcesosFolder
+	Print "Scanning Procesos in Dir: " & aDir
+	ChDir(aDir)
+	aFileName = Dir$ ("*.txt")
+
+	While Len( aFileName) > 0
+		
+		Call pParseProcesoFile( aFileName)
+		aFileName = Dir$()
+	Wend
+
+	ChDir( aCurDir)
+
+End Sub
+
+
+
+
+Function fCodigoProcesoYActividadDeFileName( theFileName As String)	As String
+	Dim aName 				As String
+	Dim unCodigoProceso 	As String
+	Dim unCodigoActividad 	As String
+	Dim unNombre 			As String
+	Dim unaLinea			As String
+	Dim someLines			As String
+	Dim aActividadIndex 	As Integer
+	Dim aSecondSpaceIndex 	As Integer
+	Dim aPrestigiaIndex 	As Integer
+	Dim aResult				As String
+
+	If Len( theFileName) < 1 Then Exit Function
+	
+	aName = FileParse$(theFileName, 3)
+	If Len( aName) < 1 Then	Exit Function
+
+	aActividadIndex = Instr(1, aName, "Actividad")
+	If aActividadIndex < 1  Then Exit Function
+
+	If Not(Mid(aName, aActividadIndex + Len( "Actividad"), 1) = " ")  Then Exit Function
+
+	aSecondSpaceIndex = Instr( aActividadIndex + Len( "Actividad") + 2, aName, " ")
+	If aSecondSpaceIndex < 1  Then Exit Function
+
+	unCodigoProceso = Mid(aName, aActividadIndex + Len( "Actividad") + 1, aSecondSpaceIndex - aActividadIndex - Len( "Actividad") - 1)
+	unCodigoProceso = UCASE( unCodigoProceso)
+
+	aPrestigiaIndex = Instr(aSecondSpaceIndex + 1, aName, "PRESTIGIA")
+	If aPrestigiaIndex < 1  Then Exit Function
+
+	unCodigoActividad =  Mid(aName, aSecondSpaceIndex + 1, aPrestigiaIndex - aSecondSpaceIndex - 3)
+
+	If Len( unCodigoProceso) < 1 Or Len( unCodigoActividad) < 1 Then Exit Function
+
+	unCodigoActividad2Char = Right( "00" & unCodigoActividad, 2)
+
+	aResult = unCodigoProceso & " " & unCodigoActividad2Char
+
+	fCodigoProcesoYActividadDeFileName = aResult
+End Function
+
+
+
+
+
+Private Sub pSortFileNames( theFileNames() As String, theSortedFileNames() As String)
+	Dim vNumFileNames 		As Integer
+	Dim vIndex		 		As Integer
+	Dim vIndex2		 		As Integer
+	Dim vLastCode			As String
+	Dim vCode				As String
+	Dim vMinCode			As String
+	Dim vFileName	  		As String
+	Dim vMinFileName		As String
+
+	If ArrayDims( theFileNames) < 1 Then Exit Sub
+
+	vNumFileNames = UBound(theFileNames) + 1
+
+	vLastCode = ""
+	For vIndex = 0 To vNumFileNames	- 1
+		vMinCode = ""
+		For vIndex2 = 0 To vNumFileNames - 1
+			vFileName = theFileNames( vIndex2)
+			vCode = fCodigoProcesoYActividadDeFileName( vFileName) 
+			If (vCode > vLastCode) Then
+				If Len( vMinCode) < 1 Then
+					vMinCode = vCode
+					vMinFileName = vFileName
+		   		Else
+					If vCode < vMinCode  Then
+						vMinCode = vCode
+						vMinFileName = vFileName
+					End If
+				End If
+			End If
+		Next vIndex2 
+		theSortedFileNames( vIndex) = vMinFileName
+		vLastCode = vMinCode
+	Next vIndex 
+End Sub
+
+
+	
+
+
+Sub pParseActividades
+	Dim aCurDir As String
+	Dim aDir As String
+	Dim aFileName As String
+	Dim someFileNames() As String
+	Dim someSortedFileNames() As String
+
+	aCurDir = CurDir()
+	aDir = gInputBasePath & gActividadesFolder
+	Print "Scanning Actividades in Dir: " & aDir
+	ChDir(aDir)
+	aFileSpec = "*.txt"
+
+	FileList someFileNames, aFileSpec 
+
+	If ArrayDims(someFileNames) < 1 Then Exit Sub
+
+	aNumFileNames = UBound( someFileNames) + 1
+	If aNumFileNames < 1 Then Exit Sub
+
+	ReDim someSortedFileNames( aNumFileNames)
+
+	Call pSortFileNames( someFileNames, someSortedFileNames)
+
+	For unIndex = 0 To aNumFileNames -1
+		aFileName = someSortedFileNames( unIndex)
+		Call pParseActividadFile( aFileName)
+	Next unIndex
+	ChDir( aCurDir)
+
+End Sub
+
+		 
+
+
+
+Sub pParseActividadesUnsorted
+	Dim aCurDir As String
+	Dim aDir As String
+	Dim aFileName As String
+
+
+	aCurDir = CurDir()
+	aDir = gInputBasePath & gActividadesFolder
+	Print "Scanning Actividades in Dir: " & aDir
+	ChDir(aDir)
+	aFileName = Dir$ ("*.txt")
+
+	While Len( aFileName) > 0
+		
+		Call pParseActividadFile( aFileName)
+		aFileName = Dir$()
+	Wend
+
+	ChDir( aCurDir)
+
+End Sub
+
+
+Sub pParseTareas
+	Dim aCurDir As String
+	Dim aDir As String
+	Dim aFileName As String
+
+
+	aCurDir = CurDir()
+	aDir = gInputBasePath & gTareasFolder
+	Print "Scanning Tareas in Dir: " & aDir
+	ChDir(aDir)
+	aFileName = Dir$ ("*.txt")
+
+	While Len( aFileName) > 0
+		
+		Call pParseTareaFile( aFileName)
+		aFileName = Dir$()
+	Wend
+
+	ChDir( aCurDir)
+
+End Sub
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' AUXILIARY GEN XMI FUNCTIONS
+'
+'---------------------------------------------------
+
+
+
+
+
+
+Function fRefsUsosParticipantes( theIndexParticipante As Integer) As String
+  	Dim anIndexTarea 					As Integer
+	Dim unNumUsosParticipante 			As Integer
+	Dim unFirstIndexUsoParticipante 	As Integer
+	Dim unLastIndexUsoParticipante 		As Integer
+	Dim unIndexUsoParticipante 			As Integer
+	Dim unResult 						As String
+	Dim unStringParticipacion 			As String
+
+	If theIndexParticipante < 0 Or theIndexParticipante >= gNumParticipantes Then Exit Function
+										  	
+	unResult = ""
+
+	For anIndexTarea = 0 To gNumTareas - 1
+		unNumUsosParticipante = gTareas_UsosParticipantes_count( anIndexTarea)
+		unFirstIndexUsoParticipante = gTareas_UsosParticipantes_firstIndex( anIndexTarea)
+		unLastIndexUsoParticipante = unFirstIndexUsoParticipante + unNumUsosParticipante - 1
+		
+		For unIndexUsoParticipante = unFirstIndexUsoParticipante To unLastIndexUsoParticipante  
+			anIndexParticipante = gUsosParticipantes_participanteIndex( unIndexUsoParticipante)
+			If anIndexParticipante = theIndexParticipante Then
+				unIndexTareaInActivity = fIndexTareaEnActividad( anIndexTarea)
+				unIndexActivityInProcess =  fIndexActividadEnProceso( gTareas_actividadIndex( anIndexTarea))
+				unIndexProcessInMethodology = gActividades_procesoIndex( gTareas_actividadIndex( anIndexTarea))
+				If unIndexTareaInActivity >= 0 And  unIndexActivityInProcess >= 0 And unIndexProcessInMethodology >= 0 Then
+					unStringParticipacion = "//@metodologias.0/@procesos/@procesos." & unIndexProcessInMethodology & _
+						"/@actividades." & unIndexActivityInProcess & "/@tareas." & unIndexTareaInActivity & "/@participaciones." & unIndexUsoParticipante - unFirstIndexUsoParticipante
+					If Len( unResult) < 1 Then
+						unResult = unStringParticipacion
+					Else
+						unResult = unResult & " " & unStringParticipacion
+					End If	
+				End If
+			 End If
+		Next unIndexUsoParticipante
+
+	Next anIndexTarea
+
+
+	fRefsUsosParticipantes = unResult
+End Function
+
+
+
+
+Function fRefsUsosTecnicas( theIndexTecnica As Integer) As String
+  	Dim anIndexTarea 					As Integer
+	Dim unNumUsosTecnica 			As Integer
+	Dim unFirstIndexUsoTecnica 	As Integer
+	Dim unLastIndexUsoTecnica 		As Integer
+	Dim unIndexUsoTecnica 			As Integer
+	Dim unResult 						As String
+	Dim unStringTecnica 			As String
+
+	If theIndexTecnica < 0 Or theIndexTecnica >= gNumTecnicas Then Exit Function
+										  	
+	unResult = ""
+
+	For anIndexTarea = 0 To gNumTareas - 1
+		unNumUsosTecnica = gTareas_UsosTecnicas_count( anIndexTarea)
+		unFirstIndexUsoTecnica = gTareas_UsosTecnicas_firstIndex( anIndexTarea)
+		unLastIndexUsoTecnica = unFirstIndexUsoTecnica + unNumUsosTecnica - 1
+		
+		For unIndexUsoTecnica = unFirstIndexUsoTecnica To unLastIndexUsoTecnica  
+			anIndexTecnica = gUsosTecnicas_tecnicaIndex( unIndexUsoTecnica)
+			If anIndexTecnica = theIndexTecnica Then
+				unIndexTareaInActivity = fIndexTareaEnActividad( anIndexTarea)
+				unIndexActivityInProcess =  fIndexActividadEnProceso( gTareas_actividadIndex( anIndexTarea))
+				unIndexProcessInMethodology = gActividades_procesoIndex( gTareas_actividadIndex( anIndexTarea))
+				If unIndexTareaInActivity >= 0 And  unIndexActivityInProcess >= 0 And unIndexProcessInMethodology >= 0 Then
+					unStringTecnica = "//@metodologias.0/@procesos/@procesos." & unIndexProcessInMethodology & "/@actividades." & unIndexActivityInProcess & "/@tareas." & unIndexTareaInActivity & "/@usoTecnicas." & unIndexUsoTecnica - unFirstIndexUsoTecnica
+					If Len( unResult) < 1 Then
+						unResult = unStringTecnica
+					Else
+						unResult = unResult & " " & unStringTecnica
+					End If	
+				End If
+			 End If
+		Next unIndexUsoTecnica
+
+	Next anIndexTarea
+
+
+	fRefsUsosTecnicas = unResult
+End Function
+
+
+
+
+
+
+Function fRefsUsosPracticas( theIndexPractica As Integer) As String
+  	Dim anIndexTarea 					As Integer
+	Dim unNumUsosPractica 			As Integer
+	Dim unFirstIndexUsoPractica 	As Integer
+	Dim unLastIndexUsoPractica 		As Integer
+	Dim unIndexUsoPractica 			As Integer
+	Dim unResult 						As String
+	Dim unStringPractica 			As String
+
+	If theIndexPractica < 0 Or theIndexPractica >= gNumPracticas Then Exit Function
+										  	
+	unResult = ""
+
+	For anIndexTarea = 0 To gNumTareas - 1
+		unNumUsosPractica = gTareas_UsosPracticas_count( anIndexTarea)
+		unFirstIndexUsoPractica = gTareas_UsosPracticas_firstIndex( anIndexTarea)
+		unLastIndexUsoPractica = unFirstIndexUsoPractica + unNumUsosPractica - 1
+		
+		For unIndexUsoPractica = unFirstIndexUsoPractica To unLastIndexUsoPractica  
+			anIndexPractica = gUsosPracticas_practicaIndex( unIndexUsoPractica)
+			If anIndexPractica = theIndexPractica Then
+				unIndexTareaInActivity = fIndexTareaEnActividad( anIndexTarea)
+				unIndexActivityInProcess =  fIndexActividadEnProceso( gTareas_actividadIndex( anIndexTarea))
+				unIndexProcessInMethodology = gActividades_procesoIndex( gTareas_actividadIndex( anIndexTarea))
+				If unIndexTareaInActivity >= 0 And  unIndexActivityInProcess >= 0 And unIndexProcessInMethodology >= 0 Then
+					unStringPractica = "//@metodologias.0/@procesos/@procesos." & unIndexProcessInMethodology & "/@actividades." & unIndexActivityInProcess & "/@tareas." & unIndexTareaInActivity & "/@usoPracticas." & unIndexUsoPractica - unFirstIndexUsoPractica
+					If Len( unResult) < 1 Then
+						unResult = unStringPractica
+					Else
+						unResult = unResult & " " & unStringPractica
+					End If	
+				End If
+			 End If
+		Next unIndexUsoPractica
+
+	Next anIndexTarea
+
+
+	fRefsUsosPracticas = unResult
+End Function
+
+
+
+
+
+Function fRefsEntradasYSalidas( theIndexProducto As Integer) As String
+  	Dim anIndexTarea 			As Integer
+	Dim unNumEntradas 			As Integer
+	Dim unFirstIndexEntrada 	As Integer
+	Dim unLastIndexEntrada 		As Integer
+	Dim unIndexEntrada 			As Integer
+	Dim unNumSalidas 			As Integer
+	Dim unFirstIndexSalida 		As Integer
+	Dim unLastIndexSalida 		As Integer
+	Dim unIndexSalida 			As Integer
+	Dim unResult 				As String
+	Dim unStringProducto 		As String
+
+	If theIndexProducto < 0 Or theIndexProducto >= gNumProductos Then Exit Function
+										  	
+	unResult = ""
+
+	For anIndexTarea = 0 To gNumTareas - 1
+
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( anIndexTarea))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( anIndexTarea)))
+		unCodigoTarea = gTareas_codigos( anIndexTarea)
+
+		unNumEntradas = gTareas_Entradas_count( anIndexTarea)
+		unFirstIndexEntrada = gTareas_Entradas_firstIndex( anIndexTarea)
+		unLastIndexEntrada = unFirstIndexEntrada + unNumEntradas - 1
+ 	
+		For unIndexEntrada = unFirstIndexEntrada To unLastIndexEntrada  
+			anIndexProducto = gEntradas_productoIndex( unIndexEntrada)
+			If anIndexProducto = theIndexProducto Then
+				unIndexTareaInActivity = fIndexTareaEnActividad( anIndexTarea)
+				unIndexActivityInProcess =  fIndexActividadEnProceso( gTareas_actividadIndex( anIndexTarea))
+				unIndexProcessInMethodology = gActividades_procesoIndex( gTareas_actividadIndex( anIndexTarea))
+				If unIndexTareaInActivity >= 0 And  unIndexActivityInProcess >= 0 And unIndexProcessInMethodology >= 0 Then
+					unStringProducto = "//@metodologias.0/@procesos/@procesos." & unIndexProcessInMethodology & "/@actividades." & unIndexActivityInProcess & "/@tareas." & unIndexTareaInActivity & "/@flujos." & unIndexEntrada - unFirstIndexEntrada
+					If Len( unResult) < 1 Then
+						unResult = unStringProducto
+					Else
+						unResult = unResult & " " & unStringProducto
+					End If	
+				End If
+			 End If
+		Next unIndexEntrada
+
+
+		unNumSalidas = gTareas_Salidas_count( anIndexTarea)
+		unFirstIndexSalida = gTareas_Salidas_firstIndex( anIndexTarea)
+		unLastIndexSalida = unFirstIndexSalida + unNumSalidas - 1
+		
+		For unIndexSalida = unFirstIndexSalida To unLastIndexSalida  
+			anIndexProducto = gSalidas_productoIndex( unIndexSalida)
+			If anIndexProducto = theIndexProducto Then
+				unIndexTareaInActivity = fIndexTareaEnActividad( anIndexTarea)
+				unIndexActivityInProcess =  fIndexActividadEnProceso( gTareas_actividadIndex( anIndexTarea))
+				unIndexProcessInMethodology = gActividades_procesoIndex( gTareas_actividadIndex( anIndexTarea))
+				If unIndexTareaInActivity >= 0 And  unIndexActivityInProcess >= 0 And unIndexProcessInMethodology >= 0 Then
+					unStringProducto = "//@metodologias.0/@procesos/@procesos." & unIndexProcessInMethodology & "/@actividades." & unIndexActivityInProcess & "/@tareas." & unIndexTareaInActivity & "/@flujos." & unIndexSalida - unFirstIndexSalida + unNumEntradas
+					If Len( unResult) < 1 Then
+						unResult = unStringProducto
+					Else
+						unResult = unResult & " " & unStringProducto
+					End If	
+				End If
+			 End If
+		Next unIndexSalida
+
+	Next anIndexTarea
+
+	fRefsEntradasYSalidas = unResult
+End Function
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' GEN XMI FUNCTIONS
+'
+'---------------------------------------------------
+
+
+Sub pGenXMIDocumentacion( theDocumentacion As String, theIndent As Integer)
+	Const cMaxParrafos 		As Integer = 256
+
+	Dim unaDocumentacion			As String
+	Dim someParrafos( cMaxParrafos) As String
+	Dim aNumParrafos 				As Integer
+	Dim unNumLines 			 		As Integer
+	Dim unIndex		 				As Integer
+	Dim unParrafo					As String
+	Dim unaLinea					As String
+	Dim unHayDocumentacion			As Boolean
+
+
+	unaDocumentacion = Trim( theDocumentacion)
+	If Len( unaDocumentacion) < 1 Then Exit Sub
+
+	unHayDocumentacion = false
+	aNumParrafos = 0
+
+	unParrafo = ""
+	unNumLines = LineCount( unaDocumentacion)
+	For unIndex = 1 To unNumLines
+		unaLinea = Line$( unaDocumentacion, unIndex, unIndex)
+		unaLinea = Trim( unaLinea)
+		If Len( unaLinea) > 0 Then
+			If Len( unParrafo) > 0 Then
+				unParrafo = unParrafo & " " & unaLinea
+			Else
+				unParrafo = unaLinea
+			End If
+			If Right(unaLinea, 1) = "." Then
+				someParrafos( aNumParrafos) = unParrafo
+				aNumParrafos = aNumParrafos + 1
+				unHayDocumentacion = true
+				unParrafo = "" 					
+			End If
+		 End If
+	Next unIndex
+	If Len( unParrafo) > 0 Then
+		someParrafos( aNumParrafos) = unParrafo
+		aNumParrafos = aNumParrafos + 1
+		unHayDocumentacion = true
+	End If
+
+	If Not unHayDocumentacion Then Exit Sub
+
+		  
+  	Print #2, fInd(theIndent) & fQ2q( "<documentacion>")
+
+	For unIndex = 0 To aNumParrafos - 1
+		unParrafo = someParrafos( unIndex)
+	  	Print #2, fInd(theIndent + 1 ) & fQ2q("<parrafos texto='") & f4XML( unParrafo) & fQ2q("'/>")
+	Next unIndex
+	
+  	Print #2, fInd(theIndent) & fQ2q( "</documentacion>")
+
+End Sub
+
+
+
+
+
+Sub pGenXMIEntradas( theTareaIndex As Integer)
+	Dim aFirstEntradaIndex	As Integer
+	Dim aNumEntradas		As Integer
+	Dim aLastEntradaIndex	As Integer
+	Dim anIndex				As Integer
+
+	If theTareaIndex < 0 Then Exit Sub
+	If theTareaIndex >= gNumEntradas Then Exit Sub
+
+	aFirstEntradaIndex = gTareas_Entradas_firstIndex( theTareaIndex)
+	aNumEntradas = gTareas_Entradas_count( theTareaIndex)
+	aLastEntradaIndex = aFirstEntradaIndex + aNumEntradas - 1
+
+	For anIndex = aFirstEntradaIndex To aLastEntradaIndex
+		unCodigo = gEntradas_codigos( anIndex)
+		unNombre = gEntradas_nombres( anIndex)
+		unaDescripcion = gEntradas_descripciones( anIndex)
+ 		unProductoIndex = gEntradas_productoIndex( anIndex)
+
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( theTareaIndex))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex)))
+		unCodigoTarea = gTareas_codigos( theTareaIndex)
+
+
+
+    	Print #2, fInd(6) & fQ2q( _
+"<flujos xsi:type='es.gva.cit.gvmetrica.processmm:Entrada' producto='//@metodologias.0/@productos/@productos." & unProductoIndex & "'/>")
+
+
+	Next anIndex
+End Sub
+
+
+
+
+
+Sub pGenXMISalidas( theTareaIndex As Integer)
+	Dim aFirstSalidaIndex	As Integer
+	Dim aNumSalidas			As Integer
+	Dim aLastSalidaIndex	As Integer
+	Dim anIndex				As Integer
+
+	If theTareaIndex < 0 Then Exit Sub
+	If theTareaIndex >= gNumSalidas Then Exit Sub
+
+	aFirstSalidaIndex = gTareas_Salidas_firstIndex( theTareaIndex)
+	aNumSalidas = gTareas_Salidas_count( theTareaIndex)
+	aLastSalidaIndex = aFirstSalidaIndex + aNumSalidas - 1
+
+	For anIndex = aFirstSalidaIndex To aLastSalidaIndex
+		unCodigo = gSalidas_codigos( anIndex)
+		unNombre = gSalidas_nombres( anIndex)
+		unaDescripcion = gSalidas_descripciones( anIndex)
+ 		unProductoIndex = gSalidas_productoIndex( anIndex)
+
+		unCodigoActividad = fCodigoActividadPorIndex( gTareas_actividadIndex( theTareaIndex))
+		unCodigoProceso = fCodigoProcesoPorIndex( gActividades_procesoIndex( gTareas_actividadIndex( theTareaIndex)))
+		unCodigoTarea = gTareas_codigos( theTareaIndex)
+
+
+    	Print #2, fInd(6) & fQ2q( _
+"<flujos xsi:type='es.gva.cit.gvmetrica.processmm:Salida' producto='//@metodologias.0/@productos/@productos." & unProductoIndex & "'/>")
+
+
+	Next anIndex
+End Sub
+
+
+
+
+Sub pGenXMIUsosTecnicas( theTareaIndex As Integer)
+	Dim aFirstUsoTecnicaIndex	As Integer
+	Dim aNumUsosTecnica			As Integer
+	Dim aLastUsoTecnicaIndex	As Integer
+	Dim anIndex					As Integer
+	Dim aTecnicaIndex			As Integer
+
+	If theTareaIndex < 0 Then Exit Sub
+	If theTareaIndex >= gNumTareas Then Exit Sub
+
+	aFirstUsoTecnicaIndex = gTareas_UsosTecnicas_firstIndex( theTareaIndex)
+	aNumUsosTecnica = gTareas_UsosTecnicas_count( theTareaIndex)
+	aLastUsoTecnicaIndex = aFirstUsoTecnicaIndex + aNumUsosTecnica - 1
+
+	For anIndex = aFirstUsoTecnicaIndex To aLastUsoTecnicaIndex
+		aTecnicaIndex = gUsosTecnicas_tecnicaIndex( anIndex)
+		unNombre = gTecnicas_nombres( aTecnicaIndex)
+		unaDescripcion = gTecnicas_descripciones( aTecnicaIndex)
+
+    	Print #2, fInd(6) & fQ2q( "<usoTecnicas tecnica='//@metodologias.0/@tecnicas/@tecnicas." & aTecnicaIndex & "'/>")
+	Next anIndex
+End Sub
+
+
+
+
+
+
+Sub pGenXMIUsosPracticas( theTareaIndex As Integer)
+	Dim aFirstUsoPracticaIndex	As Integer
+	Dim aNumUsosPractica			As Integer
+	Dim aLastUsoPracticaIndex	As Integer
+	Dim anIndex					As Integer
+	Dim aPracticaIndex			As Integer
+
+	If theTareaIndex < 0 Then Exit Sub
+	If theTareaIndex >= gNumTareas Then Exit Sub
+
+	aFirstUsoPracticaIndex = gTareas_UsosPracticas_firstIndex( theTareaIndex)
+	aNumUsosPractica = gTareas_UsosPracticas_count( theTareaIndex)
+	aLastUsoPracticaIndex = aFirstUsoPracticaIndex + aNumUsosPractica - 1
+
+	For anIndex = aFirstUsoPracticaIndex To aLastUsoPracticaIndex
+		aPracticaIndex = gUsosPracticas_practicaIndex( anIndex)
+		unNombre = gPracticas_nombres( aPracticaIndex)
+		unaDescripcion = gPracticas_descripciones( aPracticaIndex)
+
+    	Print #2, fInd(6) & fQ2q( "<usoPracticas practica='//@metodologias.0/@practicas/@practicas." & aPracticaIndex & "'/>")
+	Next anIndex
+End Sub
+
+
+
+
+
+Sub pGenXMIUsosParticipantes( theTareaIndex As Integer)
+	Dim aFirstUsoParticipanteIndex	As Integer
+	Dim aNumUsosParticipante			As Integer
+	Dim aLastUsoParticipanteIndex	As Integer
+	Dim anIndex					As Integer
+	Dim aParticipanteIndex			As Integer
+
+	If theTareaIndex < 0 Then Exit Sub
+	If theTareaIndex >= gNumTareas Then Exit Sub
+
+	aFirstUsoParticipanteIndex = gTareas_UsosParticipantes_firstIndex( theTareaIndex)
+	aNumUsosParticipante = gTareas_UsosParticipantes_count( theTareaIndex)
+	aLastUsoParticipanteIndex = aFirstUsoParticipanteIndex + aNumUsosParticipante - 1
+
+	For anIndex = aFirstUsoParticipanteIndex To aLastUsoParticipanteIndex
+		aParticipanteIndex = gUsosParticipantes_participanteIndex( anIndex)
+		unNombre = gParticipantes_nombres( aParticipanteIndex)
+		unaDescripcion = gParticipantes_descripciones( aParticipanteIndex)
+
+    	Print #2, fInd(6) & fQ2q( "<participaciones perfilParticipante='//@metodologias.0/@perfilesParticipantes/@perfilesParticipantes." & aParticipanteIndex & "'/>")
+	Next anIndex
+End Sub
+
+
+
+
+Sub pGenXMITareas( theActividadIndex As Integer)
+	Dim aFirstTareaIndex	As Integer
+	Dim aNumTareas			As Integer
+	Dim aLastTareaIndex		As Integer
+	Dim anIndex				As Integer
+	Dim unaDescripcion		As String
+
+	If theActividadIndex < 0 Then Exit Sub
+	If theActividadIndex >= gNumActividades Then Exit Sub
+
+	aFirstTareaIndex = gActividades_Tareas_firstIndex( theActividadIndex)
+	aNumTareas = gActividades_Tareas_count( theActividadIndex)
+	aLastTareaIndex = aFirstTareaIndex + aNumTareas - 1
+
+	For anIndex = aFirstTareaIndex To aLastTareaIndex
+		unCodigo = gTareas_codigos( anIndex)
+		unNombre = gTareas_nombres( anIndex)
+		unaDescripcion = gTareas_descripciones( anIndex)
+ 
+    	Print #2, fInd(5) & fQ2q( "<tareas codigo='" & unCodigo & "' nombre='" & unNombre &  "'>")
+
+		Call pGenXMIDocumentacion( unaDescripcion, 6)
+
+ 		Call pGenXMIEntradas( anIndex)
+ 		Call pGenXMISalidas( anIndex)
+		Call pGenXMIUsosTecnicas( anIndex)
+ 		Call pGenXMIUsosPracticas( anIndex)
+ 		Call pGenXMIUsosParticipantes( anIndex)
+
+		Print #2, fInd(5) & "</tareas>"
+	Next anIndex
+End Sub
+
+
+
+
+
+
+
+
+Sub pGenXMIActividades( theProcesoIndex As Integer)
+	Dim aFirstActividadIndex	As Integer
+	Dim aNumActividades			As Integer
+	Dim aLastActividadIndex		As Integer
+	Dim anIndex					As Integer
+	Dim unaDescripcion		As String
+
+	If theProcesoIndex < 0 Then Exit Sub
+	If theProcesoIndex >= gNumProcesos Then Exit Sub
+
+	aFirstActividadIndex = gProcesos_Actividades_firstIndex( theProcesoIndex)
+	aNumActividades = gProcesos_Actividades_count( theProcesoIndex)
+	aLastActividadIndex = aFirstActividadIndex + aNumActividades - 1
+
+	For anIndex = aFirstActividadIndex To aLastActividadIndex
+		unCodigo = gActividades_codigos( anIndex)
+		unNombre = gActividades_nombres( anIndex)
+		unaDescripcion = gActividades_descripciones( anIndex)
+ 
+    	Print #2, fInd(4) & fQ2q( "<actividades codigo='" & unCodigo & "' nombre='" & unNombre &  "'>")
+
+		Call pGenXMIDocumentacion( unaDescripcion, 5)
+
+		Call pGenXMITareas( anIndex)
+
+		Print #2, fInd(4) & "</actividades>"
+	Next anIndex
+End Sub
+
+
+
+
+
+Sub pGenXMIProcesos
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<procesos>")
+
+
+	For anIndex = 0 To gNumProcesos - 1
+		unCodigo = gProcesos_codigos( anIndex)
+		unNombre = gProcesos_nombres( anIndex)
+		unaDescripcion = gProcesos_descripciones( anIndex)
+ 
+    	Print #2, fInd(3) & fQ2q( "<procesos codigo='" & unCodigo & "' nombre='" & unNombre & "'>")
+
+		Call pGenXMIDocumentacion( unaDescripcion, 4)
+
+		Call pGenXMIActividades( anIndex)
+
+		Print #2, fInd(3) & "</procesos>"
+	Next anIndex
+
+    Print #2, fInd(2) & fQ2q( "</procesos>")
+
+End Sub
+
+
+
+
+Sub pGenXMIProcesosInterfaces( theInterfazIndex As Integer)
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<procesosInterfaces>")
+
+
+	For anIndex = 0 To gNumProcesosInterfaces - 1
+		unCodigo = gProcesosInterfaces_codigos( anIndex)
+		unNombre = gProcesosInterfaces_nombres( anIndex)
+		unaDescripcion = gProcesosInterfaces_descripciones( anIndex)
+ 
+    	Print #2, fInd(3) & fQ2q( "<procesosInterfaces codigo='" & unCodigo & "' nombre='" & unNombre & "'>")
+
+		Call pGenXMIDocumentacion( unaDescripcion, 4)
+
+'		Call pGenXMIActividadesInterfaz( anIndex)
+
+		Print #2, fInd(3) & "</procesosInterfaces>"
+	Next anIndex
+
+    Print #2, fInd(2) & fQ2q( "</procesosInterfaces>")
+
+End Sub
+
+
+
+
+Sub pGenXMIInterfaces
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<interfaces>")
+
+
+	For anIndex = 0 To gNumInterfaces - 1
+		unCodigo = gInterfaces_codigos( anIndex)
+		unNombre = gInterfaces_nombres( anIndex)
+		unaDescripcion = gInterfaces_descripciones( anIndex)
+ 
+    	Print #2, fInd(3) & fQ2q( "<interfaces codigo='" & unCodigo & "' nombre='" & unNombre & "'>")
+
+		Call pGenXMIDocumentacion( unaDescripcion, 3)
+
+		Call pGenXMIProcesosInterfaces( anIndex)
+
+		Print #2, fInd(3) & "</interfaces>"
+	Next anIndex
+
+    Print #2, fInd(2) & fQ2q( "</interfaces>")
+
+End Sub
+
+
+
+Sub pGenXMIProductos
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<productos>")
+
+	For anIndex = 0 To  gNumProductos - 1
+		unCodigo = gProductos_codigos( anIndex)
+		unNombre = gProductos_nombres( anIndex)
+		unaDescripcion = gProductos_descripciones( anIndex)
+ 
+		unasRefsEntradasYSalidas = fRefsEntradasYSalidas( anIndex)
+
+    	If Len( Trim( unaDescripcion)) < 1 Then
+			Print #2, fInd(3) & fQ2q( "<productos nombre='" & unNombre & "' usos='" & unasRefsEntradasYSalidas & "'/>")
+		Else
+			Print #2, fInd(3) & fQ2q( "<productos nombre='" & unNombre & "' usos='" & unasRefsEntradasYSalidas & "'>")
+
+			Call pGenXMIDocumentacion( unaDescripcion, 4)
+
+			Print #2, fInd(3) & fQ2q( "</productos>")
+		End If
+
+	Next anIndex
+    
+	Print #2, fInd(2) & fQ2q( "</productos>")
+
+End Sub
+
+
+
+Sub pGenXMITecnicas
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<tecnicas>")
+
+	For anIndex = 0 To gNumTecnicas - 1
+		unCodigo = gTecnicas_codigos( anIndex)
+		unNombre = gTecnicas_nombres( anIndex)
+		unaDescripcion = gTecnicas_descripciones( anIndex)
+
+		unasRefsUsosTecnicas = fRefsUsosTecnicas( anIndex)
+ 
+    	If Len( Trim( unaDescripcion)) < 1 Then
+			Print #2, fInd(3) & fQ2q( "<tecnicas nombre='" & unNombre & "' usosTecnica='" & unasRefsUsosTecnicas & "'/>")
+		Else
+			Print #2, fInd(3) & fQ2q( "<tecnicas nombre='" & unNombre & "' usosTecnica='" & unasRefsUsosTecnicas & "'>")
+
+			Call pGenXMIDocumentacion( unaDescripcion, 4)
+
+			Print #2, fInd(3) & fQ2q( "</tecnicas>")
+		End If
+
+	Next anIndex
+
+    Print #2, fInd(2) & fQ2q( "</tecnicas>")
+
+End Sub
+
+
+
+
+Sub pGenXMIPracticas
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<practicas>")
+
+	For anIndex = 0 To gNumPracticas - 1
+		unCodigo = gPracticas_codigos( anIndex)
+		unNombre = gPracticas_nombres( anIndex)
+		unaDescripcion = gPracticas_descripciones( anIndex)
+
+		unasRefsUsosPracticas = fRefsUsosPracticas( anIndex)
+ 
+    	If Len( Trim( unaDescripcion)) < 1 Then
+			Print #2, fInd(3) & fQ2q( "<practicas nombre='" & unNombre & "' usosPractica='" & unasRefsUsosPracticas & "'/>")
+		Else
+			Print #2, fInd(3) & fQ2q( "<practicas nombre='" & unNombre & "' usosPractica='" & unasRefsUsosPracticas & "'>")
+
+			Call pGenXMIDocumentacion( unaDescripcion, 4)
+
+			Print #2, fInd(3) & fQ2q( "</practicas>")
+		End If
+	Next anIndex
+
+    Print #2, fInd(2) & fQ2q( "</practicas>")
+End Sub
+
+
+
+Sub pGenXMIParticipantes
+	Dim anIndex As Integer
+	Dim unaDescripcion		As String
+
+    Print #2, fInd(2) & fQ2q( "<perfilesParticipantes>")
+
+	For anIndex = 0 To gNumParticipantes - 1
+		unCodigo = gParticipantes_codigos( anIndex)
+		unNombre = gParticipantes_nombres( anIndex)
+		unaDescripcion = gParticipantes_descripciones( anIndex)
+
+		unasRefsUsosParticipantes = fRefsUsosParticipantes( anIndex)
+ 
+    	If Len( Trim( unaDescripcion)) < 1 Then
+			Print #2, fInd(3) & fQ2q( "<perfilesParticipantes nombre='" & unNombre & "' participaciones='" & unasRefsUsosParticipantes & "'/>")
+		Else
+			Print #2, fInd(3) & fQ2q( "<perfilesParticipantes nombre='" & unNombre & "' participaciones='" & unasRefsUsosParticipantes & "'>")
+
+			Call pGenXMIDocumentacion( unaDescripcion, 4)
+
+			Print #2, fInd(3) & fQ2q( "</perfilesParticipantes>")
+		End If
+	Next anIndex
+
+    Print #2, fInd(2) & fQ2q( "</perfilesParticipantes>")
+End Sub
+
+
+
+Sub pGenXMIMetodologia
+
+	Print #2, fInd(1) & fQ2q( "<metodologias nombre='Métrica3'>")
+
+  	Call pGenXMIProcesos
+	Call pGenXMIProductos
+	Call pGenXMITecnicas
+	Call pGenXMIPracticas
+	Call pGenXMIParticipantes
+
+	Print #2, fInd(1) & "</metodologias>"
+End Sub
+
+
+
+
+
+Sub pGenXMIRepositorio
+
+	Print #2, fQ2q( _
+"<es.gva.cit.gvmetrica.processmm:Repositorio xmi:version='2.0' xmlns:xmi='http://www.omg.org/XMI' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:es.gva.cit.gvmetrica.processmm='http:///es/gva/cit/gvmetrica/processmm.ecore'>")
+
+	Call pGenXMIMetodologia
+
+	Print #2, "</es.gva.cit.gvmetrica.processmm:Repositorio>"
+End Sub
+
+
+
+Sub pGenXMIHeader 
+	Print #2, fQ2q( "<?xml version='1.0' encoding='UTF-8'?>")
+End Sub
+
+
+
+Sub pGenerateXMI
+	Dim anOutputFileName	As String
+
+
+	anOutputFileName =  gOutputBasePath & gOutputFileName
+	Open anOutputFileName For Output Access Write Lock Read Write As #2
+
+	Call pGenXMIHeader
+	
+	Call pGenXMIRepositorio	
+
+	Close #2
+End Sub
+
+
+
+
+
+
+
+
+
+
+'---------------------------------------------------
+' MAIN
+'
+'---------------------------------------------------
+
+
+
+Sub Main
+	Dim someFiles() As String
+
+	Viewport.Open
+
+Print "REQUIERE QUE EXISTAN LOS PROCESOS ANTES QUE LAS ACTIVIDADES ..."
+Print "REQUIERE QUE EXISTAN LOS PROCESOS ANTES QUE LAS ACTIVIDADES ..."
+Print "REQUIERE QUE EXISTAN LOS PROCESOS ANTES QUE LAS ACTIVIDADES ..."
+Print "REQUIERE QUE EXISTAN LOS PROCESOS ANTES QUE LAS ACTIVIDADES ..."
+
+
+	Call pInitGlobals
+
+	Call pParseProcesos
+	Call pParseActividades
+	Call pParseTareas
+
+	Call pGenerateXMI
+
+	Call pDumpProductos
+	Call pDumpTecnicas
+	Call pDumpPracticas
+	Call pDumpParticipantes
+
+	Call pDumpProcesos
+	Call pDumpActividades
+	Call pDumpTareas
+	Call pDumpEntradas
+	Call pDumpSalidas
+	Call pDumpUsosTecnicas
+	Call pDumpUsosPracticas
+	Call pDumpUsosParticipantes
+End Sub

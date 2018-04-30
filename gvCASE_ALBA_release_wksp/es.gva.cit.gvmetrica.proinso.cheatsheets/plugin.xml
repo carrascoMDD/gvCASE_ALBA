@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="es.gva.cit.gvmetrica.proinso.cheatsheets"
+            name="PROINSO Cheatsheets"/>
+      <cheatsheet
+            category="es.gva.cit.gvmetrica.proinso.cheatsheets"
+            composite="false"
+            contentFile="cheatsheets/proinso_cheatsheet_create.xml"
+            id="es.gva.cit.gvmetrica.proinso.cheatsheets.createprojectandmodel"
+            name="Create PROINSO project and model"/>
+   </extension>
+
+</plugin>

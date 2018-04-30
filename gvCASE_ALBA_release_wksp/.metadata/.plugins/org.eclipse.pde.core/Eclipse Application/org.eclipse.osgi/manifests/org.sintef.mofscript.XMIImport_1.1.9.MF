@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Generated-from: 1158856422360;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: XMIImport Plug-in
+Bundle-SymbolicName: org.sintef.mofscript.XMIImport; singleton:=true
+Bundle-Version: 1.1.9
+Bundle-ClassPath: org.sintef.mofscript.XMIImport.jar
+Bundle-Activator: org.sintef.mofscript.XMIImport.XMIImportPlugin
+Bundle-Vendor: SINTEF
+Bundle-Localization: plugin
+Export-Package: org.sintef.mofscript.XMIImport,
+ org.sintef.mofscript.XMIImport.actions
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui
+Eclipse-LazyStart: true

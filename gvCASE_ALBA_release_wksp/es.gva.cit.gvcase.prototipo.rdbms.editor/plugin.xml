@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+
+  <extension
+    point = "org.eclipse.ui.newWizards">
+    <category
+      id = "org.eclipse.emf.ecore.Wizard.category.ID"
+      name="%_UI_Wizard_category">
+    </category>
+    <wizard
+      id = "es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsModelWizardID"
+      name = "%_UI_RdbmsModelWizard_label"
+      class = "es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsModelWizard"
+      category = "org.eclipse.emf.ecore.Wizard.category.ID"
+      icon = "icons/full/obj16/RdbmsModelFile.gif">
+      <description>%_UI_RdbmsModelWizard_description</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+
+  <extension point = "org.eclipse.ui.editors">
+    <editor
+        id = "es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsEditorID"
+        name = "%_UI_RdbmsEditor_label"
+        icon = "icons/full/obj16/RdbmsModelFile.gif"
+        extensions = "rdbms"
+        class = "es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsEditor" 
+        contributorClass="es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsActionBarContributor" >
+    </editor>
+  </extension>    
+ 
+  <extension
+        point="org.eclipse.ui.preferencePages">
+     <page
+           name="Rdbms Tree Preferences"
+           class="es.gva.cit.gvcase.prototipo.rdbms.preferences.RdbmsTreePreferences"
+           id="es.gva.cit.gvcase.prototipo.rdbms.preferences.RdbmsTreePreferences"/>
+  </extension>    
+</plugin>

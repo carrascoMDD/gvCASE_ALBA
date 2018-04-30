@@ -1,0 +1,77 @@
+!SESSION 2006-12-04 18:33:23.718 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.5.0_07
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.sdk.ide -pdelaunch
+Command-line arguments:  -product org.eclipse.sdk.ide -data D:\Works\GV\CIT\gvCASE\Releases\gvCASE_ALBA_release\gvCASE_ALBA_release_work\gvCASE_ALBA_release_wksp/../runtime-EclipseApplication -dev file:D:/Works/GV/CIT/gvCASE/Releases/gvCASE_ALBA_release/gvCASE_ALBA_release_work/gvCASE_ALBA_release_wksp/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -pdelaunch -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 0 2006-12-04 18:33:29.000
+!MESSAGE One or more bundles are not resolved because the following root constraints are not resolved:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 18:33:29.000
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.debug_1.0.9 was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.debug 2 0 2006-12-04 18:33:29.000
+!MESSAGE Missing required bundle org.eclipse.gmt.atl.oclquery.core_0.0.0.
+
+!ENTRY org.eclipse.osgi 2 0 2006-12-04 18:33:29.015
+!MESSAGE The following is a complete list of bundles which are not resolved, see the prior log entry for the root cause if it exists:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 18:33:29.015
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.builder_1.0.5 [17] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.builder 2 0 2006-12-04 18:33:29.015
+!MESSAGE Missing required bundle org.atl.eclipse.adt.editor_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 18:33:29.015
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.debug_1.0.9 [18] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.debug 2 0 2006-12-04 18:33:29.015
+!MESSAGE Missing required bundle org.eclipse.gmt.atl.oclquery.core_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 18:33:29.015
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.editor_1.0.10 [21] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.editor 2 0 2006-12-04 18:33:29.015
+!MESSAGE Missing required bundle org.atl.eclipse.adt.debug_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 18:33:29.015
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.wizard_1.0.7 [23] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.wizard 2 0 2006-12-04 18:33:29.015
+!MESSAGE Missing required bundle org.atl.eclipse.adt.builder_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 18:33:29.015
+!MESSAGE Bundle update@plugins/org.atl.eclipse.km3_1.0.0 [25] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.km3 2 0 2006-12-04 18:33:29.015
+!MESSAGE Missing required bundle org.atl.eclipse.adt.builder_0.0.0.
+!SESSION 2006-12-04 19:23:03.265 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.5.0_07
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.sdk.ide -pdelaunch
+Command-line arguments:  -product org.eclipse.sdk.ide -data D:\Works\GV\CIT\gvCASE\Releases\gvCASE_ALBA_release\gvCASE_ALBA_release_work\gvCASE_ALBA_release_wksp/../runtime-EclipseApplication -dev file:D:/Works/GV/CIT/gvCASE/Releases/gvCASE_ALBA_release/gvCASE_ALBA_release_work/gvCASE_ALBA_release_wksp/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -pdelaunch -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.osgi 2 0 2006-12-04 19:23:10.078
+!MESSAGE One or more bundles are not resolved because the following root constraints are not resolved:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 19:23:10.078
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.debug_1.0.9 was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.debug 2 0 2006-12-04 19:23:10.078
+!MESSAGE Missing required bundle org.eclipse.gmt.atl.oclquery.core_0.0.0.
+
+!ENTRY org.eclipse.osgi 2 0 2006-12-04 19:23:10.078
+!MESSAGE The following is a complete list of bundles which are not resolved, see the prior log entry for the root cause if it exists:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 19:23:10.093
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.builder_1.0.5 [17] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.builder 2 0 2006-12-04 19:23:10.093
+!MESSAGE Missing required bundle org.atl.eclipse.adt.editor_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 19:23:10.093
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.debug_1.0.9 [18] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.debug 2 0 2006-12-04 19:23:10.093
+!MESSAGE Missing required bundle org.eclipse.gmt.atl.oclquery.core_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 19:23:10.093
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.editor_1.0.10 [21] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.editor 2 0 2006-12-04 19:23:10.093
+!MESSAGE Missing required bundle org.atl.eclipse.adt.debug_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 19:23:10.093
+!MESSAGE Bundle update@plugins/org.atl.eclipse.adt.wizard_1.0.7 [23] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.adt.wizard 2 0 2006-12-04 19:23:10.093
+!MESSAGE Missing required bundle org.atl.eclipse.adt.builder_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-12-04 19:23:10.093
+!MESSAGE Bundle update@plugins/org.atl.eclipse.km3_1.0.0 [25] was not resolved.
+!SUBENTRY 2 org.atl.eclipse.km3 2 0 2006-12-04 19:23:10.093
+!MESSAGE Missing required bundle org.atl.eclipse.adt.builder_0.0.0.
+
+!ENTRY org.eclipse.core.resources 2 10035 2006-12-04 19:23:11.421
+!MESSAGE A workspace crash was detected. The previous session did not exit normally.

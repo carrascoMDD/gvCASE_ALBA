@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Generated-from: 1158856422430;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: MOFScript Runtime
+Bundle-SymbolicName: org.sintef.mofscript.runtime
+Bundle-Version: 1.1.9
+Bundle-ClassPath: org.sintef.mofscript.runtime.jar,
+ lib/org.modelware.modelbus.adapter.frm.jar
+Bundle-Vendor: SINTEF
+Bundle-Localization: plugin
+Export-Package: org.modelware.modelbus.adapter.frm,
+ org.modelware.modelbus.adapter.frm.impl,
+ org.modelware.modelbus.adapter.frm.util,
+ org.sintef.mofscript.runtime,
+ org.sintef.mofscript.runtime.expression,
+ org.sintef.mofscript.runtime.statement,
+ org.sintef.mofscript.runtime.traceability,
+ org.sintef.mofscript.uml2Extensions.runtime
+Require-Bundle: org.sintef.mofscript.model;visibility:=reexport,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.uml2;resolution:=optional,
+ com.ibm.xtools.notation;resolution:=optional,
+ com.ibm.xtools.umlnotation;resolution:=optional,
+ com.ibm.xtools.modeler;resolution:=optional,
+ org.sintef.mofscript.traceabilitymodel

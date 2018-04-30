@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="es.gva.cit.gvcase.releases.alba.features" default="build.update.jar" basedir=".">
+
+	<target name="init">
+		<property name="feature.temp.folder" value="${basedir}/feature.temp.folder"/>
+		<property name="feature.destination" value="${basedir}"/>
+	</target>
+
+	<target name="all.plugins" depends="init">
+	</target>
+	<target name="all.features" depends="init">
+	</target>
+	<target name="update.feature" depends="init">
+	</target>
+
+	<target name="all.children" depends="init,all.features,all.plugins,update.feature">
+	</target>
+
+	<target name="children" if="include.children">
+		<antcall target="all.children"/>
+	</target>
+
+	<target name="build.jars" depends="init" description="Build all the jars for the feature: es.gva.cit.gvcase.releases.alba.features.">
+		<antcall target="all.children">
+			<param name="target" value="build.jars"/>
+		</antcall>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<antcall target="all.children">
+			<param name="target" value="build.sources"/>
+		</antcall>
+	</target>
+
+	<target name="build.zips" depends="init">
+		<antcall target="all.children">
+			<param name="target" value="build.zips"/>
+		</antcall>
+	</target>
+
+	<target name="build.update.jar" depends="init" description="Build the feature jar of: es.gva.cit.gvcase.releases.alba.features for an update site.">
+		<antcall target="all.children">
+			<param name="target" value="build.update.jar"/>
+		</antcall>
+		<property name="feature.base" value="${feature.temp.folder}"/>
+		<delete dir="${feature.temp.folder}"/>
+		<mkdir dir="${feature.temp.folder}"/>
+		<antcall target="gather.bin.parts" inheritAll="false">
+			<param name="arch" value="*"/>
+			<param name="ws" value="*"/>
+			<param name="nl" value="*"/>
+			<param name="os" value="*"/>
+			<param name="feature.base" value="${feature.temp.folder}"/>
+		</antcall>
+		<jar destfile="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.jar" basedir="${feature.temp.folder}/features/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA"/>
+		<delete dir="${feature.temp.folder}"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="feature.base">
+		<mkdir dir="${feature.base}/features/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA"/>
+		<antcall target="children">
+			<param name="destination.temp.folder" value="${feature.base}/plugins"/>
+			<param name="target" value="gather.bin.parts"/>
+		</antcall>
+		<copy todir="${feature.base}/features/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA" failonerror="true" overwrite="false">
+			<fileset dir="${basedir}" includes="feature.xml,build.properties,.project"			/>
+		</copy>
+		<eclipse.idReplacer featureFilePath="${feature.base}/features/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA/feature.xml"  selfVersion="1.0.0.v200612022000_ALBA" featureIds="es.gva.cit.gvcase.prototipo.rdbms.features,1.0.0.v200612022000,es.gva.cit.gvmetrica.orgcasi.features,1.0.0.v200612022000,es.gva.cit.gvmetrica.proinso.features,1.0.0.v200612022000,es.gva.cit.simapa.features,1.0.0.v200612022000," pluginIds=""/>
+		<antcall target="rootFiles${os}_${ws}_${arch}"/>
+	</target>
+	<target name="rootFileswin32_win32_x86">
+	</target>
+	<target name="rootFilesgroup_group_group">
+		<antcall target="rootFileswin32_win32_x86"/>
+	</target>
+
+	<target name="zip.distribution" depends="init" description="Create a zip containing all the plug-ins and features for the feature: es.gva.cit.gvcase.releases.alba.features.">
+		<delete dir="${feature.temp.folder}"/>
+		<mkdir dir="${feature.temp.folder}"/>
+		<antcall target="gather.bin.parts">
+			<param name="arch" value="*"/>
+			<param name="ws" value="*"/>
+			<param name="nl" value="*"/>
+			<param name="include.children" value="true"/>
+			<param name="feature.base" value="${feature.temp.folder}"/>
+			<param name="os" value="*"/>
+		</antcall>
+		<zip destfile="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.bin.dist.zip" basedir="${feature.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
+		<delete dir="${feature.temp.folder}"/>
+	</target>
+
+	<target name="zip.sources" depends="init">
+		<delete dir="${feature.temp.folder}"/>
+		<mkdir dir="${feature.temp.folder}"/>
+		<antcall target="all.children">
+			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins/es.gva.cit.gvcase.releases.alba.features.source_1.0.0.v200612022000_ALBA/src"/>
+			<param name="include.children" value="true"/>
+			<param name="target" value="gather.sources"/>
+		</antcall>
+		<zip destfile="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.src.zip" basedir="${feature.temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${feature.temp.folder}"/>
+	</target>
+
+	<target name="zip.logs" depends="init">
+		<delete dir="${feature.temp.folder}"/>
+		<mkdir dir="${feature.temp.folder}"/>
+		<antcall target="all.children" inheritAll="false">
+			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins"/>
+			<param name="include.children" value="true"/>
+			<param name="target" value="gather.logs"/>
+		</antcall>
+		<zip destfile="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.log.zip" basedir="${feature.temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${feature.temp.folder}"/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the feature: es.gva.cit.gvcase.releases.alba.features of all the zips, jars and logs created.">
+		<delete file="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.jar"/>
+		<delete file="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.bin.dist.zip"/>
+		<delete file="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.log.zip"/>
+		<delete file="${feature.destination}/es.gva.cit.gvcase.releases.alba.features_1.0.0.v200612022000_ALBA.src.zip"/>
+		<delete dir="${feature.temp.folder}"/>
+		<antcall target="all.children">
+			<param name="target" value="clean"/>
+		</antcall>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="D:/Works/GV/CIT/gvCASE/Releases/gvCASE_ALBA_release/gvCASE_ALBA_release_work/gvCASE_ALBA_release_packagewksp/es.gva.cit.gvcase.releases.alba.features/" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+		<antcall target="all.children">
+			<param name="target" value="refresh"/>
+		</antcall>
+	</target>
+	<target name="gather.sources">
+		<antcall target="children">
+			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins/es.gva.cit.gvcase.releases.alba.features.source_1.0.0.v200612022000_ALBA/src"/>
+			<param name="target" value="gather.sources"/>
+		</antcall>
+	</target>
+
+	<target name="gather.logs" depends="init">
+		<mkdir dir="${feature.temp.folder}"/>
+		<antcall target="all.children" inheritAll="false">
+			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins"/>
+			<param name="target" value="gather.logs"/>
+		</antcall>
+	</target>
+
+</project>

@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<es.gva.cit.gvmetrica.orgcasi:ARepositorio xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:es.gva.cit.gvmetrica.orgcasi="http:///es/gva/cit/gvmetrica/orgcasi.ecore">
+  <anotacionesProcedimiento>
+    <procedimientos>
+      <subsistemas/>
+      <sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConsultor" nombre="Consultar Antecedentes SerPre" comentario="">
+          <acciones>
+            <acciones operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.5">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0"/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas descripcion="" comentario="[ACV] Añadiendo como entradas los Documentos  de ^ropuesta de Gasto Mastin y No Mastin" documentos="//@anotacionesProcedimiento/@procedimientos.0/@documentos/@documentos.1"/>
+          </entradas>
+          <salidas>
+            <salidas estructurasDatos="//@libreriasServicios/@libreriasServicios.2/@estructurasDatos/@estructurasDatos.0"/>
+          </salidas>
+          <usadoPorSucesos usosSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@acciones/@acciones.0"/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConsultor" nombre="Consultar Antecedentes Mastín" rendimiento="">
+          <acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoServicio" servicio="//@libreriasServicios/@libreriasServicios.1/@interfaces/@interfaces.0/@servicios/@servicios.1/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0"/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas comentario="[ACV] Añadiendo como entradas los Documentos  de ^ropuesta de Gasto Mastin y No Mastin" documentos="//@anotacionesProcedimiento/@procedimientos.0/@documentos/@documentos.0"/>
+          </entradas>
+          <salidas>
+            <salidas estructurasDatos="//@libreriasServicios/@libreriasServicios.1/@estructurasDatos/@estructurasDatos.1"/>
+          </salidas>
+          <usadoPorSucesos usosSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@acciones/@acciones.1"/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConstructor" nombre="Alta borrador">
+          <acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoSuceso" sucesoUsado="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.0/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoSuceso" sucesoUsado="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.1/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+            <acciones operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.8 //@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.9" actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0">
+              <entradas>
+                <entradas descripcion=""/>
+                <entradas/>
+              </entradas>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0"/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas estructurasDatos="//@libreriasServicios/@libreriasServicios.1/@estructurasDatos/@estructurasDatos.1"/>
+            <entradas/>
+          </entradas>
+          <salidas>
+            <salidas estructurasDatos="//@libreriasServicios/@libreriasServicios.2/@estructurasDatos/@estructurasDatos.1" destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.3/@entradas/@entradas.0"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConsultor" nombre="Emitir Plantilla Documento Contable">
+          <acciones>
+            <acciones operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.10">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0"/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas nombre="" documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.0" destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.4/@entradas/@entradas.0" esDocumentoPapel="true"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConstructor" nombre="Dar Alta en Aplicación Hacienda" comentario="[ACV] Puesto que su salida se usa mas adelante, hay que representar esta accion de alguna manera. Es un Suceso &quot;Externo&quot;" tipo="Externo, electronico en otro sistema, no comunicacion electronica con este sistema" disparo="" postCondicion="">
+          <acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoServicio" operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.12" servicio="//@libreriasServicios/@libreriasServicios.0/@interfaces/@interfaces.0/@servicios/@servicios.0/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.3/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.0" destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.5/@entradas/@entradas.0"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConstructor" nombre="Actualizar SerPre con Datos Hacienda" tipo="">
+          <acciones>
+            <acciones operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.13">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0"/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.4/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas comentario="Actualizado con datos Hacienda" documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.1" destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.6/@entradas/@entradas.0"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConstructor" nombre="Actualizar Mastín" comentario="este proceso se repite a lo largo del procedimiento,  Se trata de un proceso automático.">
+          <acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoServicio" servicio="//@libreriasServicios/@libreriasServicios.1/@interfaces/@interfaces.0/@servicios/@servicios.0/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores actores="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0"/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.5/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.7/@entradas/@entradas.0"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConsultor" nombre="Enviar Propuesta a Subsecretario para Firma">
+          <acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoServicio" servicio="//@libreriasServicios/@libreriasServicios.3/@interfaces/@interfaces.0/@servicios/@servicios.0/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.6/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.1/@estados.1" destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.8/@entradas/@entradas.0" esDocumentoPapel="true"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConsultor" nombre="Emitir Oficio Remisión a Intervención Delegada / Origen ">
+          <acciones>
+            <acciones operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.19">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.1/@estados.1" fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.7/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas destinos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.9/@entradas/@entradas.0"/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+        <sucesos xsi:type="es.gva.cit.gvmetrica.orgcasi:SucesoConstructor" nombre="Actualizar Mastín2" comentario="este proceso se repite a lo largo del procedimiento,  Se trata de un proceso automático.">
+          <acciones>
+            <acciones xsi:type="es.gva.cit.gvmetrica.orgcasi:UsoServicio" operaciones="//@anotacionesProcedimiento/@procedimientos.0/@operaciones/@operaciones.21" servicio="//@libreriasServicios/@libreriasServicios.1/@interfaces/@interfaces.0/@servicios/@servicios.0/@usadoPorSucesos">
+              <entradas/>
+              <salidas/>
+            </acciones>
+          </acciones>
+          <actores/>
+          <estructurasDatos/>
+          <flujos/>
+          <entradas>
+            <entradas fuentes="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.8/@salidas/@salidas.0"/>
+          </entradas>
+          <salidas>
+            <salidas/>
+          </salidas>
+          <usadoPorSucesos/>
+        </sucesos>
+      </sucesos>
+      <documentos>
+        <documentos entradasOSalidas="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.1/@entradas/@entradas.0">
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.0"/>
+        </documentos>
+        <documentos entradasOSalidas="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.0/@entradas/@entradas.0">
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.1"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.2"/>
+        </documentos>
+        <documentos>
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.3"/>
+        </documentos>
+      </documentos>
+      <estructurasDatos>
+        <estructurasDatos/>
+      </estructurasDatos>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios>
+        <importacionesServicios libreriaServicios="//@libreriasServicios/@libreriasServicios.1/@importadoPor"/>
+        <importacionesServicios libreriaServicios="//@libreriasServicios/@libreriasServicios.2/@importadoPor"/>
+        <importacionesServicios libreriaServicios="//@libreriasServicios/@libreriasServicios.0/@importadoPor"/>
+        <importacionesServicios libreriaServicios="//@libreriasServicios/@libreriasServicios.3/@importadoPor"/>
+      </importacionesServicios>
+      <procedimiento href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0"/>
+      <normativas>
+        <normativas>
+          <normativa href="SerPre_RA_v01.simapa#//@normativas/@normativas.0"/>
+        </normativas>
+      </normativas>
+      <terminosGlosario>
+        <terminosGlosario>
+          <terminoGlosario href="SerPre_RA_v01.simapa#//@glosario/@terminos.0"/>
+        </terminosGlosario>
+      </terminosGlosario>
+      <unidadesOrganicas>
+        <unidades actoresSucesos="//@anotacionesProcedimiento/@procedimientos.0/@actores/@actores.0">
+          <unidad href="SerPre_RA_v01.simapa#//@unidadesOrganicas/@descomposicion.0/@descomposicion.1"/>
+        </unidades>
+        <unidades>
+          <unidad href="SerPre_RA_v01.simapa#//@unidadesOrganicas/@descomposicion.0/@descomposicion.0"/>
+        </unidades>
+        <unidades>
+          <unidad href="SerPre_RA_v01.simapa#//@unidadesOrganicas/@descomposicion.0/@descomposicion.2"/>
+        </unidades>
+      </unidadesOrganicas>
+      <unidadesExternas/>
+      <unidades/>
+      <estructurasFuncionales/>
+      <aplicaciones>
+        <aplicaciones>
+          <aplicacion href="SerPre_RA_v01.simapa#//@aplicaciones/@aplicaciones.0"/>
+        </aplicaciones>
+        <aplicaciones>
+          <aplicacion href="SerPre_RA_v01.simapa#//@aplicaciones/@aplicaciones.1"/>
+        </aplicaciones>
+      </aplicaciones>
+      <operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.0"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.1"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.2"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ASubprocedimiento">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.3"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.4"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.0/@acciones/@acciones.0">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.5"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.6"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.7"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@acciones/@acciones.2">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.8"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@acciones/@acciones.2">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.9"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.3/@acciones/@acciones.0">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.10"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.11"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.4/@acciones/@acciones.0">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.12"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.5/@acciones/@acciones.0">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.13"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.14"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.15"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.16"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.17"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ASubprocedimiento">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.18"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.8/@acciones/@acciones.0">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.19"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.20"/>
+        </operaciones>
+        <operaciones accionesSuceso="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.9/@acciones/@acciones.0">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.21"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.22"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.23"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.24"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.25"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.26"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.27"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.28"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.29"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ASubprocedimiento">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.30"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.31"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.32"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.33"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.34"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.35"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.36"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.37"/>
+        </operaciones>
+        <operaciones>
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.38"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.39"/>
+        </operaciones>
+        <operaciones xsi:type="es.gva.cit.gvmetrica.orgcasi:ADocumentoFinal">
+          <operacion href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.40"/>
+        </operaciones>
+      </operaciones>
+      <flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.0/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.1/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.2/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.3/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.4/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.4/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.5/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.6/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.6/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.7/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.8/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.9/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.10/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.11/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.12/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.13/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.14/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.15/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.16/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.17/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.18/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.19/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.19/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.20/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.21/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.23/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.24/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.24/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.25/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.26/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.26/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.27/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.28/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.29/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.30/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.32/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.33/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.33/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.34/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.34/@flujosSalientes.1"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.35/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.37/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.38/@flujosSalientes.0"/>
+        </flujos>
+        <flujos>
+          <flujo href="SerPre_RA_v01.simapa#//@procedimientos/@procedimientos.0/@operaciones/@operaciones.38/@flujosSalientes.1"/>
+        </flujos>
+      </flujos>
+      <actores>
+        <actores unidades="//@anotacionesProcedimiento/@procedimientos.0/@unidadesOrganicas/@unidades.0" actorDeSucesos="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.0/@actores //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.1/@actores //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@actores //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.3/@actores //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.5/@actores //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.6/@actores" acciones="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@acciones/@acciones.2"/>
+      </actores>
+      <sistemas/>
+    </procedimientos>
+  </anotacionesProcedimiento>
+  <repositorio href="SerPre_RA_v01.simapa#/"/>
+  <libreriasServicios>
+    <libreriasServicios nombre="Hacienda">
+      <documentos/>
+      <estructurasDatos/>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios/>
+      <importadoPor importadoPor="//@anotacionesProcedimiento/@procedimientos.0/@importacionesServicios/@importacionesServicios.2"/>
+      <interfaces>
+        <interfaces nombre="Documentos Contables">
+          <servicios>
+            <servicios nombre="Alta Documento Contable en Aplicacion Hacienda">
+              <usadoPorSucesos usosServicio="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.4/@acciones/@acciones.0"/>
+              <entradas documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.0"/>
+              <salidas descripcion="Documento rellenado con datos del alta en Hacienda" comentario="[ACV] Asumiendo que el Documento (plantilla) cambia trans alta en Hacienda, conteniendo datos y referencias de Hacienda que a continuación se usan para actualizar Serpre" documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.0"/>
+            </servicios>
+          </servicios>
+          <rolSolicitante nombre="Unidad Organizacional"/>
+          <rolSolicitado nombre="Hacienda"/>
+        </interfaces>
+      </interfaces>
+    </libreriasServicios>
+    <libreriasServicios nombre="Mastín">
+      <documentos/>
+      <estructurasDatos>
+        <estructurasDatos nombre="Claves Consulta Antecedentes Contables Mastín" entradasOSalidas="//@libreriasServicios/@libreriasServicios.1/@interfaces/@interfaces.0/@servicios/@servicios.1/@entradas.0"/>
+        <estructurasDatos nombre="Info Electrónica Antecedentes Mastín Documento Contable Asociado" entradasOSalidas="//@libreriasServicios/@libreriasServicios.1/@interfaces/@interfaces.0/@servicios/@servicios.1/@salidas.0 //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.1/@salidas/@salidas.0 //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@entradas/@entradas.0"/>
+      </estructurasDatos>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios/>
+      <importadoPor importadoPor="//@anotacionesProcedimiento/@procedimientos.0/@importacionesServicios/@importacionesServicios.0"/>
+      <interfaces>
+        <interfaces nombre="Control Procedimientos SerPre RA">
+          <servicios>
+            <servicios nombre="Actualizar Datos Contables en Mastín">
+              <usadoPorSucesos usosServicio="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.6/@acciones/@acciones.0 //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.9/@acciones/@acciones.0"/>
+            </servicios>
+            <servicios nombre="Consultar Antecedentes Contables en Mastín">
+              <usadoPorSucesos usosServicio="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.1/@acciones/@acciones.0"/>
+              <entradas estructurasDatos="//@libreriasServicios/@libreriasServicios.1/@estructurasDatos/@estructurasDatos.0"/>
+              <salidas estructurasDatos="//@libreriasServicios/@libreriasServicios.1/@estructurasDatos/@estructurasDatos.1"/>
+            </servicios>
+            <servicios nombre="qqqq">
+              <usadoPorSucesos/>
+              <entradas/>
+            </servicios>
+          </servicios>
+          <rolSolicitante nombre="Cliente Mastin"/>
+          <rolSolicitado nombre="Mastin"/>
+        </interfaces>
+      </interfaces>
+    </libreriasServicios>
+    <libreriasServicios nombre="Documentos y EstructurasDatos de Serpre - RA">
+      <documentos>
+        <documentos comentario="[ACV] Añadido para poder referenciar como Documento de Interface con Hacienda" entradasOSalidas="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.3/@salidas/@salidas.0 //@libreriasServicios/@libreriasServicios.0/@interfaces/@interfaces.0/@servicios/@servicios.0/@entradas.0 //@libreriasServicios/@libreriasServicios.0/@interfaces/@interfaces.0/@servicios/@servicios.0/@salidas.0 //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.4/@salidas/@salidas.0">
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.5"/>
+        </documentos>
+        <documentos entradasOSalidas="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.5/@salidas/@salidas.0">
+          <documento href="SerPre_RA_v01.simapa#//@documentos/@documentos.4"/>
+          <estados nombre="Pendiente de Firma" entradasOSalidas="//@libreriasServicios/@libreriasServicios.3/@interfaces/@interfaces.0/@servicios/@servicios.0/@entradas.0"/>
+          <estados nombre="Firmado" entradasOSalidas="//@libreriasServicios/@libreriasServicios.3/@interfaces/@interfaces.0/@servicios/@servicios.0/@salidas.0 //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.8/@entradas/@entradas.0 //@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.7/@salidas/@salidas.0"/>
+        </documentos>
+      </documentos>
+      <estructurasDatos>
+        <estructurasDatos nombre="Info Electrónica Antecedentes SerPre Documento Contable Asociado" entradasOSalidas="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.0/@salidas/@salidas.0"/>
+        <estructurasDatos nombre="Info Electrónica Borrador Documento Contable Asociado" entradasOSalidas="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.2/@salidas/@salidas.0"/>
+      </estructurasDatos>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios/>
+      <importadoPor importadoPor="//@anotacionesProcedimiento/@procedimientos.0/@importacionesServicios/@importacionesServicios.1 //@libreriasServicios/@libreriasServicios.3/@importacionesServicios/@importacionesServicios.0"/>
+      <interfaces/>
+    </libreriasServicios>
+    <libreriasServicios nombre="Subscretaría">
+      <documentos/>
+      <estructurasDatos/>
+      <campos/>
+      <relacionesDatos/>
+      <importacionesServicios>
+        <importacionesServicios libreriaServicios="//@libreriasServicios/@libreriasServicios.2/@importadoPor"/>
+      </importacionesServicios>
+      <importadoPor importadoPor="//@anotacionesProcedimiento/@procedimientos.0/@importacionesServicios/@importacionesServicios.3"/>
+      <interfaces>
+        <interfaces nombre="Manejo de Documentos Contables por Subsecretaria">
+          <servicios>
+            <servicios nombre="Autorización y Firma Propuesta Documento Contable SerPre">
+              <usadoPorSucesos usosServicio="//@anotacionesProcedimiento/@procedimientos.0/@sucesos/@sucesos.7/@acciones/@acciones.0"/>
+              <entradas documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.1/@estados.0"/>
+              <salidas documentos="//@libreriasServicios/@libreriasServicios.2/@documentos/@documentos.1/@estados.1"/>
+            </servicios>
+          </servicios>
+          <rolSolicitante nombre="Unidad Organizacional"/>
+          <rolSolicitado nombre="Subsecretaría"/>
+        </interfaces>
+      </interfaces>
+    </libreriasServicios>
+  </libreriasServicios>
+</es.gva.cit.gvmetrica.orgcasi:ARepositorio>

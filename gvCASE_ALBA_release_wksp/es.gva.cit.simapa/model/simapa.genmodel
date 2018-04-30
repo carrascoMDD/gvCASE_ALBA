@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/es.gva.cit.simapa/src"
+    editDirectory="/es.gva.cit.simapa.edit/src" editorDirectory="/es.gva.cit.simapa.editor/src"
+    modelPluginID="simapa" templateDirectory="/es.gva.cit.simapa/templates" dynamicTemplates="true"
+    redirection="" modelName="Simapa" modelPluginClass="" importerID="org.eclipse.emf.importer.ecore"
+    usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>simapa.ecore</foreignModel>
+  <genPackages prefix="Simapa" basePackage="es.gva.cit" disposableProviderFactory="true"
+      ecorePackage="simapa.ecore#/">
+    <genEnums ecoreEnum="simapa.ecore#//TipoMedioDocumento">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoMedioDocumento/Electronico"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoMedioDocumento/Papel"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoSilencioAdministrativo">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoSilencioAdministrativo/Positivo"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoSilencioAdministrativo/Negativo"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoSituacionProcedimiento">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoSituacionProcedimiento/Definitivo"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoSituacionProcedimiento/Borrador"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoAccesoArchivo">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAccesoArchivo/NoEstablecido"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAccesoArchivo/Restringido"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAccesoArchivo/Libre"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoAmbitoDocumento">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAmbitoDocumento/Entrada"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAmbitoDocumento/Salida"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAmbitoDocumento/Interno"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoAlmacenamientoDocumento">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAlmacenamientoDocumento/NoEstablecido"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAlmacenamientoDocumento/Fichero"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAlmacenamientoDocumento/BaseDatos"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoDesarrollo">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoDesarrollo/Externa"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoDesarrollo/ServicioInformatica"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoDesarrollo/Propia"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//TipoAplicacion">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAplicacion/Corporativa"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//TipoAplicacion/Usuario"/>
+    </genEnums>
+    <genEnums ecoreEnum="simapa.ecore#//Rango1_10">
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/NoEstablecido"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_1"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_2"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_3"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_4"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_5"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_6"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_7"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_8"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_9"/>
+      <genEnumLiterals ecoreEnumLiteral="simapa.ecore#//Rango1_10/_10"/>
+    </genEnums>
+    <genClasses ecoreClass="simapa.ecore#//Aplicacion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/herramienta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/baseDeDatos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/numeroUsuarios"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/estadoAplicacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/nivelSeguridad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/desarrollador"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/tipoDesarrollo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/tipoAplicacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/complejidad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Aplicacion/importancia"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Aplicacion/operaciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Aplicacion/aplicaciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Aplicacion/procedimientos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Aplicaciones">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Aplicaciones/aplicaciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Aplicaciones/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//ClaseDocumento">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ClaseDocumento/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ClaseDocumento/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ClaseDocumento/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//ClaseDocumento/observaciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//ClaseDocumento/clasesDocumento"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//ClaseDocumento/documentos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//ClasesDocumento">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//ClasesDocumento/clasesDocumento"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//ClasesDocumento/repositorio"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simapa.ecore#//ConModelClass">
+      <genFeatures property="Readonly" children="true" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//ConModelClass/modelClass"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simapa.ecore#//ContenedorEstructuraFuncional">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//ContenedorEstructuraFuncional/descomposicion"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simapa.ecore#//ContenedorUnidadExterna">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//ContenedorUnidadExterna/descomposicion"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simapa.ecore#//ContenedorUnidadOrganica">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//ContenedorUnidadOrganica/descomposicion"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//ControlProcedimiento">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/usuario"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/situacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/fechaHoraModificacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/fechaInicioVigencia"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/fechaFinVigencia"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/comentarioVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/fechaElaborado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/nombrePersonaElaborado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/puestoPersonaElaborado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/fechaRevisado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/nombrePersonaRevisado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/puestoPersonaRevisado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/fechaAprobado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/nombrePersonaAprobado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//ControlProcedimiento/puestoPersonaAprobado"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//ControlProcedimiento/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Convocatoria">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Convocatoria/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Convocatoria/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Convocatoria/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Convocatoria/codigo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Convocatoria/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Decision"/>
+    <genClasses ecoreClass="simapa.ecore#//Documento">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/titulo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/ficheroModeloFomulario"/>
+      <genFeatures createChild="false" propertyDescription="" propertyMultiLine="true"
+          ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/observaciones"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/tipoAlmacenamiento"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/tipoMedio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Documento/tipoAmbito"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simapa.ecore#//Documento/claseDocumento"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Documento/procedimientos"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Documento/documentosFinales"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference simapa.ecore#//Documento/flujos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Documento/documentos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Documentos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Documentos/documentos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Documentos/repositorio"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simapa.ecore#//DocumentoFinal">
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//DocumentoFinal/documento"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//DocumentoFinalInterno"/>
+    <genClasses ecoreClass="simapa.ecore#//EntradaDocumentoFinal"/>
+    <genClasses ecoreClass="simapa.ecore#//EstructuraFuncional">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//EstructuraFuncional/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//EstructuraFuncional/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//EstructuraFuncional/codigo"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//EstructuraFuncional/descripcion"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//EstructuraFuncional/descompone"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//EstructuraFuncional/unidadesOrganicas"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//EstructuraFuncional/procedimientos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//EstructurasFuncionales">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//EstructurasFuncionales/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//FichaArchivistica">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/tieneValorLegal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/tieneValorAdministrativo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/tieneValorInformativoHistorico"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/tipoAcceso"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/reglasEliminacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/reglasConservacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//FichaArchivistica/observaciones"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//FichaArchivistica/procedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//FinProceso"/>
+    <genClasses ecoreClass="simapa.ecore#//Flujo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Flujo/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Flujo/texto"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Flujo/esConector"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Flujo/guarda"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Flujo/origen"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Flujo/destino"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Flujo/documentos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Glosario">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Glosario/terminos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Glosario/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//NormativasYLegislaciones">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//NormativasYLegislaciones/repositorio"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//NormativasYLegislaciones/normativas"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//NormativaYLegislacion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//NormativaYLegislacion/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//NormativaYLegislacion/nombre"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//NormativaYLegislacion/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//NormativaYLegislacion/codigo"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//NormativaYLegislacion/normativas"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simapa.ecore#//NormativaYLegislacion/procedimientos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Operacion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/titulo"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/plazoEjecucion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/esWorkflow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/numeroPagina"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Operacion/numeroOrden"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Operacion/operaciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Operacion/aplicaciones"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simapa.ecore#//Operacion/flujosEntrantes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Operacion/flujosSalientes"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Operacion/unidad"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Operaciones">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Operaciones/procedimiento"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Operaciones/operaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Procedimiento">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/codigoCompleto"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/prop"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/titulo"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/objeto"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/observaciones"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/persona"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/tipoProcedimiento"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/notas"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/periodicidad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Procedimiento/tituloUltimaConvocatoria"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/operaciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/documentos"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/terminos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/fichaArchivistica"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/unidades"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/procedimientos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/tramitacionProcedimiento"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/usosComoSubProcedimientos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/convocatorias"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/responsable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/controlProcedimiento"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/normativas"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/servicio"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Procedimiento/aplicaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Procedimientos">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//Procedimientos/repositorio"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Procedimientos/procedimientos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//Repositorio">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/procedimientos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/documentos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/estructurasFuncionales"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/glosario"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/normativas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/unidadesOrganicas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/unidadesExternas"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/clasesDocumento"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/aplicaciones"/>
+      <genFeatures property="Readonly" children="true" createChild="false" propertyCategory=""
+          ecoreFeature="ecore:EReference simapa.ecore#//Repositorio/modelPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//SalidaDocumentoFinal"/>
+    <genClasses ecoreClass="simapa.ecore#//SimapaCollection"/>
+    <genClasses image="false" ecoreClass="simapa.ecore#//SimapaObject"/>
+    <genClasses ecoreClass="simapa.ecore#//Subprocedimiento">
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Subprocedimiento/subProcedimiento"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//TerminoGlosario">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TerminoGlosario/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TerminoGlosario/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TerminoGlosario/descripcion"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//TerminoGlosario/procedimientos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//TerminoGlosario/glosario"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//TramitacionProcedimiento">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/inicioInstanciaDeParte"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/inicioDeOficio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/volumenExpedientesEjercicio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/presupuestoAnualAproximado"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/plazoSolicitud"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/plazoResolucion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/silencioAdministrativo"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/recurso"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//TramitacionProcedimiento/esWorkflow"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//TramitacionProcedimiento/procedimiento"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="simapa.ecore#//Unidad">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/persona"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/telefono"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/fax"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/direccion"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/notas"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute simapa.ecore#//Unidad/observaciones"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//Unidad/operaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//UnidadesOrganicas">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//UnidadesOrganicas/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//UnidadOrganica">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//UnidadOrganica/codigo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//UnidadOrganica/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//UnidadOrganica/tipoUnidad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//UnidadOrganica/codigoOrganico"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//UnidadOrganica/unidadDeProcedimientos"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//UnidadOrganica/descompone"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//UnidadOrganica/estructurasFuncionales"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference simapa.ecore#//UnidadOrganica/responsableDeProcedimientos"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//UnidadesExternas">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//UnidadesExternas/repositorio"/>
+    </genClasses>
+    <genClasses ecoreClass="simapa.ecore#//UnidadExterna">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simapa.ecore#//UnidadExterna/tipoEntidad"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simapa.ecore#//UnidadExterna/descompone"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

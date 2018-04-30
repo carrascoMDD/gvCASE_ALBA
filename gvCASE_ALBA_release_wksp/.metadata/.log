@@ -1,0 +1,15 @@
+!SESSION 2006-12-04 19:21:10.531 -----------------------------------------------
+eclipse.buildId=M20060629-1905
+java.version=1.5.0_07
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=es_ES
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.update.configurator 2006-12-04 19:23:00.093
+!MESSAGE Duplicate feature found on site file:/D:/dvpt/eclipse-SDK-3.2-win32/ : org.apache.batik
+
+!ENTRY org.eclipse.update.configurator 2006-12-04 19:23:00.140
+!MESSAGE Duplicate feature found on site file:/D:/dvpt/eclipse-SDK-3.2-win32/ : org.eclipse.emf.ocl
+
+!ENTRY org.eclipse.update.configurator 2006-12-04 19:23:00.156
+!MESSAGE Duplicate feature found on site file:/D:/dvpt/eclipse-SDK-3.2-win32/ : org.eclipse.gmf

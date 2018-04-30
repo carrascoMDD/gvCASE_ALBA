@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+  <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="es.gva.cit.gvcase.prototipo.rdbms.cheatsheets"
+            name="RDBMS Cheatsheets"/>
+      <cheatsheet
+            category="es.gva.cit.gvcase.prototipo.rdbms.cheatsheets"
+            composite="false"
+            contentFile="cheatsheets/rdbms_cheatsheet_create.xml"
+            id="es.gva.cit.gvcae.prototipo.cheatsheets.createprojectandmodel"
+            name="Create RDBMS project and model"/>
+   </extension>
+
+</plugin>

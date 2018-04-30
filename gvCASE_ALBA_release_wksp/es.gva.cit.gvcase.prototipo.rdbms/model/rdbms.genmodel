@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright Conselleria d'Infraestructures i Transport - Generalitat Valenciana 2006"
+    modelDirectory="/es.gva.cit.gvcase.prototipo.rdbms/src" editDirectory="/es.gva.cit.gvcase.prototipo.rdbms.edit/src"
+    editorDirectory="/es.gva.cit.gvcase.prototipo.rdbms.editor/src" modelPluginID="es.gva.cit.gvcase.prototipo.rdbms"
+    templateDirectory="/es.gva.cit.gvcase.prototipo.rdbms/templates" dynamicTemplates="true"
+    modelName="Rdbms" editPluginClass="es.gva.cit.gvcase.prototipo.rdbms.provider.RdbmsEditPlugin"
+    editorPluginClass="es.gva.cit.gvcase.prototipo.rdbms.presentation.RdbmsEditorPlugin"
+    rootImplementsInterface="" importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>rdbms.ecore</foreignModel>
+  <genPackages prefix="Rdbms" basePackage="es.gva.cit.gvcase.prototipo" disposableProviderFactory="true"
+      ecorePackage="rdbms.ecore#/">
+    <genClasses ecoreClass="rdbms.ecore#//Column" labelFeature="#//rdbms/Column/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Column/etiqueta"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Column/etiquetaMedia"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Column/etiquetaSimple"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//Column/table"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Column/foreignOfKeyColumns"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Column/ownOfKeyColumns"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Column/dataType"/>
+      <genFeatures notify="false" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Column/primaryKey"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Column/joins"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//DataType" labelFeature="#//rdbms/DataType/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//DataType/etiqueta"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//DataType/columns"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//DataType/schema"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rdbms.ecore#//Element"/>
+    <genClasses ecoreClass="rdbms.ecore#//ForeignKey" labelFeature="#//rdbms/ForeignKey/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//ForeignKey/etiqueta"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//ForeignKey/keyColumns"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//ForeignKey/table"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rdbms.ecore#//ForeignKey/primaryKey"/>
+      <genOperations ecoreOperation="rdbms.ecore#//ForeignKey/validatePrimaryKeyTable">
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKey/validatePrimaryKeyTable/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKey/validatePrimaryKeyTable/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="rdbms.ecore#//ForeignKey/validateKeyColumnsSize">
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKey/validateKeyColumnsSize/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKey/validateKeyColumnsSize/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="rdbms.ecore#//ForeignKey/validateKeyColumnsSequence">
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKey/validateKeyColumnsSequence/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKey/validateKeyColumnsSequence/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//ForeignKeyColumn">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//ForeignKeyColumn/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//ForeignKeyColumn/key"/>
+      <genFeatures children="true" createChild="false" propertyCategory="" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//ForeignKeyColumn/foreignColumn"/>
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//ForeignKeyColumn/ownColumn"/>
+      <genOperations ecoreOperation="rdbms.ecore#//ForeignKeyColumn/validateOwnColumn">
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKeyColumn/validateOwnColumn/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKeyColumn/validateOwnColumn/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="rdbms.ecore#//ForeignKeyColumn/validateForeignColumn">
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKeyColumn/validateForeignColumn/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKeyColumn/validateForeignColumn/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="rdbms.ecore#//ForeignKeyColumn/validateColumnDataTypes">
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKeyColumn/validateColumnDataTypes/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//ForeignKeyColumn/validateColumnDataTypes/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rdbms.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//NamedElement/name"/>
+      <genOperations ecoreOperation="rdbms.ecore#//NamedElement/validateNamedElement">
+        <genParameters ecoreParameter="rdbms.ecore#//NamedElement/validateNamedElement/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//NamedElement/validateNamedElement/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//PrimaryKey" labelFeature="#//rdbms/PrimaryKey/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//PrimaryKey/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//PrimaryKey/table"/>
+      <genFeatures children="true" createChild="false" propertyDescription="" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//PrimaryKey/columns"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//PrimaryKey/primaryKeyOfForeignKeys"/>
+      <genOperations ecoreOperation="rdbms.ecore#//PrimaryKey/validatePrimaryKeyColumnsTable">
+        <genParameters ecoreParameter="rdbms.ecore#//PrimaryKey/validatePrimaryKeyColumnsTable/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//PrimaryKey/validatePrimaryKeyColumnsTable/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//Schema" labelFeature="#//rdbms/Schema/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Schema/etiqueta"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//Schema/tables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//Schema/dataTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//Schema/views"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Schema/modelPackage"/>
+      <genOperations ecoreOperation="rdbms.ecore#//Schema/validateUniqueTableNames">
+        <genParameters ecoreParameter="rdbms.ecore#//Schema/validateUniqueTableNames/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//Schema/validateUniqueTableNames/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="rdbms.ecore#//Schema/validateUniqueDataTypeNames">
+        <genParameters ecoreParameter="rdbms.ecore#//Schema/validateUniqueDataTypeNames/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//Schema/validateUniqueDataTypeNames/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//Table" labelFeature="#//rdbms/Table/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Table/etiqueta"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Table/etiquetaSimple"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//Table/schema"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//Table/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//Table/primaryKey"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//Table/foreignKeys"/>
+      <genOperations ecoreOperation="rdbms.ecore#//Table/validateUniqueColumnNames">
+        <genParameters ecoreParameter="rdbms.ecore#//Table/validateUniqueColumnNames/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//Table/validateUniqueColumnNames/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="rdbms.ecore#//Table/validateUniqueForeignKeyNames">
+        <genParameters ecoreParameter="rdbms.ecore#//Table/validateUniqueForeignKeyNames/diagnostics"/>
+        <genParameters ecoreParameter="rdbms.ecore#//Table/validateUniqueForeignKeyNames/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//View" labelFeature="#//rdbms/View/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//View/etiqueta"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//View/schema"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rdbms.ecore#//View/tables"/>
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute rdbms.ecore#//View/whereClause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//View/viewColumns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rdbms.ecore#//View/joins"/>
+      <genOperations ecoreOperation="rdbms.ecore#//View/createViewColumns"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//ViewColumn" labelFeature="#//rdbms/ViewColumn/etiqueta">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//ViewColumn/etiqueta"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//ViewColumn/name"/>
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//ViewColumn/column"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//ViewColumn/view"/>
+    </genClasses>
+    <genClasses ecoreClass="rdbms.ecore#//Join">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rdbms.ecore#//Join/etiqueta"/>
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference rdbms.ecore#//Join/columns"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rdbms.ecore#//Join/view"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rdbms.ecore#//ConModelClass">
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference rdbms.ecore#//ConModelClass/modelClass"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

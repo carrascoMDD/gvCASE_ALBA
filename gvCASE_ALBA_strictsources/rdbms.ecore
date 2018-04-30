@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rdbms"
+    nsURI="http:///es/gva/cit/gvcase/prototipo/rdbms.ecore" nsPrefix="es.gva.cit.gvcase.prototipo.rdbms">
+  <eClassifiers xsi:type="ecore:EClass" name="Column" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' de ').concat(&#xD;&#xA;table.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaMedia" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' de ').concat(&#xD;&#xA;table.etiquetaSimple&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//Table"
+        changeable="false" transient="true" eOpposite="#//Table/columns"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignOfKeyColumns" upperBound="-1"
+        eType="#//ForeignKeyColumn" changeable="false" eOpposite="#//ForeignKeyColumn/foreignColumn"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownOfKeyColumns" upperBound="-1"
+        eType="#//ForeignKeyColumn" changeable="false" eOpposite="#//ForeignKeyColumn/ownColumn"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" lowerBound="1"
+        eType="#//DataType" eOpposite="#//DataType/columns">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="table.schema.dataTypes"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKey" eType="#//PrimaryKey"
+        eOpposite="#//PrimaryKey/columns"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joins" upperBound="-1"
+        eType="#//Join" changeable="false" eOpposite="#//Join/columns"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' en ').concat(&#xD;&#xA;schema.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//Column" changeable="false" eOpposite="#//Column/dataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" lowerBound="1"
+        eType="#//Schema" changeable="false" transient="true" eOpposite="#//Schema/dataTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="#//ConModelClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ForeignKey" eSuperTypes="#//NamedElement">
+    <eOperations name="validatePrimaryKeyTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="not (primaryKey.table = table)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="validateKeyColumnsSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="keyColumns->size() = primaryKey.columns->size()"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="validateKeyColumnsSequence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="Sequence { 1..keyColumns->size() }->forAll(anIndex | anIndex = primaryKey.columns->indexOf( keyColumns->at(anIndex).foreignColumn))"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' de ').concat(&#xD;&#xA;table.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keyColumns" lowerBound="1"
+        upperBound="-1" eType="#//ForeignKeyColumn" containment="true" eOpposite="#//ForeignKeyColumn/key"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//Table"
+        changeable="false" transient="true" eOpposite="#//Table/foreignKeys"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKey" lowerBound="1"
+        eType="#//PrimaryKey" eOpposite="#//PrimaryKey/primaryKeyOfForeignKeys">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="table.schema.tables->asSet()->excluding( table).primaryKey"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForeignKeyColumn" eSuperTypes="#//Element">
+    <eOperations name="validateOwnColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="ownColumn.table = key.table"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="validateForeignColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="foreignColumn.primaryKey = key.primaryKey"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="validateColumnDataTypes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="ownColumn.dataType = foreignColumn.dataType"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="'Own '.concat( if ownColumn->isEmpty() then '?' else ownColumn.etiquetaSimple endif).concat(' Foreign ').concat(&#xD;&#xA;   if foreignColumn->isEmpty() then '?' else foreignColumn.etiquetaSimple endif&#xD;&#xA;).concat(' de ').concat(&#xD;&#xA;key.etiqueta&#xD;&#xA;)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//ForeignKey"
+        changeable="false" transient="true" eOpposite="#//ForeignKey/keyColumns"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignColumn" lowerBound="1"
+        eType="#//Column" eOpposite="#//Column/foreignOfKeyColumns">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="key.primaryKey.columns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownColumn" lowerBound="1"
+        eType="#//Column" eOpposite="#//Column/ownOfKeyColumns">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="key.table.columns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
+    <eOperations name="validateNamedElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="name.size() > 0"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimaryKey" eSuperTypes="#//NamedElement">
+    <eOperations name="validatePrimaryKeyColumnsTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="columns->forAll( aKeyCol | aKeyCol.table = table)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' de ').concat(&#xD;&#xA;table.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1" eType="#//Table"
+        changeable="false" transient="true" eOpposite="#//Table/primaryKey"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" lowerBound="1"
+        upperBound="-1" eType="#//Column" eOpposite="#//Column/primaryKey">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="table.columns->reject(aC | columns->includes(aC))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKeyOfForeignKeys"
+        upperBound="-1" eType="#//ForeignKey" changeable="false" eOpposite="#//ForeignKey/primaryKey"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Schema" eSuperTypes="#//NamedElement">
+    <eOperations name="validateUniqueTableNames" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="tables->forAll(t1, t2 | t1 &lt;> t2 implies t1.name &lt;> t2.name)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="validateUniqueDataTypeNames" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="dataTypes->forAll(t1, t2 | t1 &lt;> t2 implies t1.name &lt;> t2.name)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if name->isEmpty() or name.size() &lt; 1 then '?' else name endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" lowerBound="1"
+        upperBound="-1" eType="#//Table" containment="true" eOpposite="#//Table/schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" upperBound="-1"
+        eType="#//DataType" containment="true" eOpposite="#//DataType/schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="views" upperBound="-1"
+        eType="#//View" containment="true" eOpposite="#//View/schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelPackage" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//NamedElement">
+    <eOperations name="validateUniqueColumnNames" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="columns->forAll(t1, t2 | t1 &lt;> t2 implies t1.name &lt;> t2.name)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eOperations name="validateUniqueForeignKeyNames" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="invariant" value="foreignKeys->forAll(t1, t2 | t1 &lt;> t2 implies t1.name &lt;> t2.name)"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' en ').concat(&#xD;&#xA;schema.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiquetaSimple" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" lowerBound="1"
+        eType="#//Schema" changeable="false" transient="true" eOpposite="#//Schema/tables"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" lowerBound="1"
+        upperBound="-1" eType="#//Column" containment="true" eOpposite="#//Column/table"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="primaryKey" lowerBound="1"
+        eType="#//PrimaryKey" containment="true" eOpposite="#//PrimaryKey/table"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreignKeys" upperBound="-1"
+        eType="#//ForeignKey" containment="true" eOpposite="#//ForeignKey/table"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//NamedElement">
+    <eOperations name="createViewColumns" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' en ').concat(&#xD;&#xA;schema.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" lowerBound="1"
+        eType="#//Schema" changeable="false" transient="true" eOpposite="#//Schema/views"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" lowerBound="1"
+        upperBound="-1" eType="#//Table"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="whereClause" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewColumns" upperBound="-1"
+        eType="#//ViewColumn" containment="true" eOpposite="#//ViewColumn/view"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joins" upperBound="-1"
+        eType="#//Join" containment="true" eOpposite="#//Join/view"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewColumn" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="(if name->isEmpty() or name.size() &lt; 1 then '?' else name endif).concat( ' viewing ').concat(&#xD;&#xA;if column->isEmpty() then '?' else column.etiquetaMedia endif&#xD;&#xA;).concat(' de ').concat(&#xD;&#xA;view.etiqueta&#xD;&#xA;)&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
+        eType="#//Column">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="view.tables.columns->reject(aC | view.viewColumns.column->includes(aC))"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" lowerBound="1" eType="#//View"
+        changeable="false" transient="true" eOpposite="#//View/viewColumns"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="etiqueta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="derive" value="if columns->isEmpty() then '? = ?' else&#xD;&#xA;(&#xD;&#xA;  if columns->size()&lt; 2 then&#xD;&#xA;&#x9;columns->at(1).etiquetaMedia.concat( ' = ?')&#xD;&#xA;  else&#xD;&#xA;&#x9;columns->at(1).etiquetaMedia.concat( ' = ').concat(columns->at(2).etiquetaMedia)&#xD;&#xA;  endif&#xD;&#xA;)&#xD;&#xA;endif&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" lowerBound="2"
+        upperBound="2" eType="#//Column" eOpposite="#//Column/joins">
+      <eAnnotations source="http://www.eclipse.org/OCL/examples/ocl">
+        <details key="candidates" value="view.tables.columns"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="view" lowerBound="1" eType="#//View"
+        changeable="false" eOpposite="#//View/joins"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConModelClass" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelClass" lowerBound="1"
+        eType="ecore:EClass ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"
+        changeable="false" volatile="true" transient="true" derived="true"/>
+  </eClassifiers>
+</ecore:EPackage>

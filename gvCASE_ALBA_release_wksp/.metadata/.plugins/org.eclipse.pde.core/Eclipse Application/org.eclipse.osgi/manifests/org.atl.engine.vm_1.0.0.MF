@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Generated-from: 1151574312000;type=2
+Bundle-ManifestVersion: 2
+Bundle-Name: ATL VM Plug-in
+Bundle-SymbolicName: org.atl.engine.vm
+Bundle-Version: 1.0.0
+Bundle-ClassPath: vm.jar
+Bundle-Activator: org.atl.engine.vm.ATLVMPlugin
+Bundle-Vendor: ATLAS
+Bundle-Localization: plugin
+Export-Package: org.atl.engine.extractors,
+ org.atl.engine.extractors.xml,
+ org.atl.engine.injectors,
+ org.atl.engine.injectors.xml,
+ org.atl.engine.vm,
+ org.atl.engine.vm.adwp,
+ org.atl.engine.vm.nativelib
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Eclipse-LazyStart: true

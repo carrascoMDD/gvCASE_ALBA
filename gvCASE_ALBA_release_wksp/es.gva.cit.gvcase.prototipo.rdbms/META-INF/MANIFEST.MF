@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: es.gva.cit.gvcase.prototipo.rdbms; singleton:=true
+Bundle-Version: 1.0.0.v200612022000
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: es.gva.cit.gvcase.prototipo.rdbms,
+ es.gva.cit.gvcase.prototipo.rdbms.impl,
+ es.gva.cit.gvcase.prototipo.rdbms.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ocl;visibility:=reexport
